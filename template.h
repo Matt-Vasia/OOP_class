@@ -54,6 +54,30 @@ void read(duom &laik, vector <duom> &grupe)
             laik.exam=0;
         }
 }
+double average(duom given)
+{
+    double sum=0.0;
+    for(auto i:given.pazymiai)
+    {
+        sum+=i;
+    }
+    return sum/given.pazymiai.size();
+}
+double median(duom given)
+{
+    if(given.pazymiai.size()%2==1)
+    {
+        return given.pazymiai[((given.pazymiai.size()/2)+1)-1];
+    }
+    else
+    {
+        double ats=0.0;
+        ats=given.pazymiai[given.pazymiai.size()/2-1];
+        ats+=given.pazymiai[given.pazymiai.size()/2+1-1];
+        ats/=2;
+        return ats;
+    }
+}
 
 #endif // TEMPLATE_H_INCLUDED
 

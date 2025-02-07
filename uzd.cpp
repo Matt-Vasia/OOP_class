@@ -1,20 +1,19 @@
 #include "template.h"
 
 void read(duom &laik, vector <duom> &grupe);
+double average(duom given);
+double median(duom given);
 
 int main(){
     duom laik;
     vector <duom> grupe;
     read(laik, grupe);
-    for(auto i:grupe)
+    for(auto &i:grupe)
     {
-        cout<<i.var<<" "<<i.pav<<" ";
-        for(auto j: i.pazymiai)
-        {
-            cout<<j<<" ";
-        }
-        cout<<endl;
+        i.vid=average(i);
+        i.med=median(i);
     }
+
     return 0;
 }
 
