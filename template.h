@@ -16,7 +16,7 @@ using std::vector;
 using std::ifstream;
 using std::setprecision;
 using std::fixed;
-using std::stringstream;
+using std::istringstream;
 using std::terminate;
 
 struct duom
@@ -24,32 +24,35 @@ struct duom
     string var="test";
     string pav="test";
     vector<int> pazymiai;
-    int exam;
+    int exam=0;
     double vid=0, med=0;
 };
 
 void read(duom &laik, vector <duom> &grupe)
 {
-        char line[256];
-        cin.getline(line, 256);
-        stringstream s;
-        s << line;
-        s >> laik.var >> laik.pav;
-        if(!s)
+        ifstream in("duom.txt");
+        if(!in)
         {
-            cout<<"Duomenų failas neatsidaro"<<endl;
+            cout<<"Neatsidaro failas"<<endl;
             terminate();
         }
-        while(s)
+        string eil;
+        while(getline(in, eil))
         {
-            int temp;
-            s>>temp;
-            laik.pazymiai.push_back(temp); //saug 0-10 pazymiai
+            istringstream line(eil);
+            line>>laik.var>>laik.pav;
+            double grade;
+            while(line>>grade)
+                laik.pazymiai.push_back(grade);
+            if(laik.pazymiai.size()!=0)
+            {
+                laik.exam=laik.pazymiai[laik.pazymiai.size()-1];
+                laik.pazymiai.pop_back();
+            }
+            grupe.push_back(laik);
+            laik.pazymiai.clear();
+            laik.exam=0;
         }
-        laik.exam=laik.pazymiai[laik.pazymiai.size()-1];
-        laik.pazymiai.pop_back();
-        grupe.push_back(laik);
-    }
 }
 
 #endif // TEMPLATE_H_INCLUDED
