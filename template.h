@@ -26,6 +26,7 @@ struct duom
     vector<int> pazymiai;
     int exam=0;
     double vid=0, med=0;
+    double mark;
 };
 
 void read(duom &laik, vector <duom> &grupe)
