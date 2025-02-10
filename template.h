@@ -92,7 +92,7 @@ void random(vector <duom> &grupe)
     srand(time(0));
     for(int j=0; j<m; j++)
     {
-        laik.var="rand";
+        laik.var="";
         laik.pav="";
         for(int i=0; i<n; i++)
             laik.pazymiai.push_back(1 + (rand() % 10));
@@ -101,7 +101,23 @@ void random(vector <duom> &grupe)
         laik.pazymiai.clear();
     }
 }
-
+void random_full(vector <duom> &grupe)
+{
+    duom laik;
+    int n=5; //pazymiu skaicius
+    int m=5; //studentu skaicius
+    srand(time(0));
+    for(int j=0; j<m; j++)
+    {
+        laik.var=65 + (rand() % 26);
+        laik.pav=65 + (rand() % 26);
+        for(int i=0; i<n; i++)
+            laik.pazymiai.push_back(1 + (rand() % 10));
+        laik.exam=(1 + (rand() % 10));
+        grupe.push_back(laik);
+        laik.pazymiai.clear();
+    }
+}
 #endif // TEMPLATE_H_INCLUDED
 
 

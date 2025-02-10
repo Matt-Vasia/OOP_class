@@ -3,21 +3,28 @@
 void read(vector <duom> &grupe);
 double average(duom given);
 double median(duom given);
+void random(vector <duom> &grupe);
+void random_full(vector <duom> &grupe);
 
 int main(){
     vector <duom> grupe;
     char rule;
     do
     {
-        cout<<"Jei norite sugeneruoti mokinio pazymius atsitiktinai, spauskite 'Y'"<<endl;
-        cout<<"Jei mokinio pazymius jau turite, spauskite 'N'"<<endl;
+        cout<<"Jei duomenis norite ivesti patys (duom.txt), spauskite '1'"<<endl;
+        cout<<"Jei norite sugeneruoti mokinio pazymius atsitiktinai, spauskite '2'"<<endl;
+        cout<<"Jei norite sugeneruoti mokinio pazymius ir vardus atsitiktinai, spauskite '3'"<<endl;
+        cout<<"Jei norite baigti darba, spauskite '4'"<<endl;
         cin>>rule;
-        rule=tolower(rule);
-    } while(rule!='y' and rule!='n');
-    if(rule=='n')
+    } while(rule!='1' and rule!='2' and rule!='3' and rule!='4');
+    if(rule=='1')
         read(grupe);
-    else
+    else if (rule=='2')
         random(grupe);
+    else if (rule=='3')
+        random_full(grupe);
+    else
+        return 0;
     for(auto &i:grupe)
     {
         i.vid=average(i);
