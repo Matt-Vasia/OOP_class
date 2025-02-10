@@ -62,6 +62,8 @@ double average(duom given)
     {
         sum+=i;
     }
+    if(!given.pazymiai.size())
+        return 0;
     return sum/given.pazymiai.size();
 }
 double median(duom given)
