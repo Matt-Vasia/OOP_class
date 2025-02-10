@@ -23,57 +23,32 @@ struct duom
 {
     string var="test";
     string pav="test";
-    vector<int> pazymiai;
+    int C[100]={0};
     int exam=0;
     double vid=0, med=0;
+    double mark;
 };
 
-void read(duom &laik, vector <duom> &grupe)
-{
-        ifstream in("duom.txt");
-        if(!in)
-        {
-            cout<<"Neatsidaro failas"<<endl;
-            terminate();
-        }
-        string eil;
-        while(getline(in, eil))
-        {
-            istringstream line(eil);
-            line>>laik.var>>laik.pav;
-            double grade;
-            while(line>>grade)
-                laik.pazymiai.push_back(grade);
-            if(laik.pazymiai.size()!=0)
-            {
-                laik.exam=laik.pazymiai[laik.pazymiai.size()-1];
-                laik.pazymiai.pop_back();
-            }
-            grupe.push_back(laik);
-            laik.pazymiai.clear();
-            laik.exam=0;
-        }
-}
-double average(duom given)
+double average(duom given, int n)
 {
     double sum=0.0;
-    for(auto i:given.pazymiai)
+    for(int i=0; i<n; i++)
     {
-        sum+=i;
+        sum+=given.C[i];
     }
-    return sum/given.pazymiai.size();
+    return sum/n;
 }
-double median(duom given)
+double median(duom given, int n)
 {
-    if(given.pazymiai.size()%2==1)
+    if(n%2==1)
     {
-        return given.pazymiai[((given.pazymiai.size()/2)+1)-1];
+        return given.C[((n/2)+1)-1];
     }
     else
     {
         double ats=0.0;
-        ats=given.pazymiai[given.pazymiai.size()/2-1];
-        ats+=given.pazymiai[given.pazymiai.size()/2+1-1];
+        ats=given.C[n/2-1];
+        ats+=given.C[n/2+1-1];
         ats/=2;
         return ats;
     }
