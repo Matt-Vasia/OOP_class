@@ -1,20 +1,29 @@
 #include "template.h"
 
-void read(duom &laik, vector <duom> &grupe);
+void read(vector <duom> &grupe);
 double average(duom given);
 double median(duom given);
 
 int main(){
-    duom laik;
     vector <duom> grupe;
-    read(laik, grupe);
+    char rule;
+    do
+    {
+        cout<<"Jei norite sugeneruoti mokinio pazymius atsitiktinai, spauskite 'Y'"<<endl;
+        cout<<"Jei mokinio pazymius jau turite, spauskite 'N'"<<endl;
+        cin>>rule;
+        rule=tolower(rule);
+    } while(rule!='y' and rule!='n');
+    if(rule=='n')
+        read(grupe);
+    else
+        random(grupe);
     for(auto &i:grupe)
     {
         i.vid=average(i);
         i.med=median(i);
     }
     ///
-    char rule;
     do
     {
         cout<<"Noredami skaiciuoti naudojant vidurki parasykite 'v'"<<endl;

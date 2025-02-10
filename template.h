@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <cstdlib> //rand lib
+#include <ctime> //time lib
 
 using std::cout;
 using std::cin;
@@ -29,8 +31,9 @@ struct duom
     double mark;
 };
 
-void read(duom &laik, vector <duom> &grupe)
+void read(vector <duom> &grupe)
 {
+        duom laik;
         ifstream in("duom.txt");
         if(!in)
         {
@@ -79,6 +82,23 @@ double median(duom given)
         ats+=given.pazymiai[given.pazymiai.size()/2+1-1];
         ats/=2;
         return ats;
+    }
+}
+void random(vector <duom> &grupe)
+{
+    duom laik;
+    int n=5; //pazymiu skaicius
+    int m=5; //studentu skaicius
+    srand(time(0));
+    for(int j=0; j<m; j++)
+    {
+        laik.var="rand";
+        laik.pav="";
+        for(int i=0; i<n; i++)
+            laik.pazymiai.push_back(1 + (rand() % 10));
+        laik.exam=(1 + (rand() % 10));
+        grupe.push_back(laik);
+        laik.pazymiai.clear();
     }
 }
 
