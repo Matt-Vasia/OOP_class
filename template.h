@@ -36,6 +36,8 @@ double average(duom given, int n)
     {
         sum+=given.C[i];
     }
+    if(!n)
+        return 0;
     return sum/n;
 }
 double median(duom given, int n)
