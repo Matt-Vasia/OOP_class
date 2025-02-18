@@ -9,6 +9,7 @@
 #include <sstream>
 #include <cstdlib> //rand lib
 #include <ctime> //time lib
+#include <algorithm>
 
 using std::cout;
 using std::cin;
@@ -20,6 +21,8 @@ using std::setprecision;
 using std::fixed;
 using std::istringstream;
 using std::terminate;
+using std::sort;
+using std::setw;
 
 struct duom
 {

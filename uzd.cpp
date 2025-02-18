@@ -56,10 +56,14 @@ int main(){
         i.mark=0.4*i.vid_med+0.6*i.exam;
     }
     ///
-    cout<<"Noredami surusiuoti pagal varda, spauskite '1'"<<endl;
-    cout<<"Noredami surusiuoti pagal pavarde, spauskite '2'"<<endl;
-    cout<<"Noredami surusiuoti pagal galutini bala, spauskite '3'"<<endl;
-    cin>>rule;
+    do
+    {
+        cout<<"Noredami surusiuoti pagal varda, spauskite '1'"<<endl;
+        cout<<"Noredami surusiuoti pagal pavarde, spauskite '2'"<<endl;
+        cout<<"Noredami surusiuoti pagal galutini bala, spauskite '3'"<<endl;
+        cin>>rule;
+        rule=tolower(rule);
+    } while(rule!='1' and rule!='2' and rule!='3');
     if(rule=='1')
         sort(grupe.begin(), grupe.end(), [](duom a, duom b){return a.var<b.var;});
     else if(rule=='2')
