@@ -3,7 +3,7 @@
 void read(vector <duom> &grupe);
 double average(duom given);
 double median(duom given);
-void random(vector <duom> &grupe);
+void random(vector <duom> &grupe, int m);
 void random_full(vector <duom> &grupe);
 
 int main(){
@@ -20,7 +20,10 @@ int main(){
     if(rule=='1')
         read(grupe);
     else if (rule=='2')
-        random(grupe);
+    {
+        read_half(grupe);
+        random(grupe, grupe.size());
+    }
     else if (rule=='3')
         random_full(grupe);
     else
