@@ -23,6 +23,7 @@ using std::istringstream;
 using std::terminate;
 using std::sort;
 using std::setw;
+using std::left;
 
 struct duom
 {
@@ -110,6 +111,7 @@ void read_file(vector <duom> &grupe)
          terminate();
     }
     string eil;
+    getline(in, eil);
     while(getline(in, eil))
     {
         istringstream line(eil);

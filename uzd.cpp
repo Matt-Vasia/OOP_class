@@ -73,7 +73,7 @@ int main(){
     ///
     for(auto i:grupe)
     {
-        cout<<fixed<<setprecision(2)<<setw(10)<<i.var<<" "<<setw(10)<<i.pav<<" "<<setw(10)<<i.mark<<endl;
+        cout << left << fixed << setprecision(2) << setw(20) << i.var << " " << setw(20) << i.pav << " " << setw(20) << i.mark << endl;
     }
     return 0;
 }
