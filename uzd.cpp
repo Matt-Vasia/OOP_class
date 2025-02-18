@@ -11,29 +11,28 @@ int main(){
     char rule;
     do
     {
-        cout<<"Jei duomenis norite ivesti patys (duom.txt), spauskite '1'"<<endl;
-        cout<<"Jei norite sugeneruoti mokinio pazymius atsitiktinai, spauskite '2'"<<endl;
-        cout<<"Jei norite sugeneruoti mokinio pazymius ir vardus atsitiktinai, spauskite '3'"<<endl;
-        cout<<"Jei norite baigti darba, spauskite '4'"<<endl;
+        cout<<"Jei duomenis norite ivesti patys (terminalas), spauskite '1'"<<endl;
+        cout<<"Jei duomenis norite ivesti patys (kursiokai.txt), spauskite '2'"<<endl;
+        cout<<"Jei norite sugeneruoti mokinio pazymius atsitiktinai, spauskite '3'"<<endl;
+        cout<<"Jei norite sugeneruoti mokinio pazymius ir vardus atsitiktinai, spauskite '4'"<<endl;
+        cout<<"Jei norite baigti darba, spauskite '5'"<<endl;
         cin>>rule;
-    } while(rule!='1' and rule!='2' and rule!='3' and rule!='4');
+    } while(rule!='1' and rule!='2' and rule!='3' and rule!='4' and rule!='5');
     if(rule=='1')
         read(grupe);
     else if (rule=='2')
     {
+        read_file(grupe);
+    }        
+    else if (rule=='3')
+    {
         read_half(grupe);
         random(grupe, grupe.size());
     }
-    else if (rule=='3')
+    else if (rule=='4')
         random_full(grupe);
-    else
+    else if (rule=='5')
         return 0;
-    ///
-    for(auto &i:grupe)
-    {
-        i.vid=average(i);
-        i.med=median(i);
-    }
     ///
     do
     {
@@ -45,21 +44,32 @@ int main(){
     if(rule=='v')
     {
         for(auto &i:grupe)
-        {
-            i.mark=0.4*i.vid+0.6*i.exam;
-        }
+            i.vid_med=average(i);
     }
     else
     {
         for(auto &i:grupe)
-        {
-            i.mark=0.4*i.med+0.6*i.exam;
-        }
+            i.vid_med=median(i);
     }
+    for(auto &i:grupe)
+    {
+        i.mark=0.4*i.vid_med+0.6*i.exam;
+    }
+    ///
+    cout<<"Noredami surusiuoti pagal varda, spauskite '1'"<<endl;
+    cout<<"Noredami surusiuoti pagal pavarde, spauskite '2'"<<endl;
+    cout<<"Noredami surusiuoti pagal galutini bala, spauskite '3'"<<endl;
+    cin>>rule;
+    if(rule=='1')
+        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return a.var<b.var;});
+    else if(rule=='2')
+        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return a.pav<b.pav;});
+    else if(rule=='3')
+        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return a.mark>b.mark;});
     ///
     for(auto i:grupe)
     {
-        cout<<fixed<<setprecision(2)<<i.var<<" "<<i.pav<<" "<<i.mark<<endl;
+        cout<<fixed<<setprecision(2)<<setw(10)<<i.var<<" "<<setw(10)<<i.pav<<" "<<setw(10)<<i.mark<<endl;
     }
     return 0;
 }

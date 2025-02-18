@@ -27,7 +27,7 @@ struct duom
     string pav="test";
     vector<int> pazymiai;
     int exam=0;
-    double vid=0, med=0;
+    double vid_med=0;
     double mark;
 };
 
@@ -95,6 +95,33 @@ void read_half(vector <duom> &grupe)
         cin>>check;
         if(check=='0')
             con=0;
+    }
+}
+void read_file(vector <duom> &grupe)
+{
+    duom laik;
+    ifstream in("kursiokai.txt");
+    if(!in)
+    {
+        cout<<"Neatsidaro failas"<<endl;
+         terminate();
+    }
+    string eil;
+    while(getline(in, eil))
+    {
+        istringstream line(eil);
+        line>>laik.var>>laik.pav;
+        double grade;
+        while(line>>grade)
+            laik.pazymiai.push_back(grade);
+        if(laik.pazymiai.size()!=0)
+        {
+            laik.exam=laik.pazymiai[laik.pazymiai.size()-1];
+            laik.pazymiai.pop_back();
+        }
+        grupe.push_back(laik);
+        laik.pazymiai.clear();
+        laik.exam=0;
     }
 }
 double average(duom given)
