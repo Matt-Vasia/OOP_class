@@ -28,6 +28,7 @@ int main(){
         random_full(grupe);
     else
         return 0;
+    ///
     for(auto &i:grupe)
     {
         i.vid=average(i);

@@ -57,10 +57,9 @@ void read(vector <duom> &grupe)
         while(true)
         {
             cin>>temp;
-            local.pazymiai.push_back(temp);
             if (cin.fail() || temp < -1 || temp > 10)
             {
-                cin.clear(); // clear the error flag
+                cin.clear();
                 cout << "Netinkama ivestis. Iveskite pazymi tarp 1 ir 10 arba -1 norint uzbaigti" << endl;
             }
             else if (temp == -1)
@@ -111,7 +110,9 @@ double average(duom given)
 }
 double median(duom given)
 {
-    if(given.pazymiai.size()%2==1)
+    if(given.pazymiai.size()==0)
+        return 0;
+    else if(given.pazymiai.size()%2==1)
     {
         return given.pazymiai[((given.pazymiai.size()/2)+1)-1];
     }
