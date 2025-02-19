@@ -215,9 +215,9 @@ void sorting(vector <duom> &grupe)
         rule=tolower(rule);
     } while(rule!='1' and rule!='2' and rule!='3');
     if(rule=='1')
-        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return stoi(a.var.substr(6))<stoi(b.var.substr(6));}); //tinka su "vardas####"
+        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return stoi(a.var.substr(6))<stoi(b.var.substr(6));}); //tinka su "vardas####" pasalina "vardas"
     else if(rule=='2')
-        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return stoi(a.pav.substr(7))<stoi(b.pav.substr(7));}); //tinka su "pavarde####"
+        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return stoi(a.pav.substr(7))<stoi(b.pav.substr(7));}); //tinka su "pavarde####" pasalina "pavarde"
     else if(rule=='3')
         sort(grupe.begin(), grupe.end(), [](duom a, duom b){return a.mark>b.mark;});
 }
