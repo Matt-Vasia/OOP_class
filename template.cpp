@@ -13,13 +13,21 @@ void read(vector <duom> &grupe)
         int temp;
         while(true)
         {
-            cin>>temp;
-            if (cin.fail() || temp < -1 || temp > 10)
+            try
             {
-                cin.clear();
-                cout << "Netinkama ivestis. Iveskite pazymi tarp 1 ir 10 arba -1 norint uzbaigti" << endl;
+                cin>>temp;
+                if (cin.fail() || temp < -1 || temp > 10)
+                {
+                    cin.clear();
+                    throw invalid_argument("Netinkama ivestis");
+                }
             }
-            else if (temp == -1)
+            catch(const exception& e)
+            {
+                cerr << e.what() << '\n';
+                continue;
+            }
+            if (temp == -1)
                 break;
             else
                 local.pazymiai.push_back(temp);

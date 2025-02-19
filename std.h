@@ -15,5 +15,8 @@ using std::sort;
 using std::setw;
 using std::left;
 using std::stringstream;
+using std::invalid_argument;
+using std::exception;
+using std::cerr;
 
 #endif
