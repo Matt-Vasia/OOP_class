@@ -24,6 +24,7 @@ using std::terminate;
 using std::sort;
 using std::setw;
 using std::left;
+using std::stringstream;
 
 struct duom
 {
@@ -107,26 +108,33 @@ void read_file(vector <duom> &grupe)
     ifstream in("kursiokai.txt");
     if(!in)
     {
-        cout<<"Neatsidaro failas"<<endl;
-         terminate();
+        cout<<"Failas nerastas"<<endl;
+        terminate();
     }
+    stringstream ss;
+    ss<<in.rdbuf();
+    in.close();
     string eil;
-    getline(in, eil);
-    while(getline(in, eil))
+    getline(ss, eil); //skip first line (antraste)
+    while(getline(ss, eil))
     {
-        istringstream line(eil);
+        stringstream line(eil);
         line>>laik.var>>laik.pav;
         double grade;
         while(line>>grade)
             laik.pazymiai.push_back(grade);
         if(laik.pazymiai.size()!=0)
         {
-            laik.exam=laik.pazymiai[laik.pazymiai.size()-1];
+            laik.exam=laik.pazymiai.back();
             laik.pazymiai.pop_back();
         }
         grupe.push_back(laik);
         laik.pazymiai.clear();
         laik.exam=0;
+    }
+    grupe.shrink_to_fit();
+    for (auto& student : grupe) {
+        student.pazymiai.shrink_to_fit();
     }
 }
 double average(duom given)
@@ -188,6 +196,89 @@ void random_full(vector <duom> &grupe)
         grupe.push_back(laik);
         laik.pazymiai.clear();
     }
+}
+void menu_with_read(vector <duom> &grupe)
+{
+    char rule;
+    do
+    {
+        cout<<"Jei duomenis norite ivesti patys (terminalas), spauskite '1'"<<endl;
+        cout<<"Jei duomenis norite ivesti patys (kursiokai.txt), spauskite '2'"<<endl;
+        cout<<"Jei norite sugeneruoti mokinio pazymius atsitiktinai, spauskite '3'"<<endl;
+        cout<<"Jei norite sugeneruoti mokinio pazymius ir vardus atsitiktinai, spauskite '4'"<<endl;
+        cout<<"Jei norite baigti darba, spauskite '5'"<<endl;
+        cin>>rule;
+    } while(rule!='1' and rule!='2' and rule!='3' and rule!='4' and rule!='5');
+    if(rule=='1')
+        read(grupe);
+    else if (rule=='2')
+        read_file(grupe);    
+    else if (rule=='3')
+    {
+        read_half(grupe);
+        random(grupe, grupe.size());
+    }
+    else if (rule=='4')
+        random_full(grupe);
+    else if (rule=='5')
+    {
+        cout<<"Darbas baigtas"<<endl;
+        terminate();
+    }
+}
+void vid_med_calc(vector <duom> &grupe)
+{
+    char rule;
+    do
+    {
+        cout<<"Noredami skaiciuoti naudojant vidurki parasykite 'v'"<<endl;
+        cout<<"Noredami skaiciuoti naudojant mediana parasykite 'm'"<<endl;
+        cin>>rule;
+        rule=tolower(rule);
+    } while(rule!='v' and rule!='m');
+    if(rule=='v')
+    {
+        for(auto &i:grupe)
+            i.vid_med=average(i);
+    }
+    else
+    {
+        for(auto &i:grupe)
+            i.vid_med=median(i);
+    }
+    for(auto &i:grupe)
+    {
+        i.mark=0.4*i.vid_med+0.6*i.exam;
+    }
+}
+void sorting(vector <duom> &grupe)
+{
+    char rule;
+    do
+    {
+        cout<<"Noredami surusiuoti pagal varda, spauskite '1'"<<endl;
+        cout<<"Noredami surusiuoti pagal pavarde, spauskite '2'"<<endl;
+        cout<<"Noredami surusiuoti pagal galutini bala, spauskite '3'"<<endl;
+        cin>>rule;
+        rule=tolower(rule);
+    } while(rule!='1' and rule!='2' and rule!='3');
+    if(rule=='1')
+        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return a.var<b.var;});
+    else if(rule=='2')
+        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return a.pav<b.pav;});
+    else if(rule=='3')
+        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return a.mark>b.mark;});
+}
+void print(vector <duom> &grupe)
+{
+    stringstream ss;
+    ss << left << fixed << setprecision(2) << setw(20) << "Vardas"<<setw(20)<<"Pavarde"<<setw(20)<<"Galutinis"<<endl;
+    ss << "------------------------------------------------------------" << endl;
+    for(auto i:grupe)
+    {
+        ss << left << fixed << setprecision(2) << setw(20) << i.var << " " << setw(20) << i.pav << " " << setw(20) << i.mark << endl;
+    }
+    cout<<ss.str();
 }
 #endif // TEMPLATE_H_INCLUDED
 
