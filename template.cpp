@@ -120,15 +120,13 @@ void read_file(vector <duom> &grupe)
 }
 double average(duom given)
 {
-    double sum=0.0;
-    for(auto i:given.pazymiai)
-    {
-        sum+=i;
-    }
     try
     {
         if(given.pazymiai.empty())
             throw invalid_argument("Truksta pazymiu");
+        double sum=0.0;
+        for(auto i:given.pazymiai)
+        sum+=i;
         return sum/given.pazymiai.size();
     }
     catch(const std::exception& e)
