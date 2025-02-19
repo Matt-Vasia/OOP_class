@@ -1,5 +1,24 @@
 #include "template.h"
 
+
+char check_menu()
+{
+    string input;
+    char check;
+    do
+    {
+        cout<<"Noredami uzbaigti ivedima iveskite 'F'"<<endl;
+        cout<<"Noredami testi ivedima iveskite 'T'"<<endl;
+        getline(cin, input);
+        if(input.size()>1 or input.size()==0)
+        {
+            cout<<"Netinkama ivestis"<<endl;
+            continue;
+        }
+        check=toupper(input[0]);
+    } while (check!='F' and check!='T');
+    return check;
+}
 void read(vector <duom> &grupe)
 {
     bool con=1;
@@ -53,19 +72,19 @@ void read(vector <duom> &grupe)
             con=0;
     }
 }
+
 void read_half(vector <duom> &grupe)
 {
     bool con=1;
     char check;
+    string input_check;
     duom local;
     while(con)
     {
         cout<<"Iveskite varda ir pavarde"<<endl;
         cin>>local.var>>local.pav;
         grupe.push_back(local);
-        cout<<"Noredami uzbaigti ivedima iveskite 0"<<endl;
-        cin>>check;
-        if(check=='0')
+        if(check_menu()=='F')
             con=0;
     }
 }

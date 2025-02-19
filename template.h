@@ -34,6 +34,7 @@ vector<string> vardai={
 "Juozas",
 "Rokas"};
 
+char check_menu();
 void menu_with_read(vector <duom> &grupe);
 double average(duom given);
 double median(duom given);

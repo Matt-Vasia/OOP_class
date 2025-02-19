@@ -20,5 +20,7 @@ using std::exception;
 using std::cerr;
 using std::stoi;
 using std::tolower;
+using std::numeric_limits;
+using std::streamsize;
 
 #endif
