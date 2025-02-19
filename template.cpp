@@ -32,15 +32,22 @@ void read(vector <duom> &grupe)
             else
                 local.pazymiai.push_back(temp);
         }
-        if(local.pazymiai.size()!=0)
+        try
         {
-            local.exam=local.pazymiai[local.pazymiai.size()-1];
-                local.pazymiai.pop_back();
+            if(local.pazymiai.size()==0)
+                throw invalid_argument("Neivesti pazymiai");
         }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+            terminate();
+        }
+        local.exam=local.pazymiai.back();
+        local.pazymiai.pop_back();
         grupe.push_back(local);
         local.pazymiai.clear();
         local.exam=0;
-        cout<<"Noredami uzbaigti darba iveskite 0"<<endl;
+        cout<<"Noredami uzbaigti ivedima iveskite 0"<<endl;
         cin>>check;
         if(check=='0')
             con=0;
@@ -56,7 +63,7 @@ void read_half(vector <duom> &grupe)
         cout<<"Iveskite varda ir pavarde"<<endl;
         cin>>local.var>>local.pav;
         grupe.push_back(local);
-        cout<<"Noredami uzbaigti darba iveskite 0"<<endl;
+        cout<<"Noredami uzbaigti ivedima iveskite 0"<<endl;
         cin>>check;
         if(check=='0')
             con=0;
@@ -66,36 +73,50 @@ void read_file(vector <duom> &grupe)
 {
     duom laik;
     ifstream in("kursiokai.txt");
-    if(!in)
+    try
     {
-        cout<<"Failas nerastas"<<endl;
+        if(!in)
+        {
+            throw invalid_argument("Failas nerastas");
+        }
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
         terminate();
     }
     stringstream ss;
     ss<<in.rdbuf();
     in.close();
     string eil;
-    getline(ss, eil); //skip first line (antraste)
-    while(getline(ss, eil))
+    try
     {
-        stringstream line(eil);
-        line>>laik.var>>laik.pav;
-        double grade;
-        while(line>>grade)
-            laik.pazymiai.push_back(grade);
-        if(laik.pazymiai.size()!=0)
+        if(getline(ss, eil)==eofbit)
+            throw invalid_argument("Failas tuscias");
+        while(getline(ss, eil))
         {
+            stringstream line(eil);
+            line>>laik.var>>laik.pav;
+            double grade;
+            while(line>>grade)
+                laik.pazymiai.push_back(grade);
+            if(laik.pazymiai.size()==0)
+                throw invalid_argument("Truksta pazymiu");
             laik.exam=laik.pazymiai.back();
             laik.pazymiai.pop_back();
+            grupe.push_back(laik);
+            laik.pazymiai.clear();
+            laik.exam=0;
         }
-        grupe.push_back(laik);
-        laik.pazymiai.clear();
-        laik.exam=0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+        terminate();
     }
     grupe.shrink_to_fit();
-    for (auto& student : grupe) {
+    for (auto& student : grupe)
         student.pazymiai.shrink_to_fit();
-    }
 }
 double average(duom given)
 {
@@ -104,9 +125,17 @@ double average(duom given)
     {
         sum+=i;
     }
-    if(!given.pazymiai.size())
-        return 0;
-    return sum/given.pazymiai.size();
+    try
+    {
+        if(given.pazymiai.empty())
+            throw invalid_argument("Truksta pazymiu");
+        return sum/given.pazymiai.size();
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+        terminate();
+    }
 }
 double median(duom given)
 {
