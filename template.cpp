@@ -9,7 +9,7 @@ void read(vector <duom> &grupe)
     {
         cout<<"Iveskite varda ir pavarde"<<endl;
         cin>>local.var>>local.pav;
-        cout<<"Iveskite pazymius uz namu darbus (iveskite -1 norint uzbaigti)"<<endl;
+        cout<<"Iveskite pazymius (paskutinis pazymys is egzamino) (iveskite -1 norint uzbaigti)"<<endl;
         int temp;
         while(true)
         {
@@ -91,7 +91,7 @@ void read_file(vector <duom> &grupe)
     string eil;
     try
     {
-        if(getline(ss, eil)==eofbit)
+        if(!getline(ss, eil))
             throw invalid_argument("Failas tuscias");
         while(getline(ss, eil))
         {

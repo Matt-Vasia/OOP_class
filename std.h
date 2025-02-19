@@ -18,5 +18,7 @@ using std::stringstream;
 using std::invalid_argument;
 using std::exception;
 using std::cerr;
+using std::stoi;
+using std::tolower;
 
 #endif
