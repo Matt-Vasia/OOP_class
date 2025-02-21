@@ -143,16 +143,16 @@ double average(duom given)
     {
         if(given.pazymiai.empty())
             throw invalid_argument("Truksta pazymiu");
-        double sum=0.0;
-        for(auto i:given.pazymiai)
-        sum+=i;
-        return sum/given.pazymiai.size();
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
         terminate();
     }
+    double sum=0.0;
+    for(auto i:given.pazymiai)
+    sum+=i;
+    return sum/given.pazymiai.size();
 }
 double median(duom given)
 {
@@ -160,25 +160,24 @@ double median(duom given)
     {
         if(given.pazymiai.size()==0)
             throw invalid_argument("Truksta pazymiu");
-        if(given.pazymiai.size()%2==1)
-        {
-            return given.pazymiai[((given.pazymiai.size()/2)+1)-1];
-        }
-        else
-        {
-            double ats=0.0;
-            ats=given.pazymiai[given.pazymiai.size()/2-1];
-            ats+=given.pazymiai[given.pazymiai.size()/2+1-1];
-            ats/=2;
-            return ats;
-        }
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
         terminate();
     }
-    
+    if(given.pazymiai.size()%2==1)
+    {
+        return given.pazymiai[((given.pazymiai.size()/2)+1)-1];
+    }
+    else
+    {
+        double ats=0.0;
+        ats=given.pazymiai[given.pazymiai.size()/2-1];
+        ats+=given.pazymiai[given.pazymiai.size()/2+1-1];
+        ats/=2;
+        return ats;
+    }
 
 }
 void random(vector <duom> &grupe, int m)
