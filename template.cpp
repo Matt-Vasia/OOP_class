@@ -73,7 +73,7 @@ void read(vector <duom> &grupe)
     }
 }
 
-void read_half(vector <duom> &grupe)
+void read_names_only(vector <duom> &grupe)
 {
     bool con=1;
     char check;
@@ -184,13 +184,16 @@ double median(duom given)
 void random(vector <duom> &grupe, int m)
 {
     duom laik;
-    int n=5; //pazymiu skaicius
-    srand(time(0));
+    random_device rd;
+    mt19937 mt(rd());
+    uniform_int_distribution<int> dist(1, 10);
+    uniform_int_distribution<int> dist2(5, 20);
+    int n = dist2(mt);
     for(int j=0; j<m; j++)
     {
         for(int i=0; i<n; i++)
-            laik.pazymiai.push_back(1 + (rand() % 10));
-        laik.exam=(1 + (rand() % 10));
+            laik.pazymiai.push_back(dist(mt));
+        laik.exam=(dist(mt));
         grupe[j].pazymiai=laik.pazymiai;
         grupe[j].exam=laik.exam;
         laik.pazymiai.clear();
@@ -199,16 +202,22 @@ void random(vector <duom> &grupe, int m)
 void random_full(vector <duom> &grupe)
 {
     duom laik;
-    int n=5; //pazymiu skaicius
-    int m=5; //studentu skaicius
-    srand(time(0));
+    random_device rd;
+    mt19937 mt(rd());
+    uniform_int_distribution<int> dist(1, 10);
+    uniform_int_distribution<int> dist2(5, 20);
+    uniform_int_distribution<int> dist3(0, 27); //random vardu generavimas
+    uniform_int_distribution<int> dist4(65, 86); //ASCII values for uppercase letters
+    int n=dist2(mt); //pazymiu skaicius
+    int m=dist2(mt); //studentu skaicius
     for(int j=0; j<m; j++)
     {
-        laik.var=vardai.at((rand() % 10));
-        laik.pav=65 + (rand() % 26);
+        laik.var=vardai.at(dist3(mt));
+        laik.pav=dist4(mt);
+        laik.pav+=".";
         for(int i=0; i<n; i++)
-            laik.pazymiai.push_back(1 + (rand() % 10));
-        laik.exam=(1 + (rand() % 10));
+            laik.pazymiai.push_back(dist(mt));
+        laik.exam=(dist(mt));
         grupe.push_back(laik);
         laik.pazymiai.clear();
     }
@@ -231,7 +240,7 @@ void menu_with_read(vector <duom> &grupe)
         read_file(grupe);    
     else if (rule=='3')
     {
-        read_half(grupe);
+        read_names_only(grupe);
         random(grupe, grupe.size());
     }
     else if (rule=='4')
@@ -267,6 +276,13 @@ void vid_med_calc(vector <duom> &grupe)
         i.mark=0.4*i.vid_med+0.6*i.exam;
     }
 }
+bool compare(string a, string b, string rule)
+{
+    if(a.rfind(rule, 0)==0 and b.rfind(rule, 0)==0)
+        return stoi(a.substr(rule.length()))<stoi(b.substr(rule.length()));
+    else
+        return a<b;
+}
 void sorting(vector <duom> &grupe)
 {
     char rule;
@@ -279,9 +295,9 @@ void sorting(vector <duom> &grupe)
         rule=tolower(rule);
     } while(rule!='1' and rule!='2' and rule!='3');
     if(rule=='1')
-        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return stoi(a.var.substr(6))<stoi(b.var.substr(6));}); //tinka su "vardas####" pasalina "vardas"
+        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.var, b.var, "Vardas");});
     else if(rule=='2')
-        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return stoi(a.pav.substr(7))<stoi(b.pav.substr(7));}); //tinka su "pavarde####" pasalina "pavarde"
+        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.pav, b.pav, "Pavarde");});
     else if(rule=='3')
         sort(grupe.begin(), grupe.end(), [](duom a, duom b){return a.mark>b.mark;});
 }

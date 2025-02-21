@@ -10,6 +10,7 @@
 #include <cstdlib> //rand lib
 #include <ctime> //time lib
 #include <algorithm>
+#include <random>
 #include "std.h"
 
 struct duom
@@ -23,7 +24,6 @@ struct duom
 };
 
 vector<string> vardai={
-"Matas",
 "Tomas",
 "Andrius",
 "Daumantas",
@@ -32,7 +32,28 @@ vector<string> vardai={
 "Kestas",
 "Paulius",
 "Juozas",
-"Rokas"};
+"Rokas"
+"Adomas",
+"Amelija",
+"Motiejus",
+"Jonas",
+"Olivija",
+"Lukas",
+"Emilija",
+"Jokubas",
+"Adele",
+"Benas",
+"Ema",
+"Dominykas",
+"Liepa",
+"Nojus",
+"Ugne",
+"Matas",
+"Lukne",
+"Markas",
+"Barbora",
+"Augustas"
+};
 
 char check_menu();
 void menu_with_read(vector <duom> &grupe);
