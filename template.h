@@ -58,7 +58,7 @@ vector<string> vardai={
 
 void menu(vector <duom> &grupe);
 void read(vector <duom> &grupe);
-void read_file(vector <duom> &grupe);
+void read_file(vector <duom> &grupe, string filename);
 void read_names_only(vector <duom> &grupe);
 void random(vector <duom> &grupe, int m);
 void random_full(vector <duom> &grupe, int record_amount, int mark_amount);

@@ -8,24 +8,47 @@ void menu(vector <duom> &grupe)
         cout<<"Jei duomenis norite ivesti patys (terminalas), spauskite '1'"<<endl;
         cout<<"Jei duomenis norite ivesti patys (kursiokai.txt), spauskite '2'"<<endl;
         cout<<"Jei norite sugeneruoti mokinio pazymius atsitiktinai, spauskite '3'"<<endl;
-        cout<<"Jei norite sugeneruoti mokinio pazymius ir vardus atsitiktinai, spauskite '4'"<<endl;
-        cout<<"Jei norite baigti darba, spauskite '5'"<<endl;
+        cout<<"Jei norite sugeneruoti mokinio pazymius ir vardus atsitiktinai (konsoleje), spauskite '4'"<<endl;
+        cout<<"Jei norite sugeneruoti mokinio pazymius ir vardus atsitiktinai (failuose), spauskite '5'"<<endl;
+        cout<<"Jei norite baigti darba, spauskite '6'"<<endl;
         cin>>rule;
-    } while(rule!='1' and rule!='2' and rule!='3' and rule!='4' and rule!='5');
+    } while(rule!='1' and rule!='2' and rule!='3' and rule!='4' and rule!='5' and rule!='6');
     if(rule=='1')
         read(grupe);
     else if (rule=='2')
-        read_file(grupe);    
+    {
+        grupe.reserve(1000);
+        read_file(grupe, "kursiokai.txt");
+        grupe.shrink_to_fit();
+    }   
     else if (rule=='3')
     {
+        grupe.reserve(1000);
         read_names_only(grupe);
         random(grupe, grupe.size());
+        grupe.shrink_to_fit();
     }
     else if (rule=='4')
     {
         random_full(grupe, 10, 5);
     }
     else if (rule=='5')
+    {
+        grupe.reserve(10000000);
+        random_full(grupe, 1000, 5);
+        print_data_to_file(grupe, 5, "kursiokai_1000.txt");
+        random_full(grupe, 10000, 5);
+        print_data_to_file(grupe, 5, "kursiokai_10000.txt");
+        random_full(grupe, 100000, 5);
+        print_data_to_file(grupe, 5, "kursiokai_100000.txt");
+        random_full(grupe, 1000000, 5);
+        print_data_to_file(grupe, 5, "kursiokai_1000000.txt");
+        random_full(grupe, 10000000, 5);
+        print_data_to_file(grupe, 5, "kursiokai_10000000.txt");
+        grupe.resize(0);
+        exit(0);
+    }
+    else if (rule=='6')
     {
         cout<<"Darbas baigtas"<<endl;
         terminate();
@@ -84,10 +107,10 @@ void read(vector <duom> &grupe)
             con=0;
     }
 }
-void read_file(vector <duom> &grupe)
+void read_file(vector <duom> &grupe, string filename)
 {
     duom laik;
-    ifstream in("kursiokai.txt");
+    ifstream in(filename);
     try
     {
         if(!in)
@@ -174,6 +197,7 @@ void random_full(vector <duom> &grupe, int record_amount, int mark_amount)
     uniform_int_distribution<int> dist(1, 10);
     uniform_int_distribution<int> dist3(0, 27); //random vardu generavimas
     uniform_int_distribution<int> dist4(65, 86); //ASCII values for uppercase letters
+    grupe.clear();
     for(int j=0; j<record_amount; j++)
     {
         laik.var=vardai.at(dist3(mt));
@@ -190,6 +214,8 @@ void print_data_to_file(vector <duom> &grupe, int mark_amount, string filename)
 {
     ofstream out(filename);
     stringstream ss;
+    const int ss_size = 10000; //stringstream max eiluciu skaicius
+    int count = 0;
     ///
     ss << left << fixed << setw(20) << "Vardas"<<setw(20)<<"Pavarde";
     for(int i=0; i<mark_amount; i++)
@@ -204,8 +230,17 @@ void print_data_to_file(vector <duom> &grupe, int mark_amount, string filename)
         for(auto j:i.pazymiai)
             ss << setw(7) << j;
         ss << setw(10) << i.exam << endl;
+        count++; //eiluciu skaicius ss stringstreame
+        if(count==ss_size)
+        {
+            out<<ss.str();
+            ss.str("");
+            count=0;
+            ss.clear();
+        }
     }
-    out<<ss.str();
+    if(count!=0) //likusiu eiluciu isvedimas
+        out<<ss.str();
     out.close();
 }
 void print_answers(vector <duom> &grupe)
