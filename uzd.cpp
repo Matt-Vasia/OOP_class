@@ -9,7 +9,7 @@ int main(){
     ///
     sorting(grupe);
     ///
-    print(grupe);
+    print_answers(grupe);
     return 0;
 }
 

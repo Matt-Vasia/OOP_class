@@ -198,23 +198,20 @@ void random(vector <duom> &grupe, int m)
         laik.pazymiai.clear();
     }
 }
-void random_full(vector <duom> &grupe)
+void random_full(vector <duom> &grupe, int record_amount, int mark_amount)
 {
     duom laik;
     random_device rd;
     mt19937 mt(rd());
     uniform_int_distribution<int> dist(1, 10);
-    uniform_int_distribution<int> dist2(5, 20);
     uniform_int_distribution<int> dist3(0, 27); //random vardu generavimas
     uniform_int_distribution<int> dist4(65, 86); //ASCII values for uppercase letters
-    int n=dist2(mt); //pazymiu skaicius
-    int m=dist2(mt); //studentu skaicius
-    for(int j=0; j<m; j++)
+    for(int j=0; j<record_amount; j++)
     {
         laik.var=vardai.at(dist3(mt));
         laik.pav=dist4(mt);
         laik.pav+=".";
-        for(int i=0; i<n; i++)
+        for(int i=0; i<mark_amount; i++)
             laik.pazymiai.push_back(dist(mt));
         laik.exam=(dist(mt));
         grupe.push_back(laik);
@@ -243,7 +240,14 @@ void menu_with_read(vector <duom> &grupe)
         random(grupe, grupe.size());
     }
     else if (rule=='4')
-        random_full(grupe);
+    {
+        int n=5;
+        random_full(grupe, 1000, n);
+        random_full(grupe, 10000, n);
+        random_full(grupe, 100000, n);
+        random_full(grupe, 1000000, n);
+        random_full(grupe, 10000000, n);
+    }
     else if (rule=='5')
     {
         cout<<"Darbas baigtas"<<endl;
@@ -300,7 +304,20 @@ void sorting(vector <duom> &grupe)
     else if(rule=='3')
         sort(grupe.begin(), grupe.end(), [](duom a, duom b){return a.mark>b.mark;});
 }
-void print(vector <duom> &grupe)
+void print_data_to_file(vector <duom> &grupe, int mark_amount)
+{
+    stringstream ss;
+    ss << left << fixed << setw(20) << "Vardas"<<setw(20)<<"Pavarde"<<setw(20);
+    for(int i:mark_amount)
+        ss << left << fixed << setw(5) << "ND" + i+1;
+    ss << left << fixed << setw(10) << "Egzaminas";
+    for(auto i:grupe)
+    {
+        ss << left << fixed << setprecision(2) << setw(20) << i.var << " " << setw(20) << i.pav << " " << setw(20) << i.mark << endl;
+    }
+    cout<<ss.str();
+}
+void print_answers(vector <duom> &grupe)
 {
     stringstream ss;
     ss << left << fixed << setprecision(2) << setw(20) << "Vardas"<<setw(20)<<"Pavarde"<<setw(20)<<"Galutinis"<<endl;

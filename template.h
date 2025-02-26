@@ -60,12 +60,13 @@ void menu_with_read(vector <duom> &grupe);
 double average(duom given);
 double median(duom given);
 void random(vector <duom> &grupe, int m);
-void random_full(vector <duom> &grupe);
+void random_full(vector <duom> &grupe, int record_amount, int mark_amount);
 void read_file(vector <duom> &grupe);
 void read_half(vector <duom> &grupe);
 void vid_med_calc(vector <duom> &grupe);
 void sorting(vector <duom> &grupe);
-void print(vector <duom> &grupe);
+void print_data_to_file(vector <duom> &grupe, int mark_amount);
+void print_answers(vector <duom> &grupe);
 
 #endif
 
