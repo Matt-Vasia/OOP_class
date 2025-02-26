@@ -11,6 +11,7 @@
 #include <ctime> //time lib
 #include <algorithm>
 #include <random>
+#include <string>
 #include "std.h"
 
 struct duom
@@ -32,7 +33,7 @@ vector<string> vardai={
 "Kestas",
 "Paulius",
 "Juozas",
-"Rokas"
+"Rokas",
 "Adomas",
 "Amelija",
 "Motiejus",
@@ -55,18 +56,22 @@ vector<string> vardai={
 "Augustas"
 };
 
-char check_menu();
-void menu_with_read(vector <duom> &grupe);
-double average(duom given);
-double median(duom given);
+void menu(vector <duom> &grupe);
+void read(vector <duom> &grupe);
+void read_file(vector <duom> &grupe);
+void read_names_only(vector <duom> &grupe);
 void random(vector <duom> &grupe, int m);
 void random_full(vector <duom> &grupe, int record_amount, int mark_amount);
-void read_file(vector <duom> &grupe);
-void read_half(vector <duom> &grupe);
-void vid_med_calc(vector <duom> &grupe);
-void sorting(vector <duom> &grupe);
-void print_data_to_file(vector <duom> &grupe, int mark_amount);
+void print_data_to_file(vector <duom> &grupe, int mark_amount, string filename);
 void print_answers(vector <duom> &grupe);
+///
+/// 
+char check_menu();
+void vid_med_calc(vector <duom> &grupe);
+bool compare(string a, string b, string rule);
+void sorting(vector <duom> &grupe);
+double average(duom given);
+double median(duom given);
 
 #endif
 

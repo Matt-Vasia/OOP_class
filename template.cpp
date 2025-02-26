@@ -1,23 +1,35 @@
 #include "template.h"
 
-
-char check_menu()
+void menu(vector <duom> &grupe)
 {
-    string input;
-    char check;
+    char rule;
     do
     {
-        cout<<"Noredami uzbaigti ivedima iveskite 'F'"<<endl;
-        cout<<"Noredami testi ivedima iveskite 'T'"<<endl;
-        getline(cin, input);
-        if(input.size()>1 or input.size()==0)
-        {
-            cout<<"Netinkama ivestis"<<endl;
-            continue;
-        }
-        check=toupper(input[0]);
-    } while (check!='F' and check!='T');
-    return check;
+        cout<<"Jei duomenis norite ivesti patys (terminalas), spauskite '1'"<<endl;
+        cout<<"Jei duomenis norite ivesti patys (kursiokai.txt), spauskite '2'"<<endl;
+        cout<<"Jei norite sugeneruoti mokinio pazymius atsitiktinai, spauskite '3'"<<endl;
+        cout<<"Jei norite sugeneruoti mokinio pazymius ir vardus atsitiktinai, spauskite '4'"<<endl;
+        cout<<"Jei norite baigti darba, spauskite '5'"<<endl;
+        cin>>rule;
+    } while(rule!='1' and rule!='2' and rule!='3' and rule!='4' and rule!='5');
+    if(rule=='1')
+        read(grupe);
+    else if (rule=='2')
+        read_file(grupe);    
+    else if (rule=='3')
+    {
+        read_names_only(grupe);
+        random(grupe, grupe.size());
+    }
+    else if (rule=='4')
+    {
+        random_full(grupe, 10, 5);
+    }
+    else if (rule=='5')
+    {
+        cout<<"Darbas baigtas"<<endl;
+        terminate();
+    }
 }
 void read(vector <duom> &grupe)
 {
@@ -72,22 +84,6 @@ void read(vector <duom> &grupe)
             con=0;
     }
 }
-
-void read_names_only(vector <duom> &grupe)
-{
-    bool con=1;
-    char check;
-    string input_check;
-    duom local;
-    while(con)
-    {
-        cout<<"Iveskite varda ir pavarde"<<endl;
-        cin>>local.var>>local.pav;
-        grupe.push_back(local);
-        if(check_menu()=='F')
-            con=0;
-    }
-}
 void read_file(vector <duom> &grupe)
 {
     duom laik;
@@ -137,48 +133,20 @@ void read_file(vector <duom> &grupe)
     for (auto& student : grupe)
         student.pazymiai.shrink_to_fit();
 }
-double average(duom given)
+void read_names_only(vector <duom> &grupe)
 {
-    try
+    bool con=1;
+    char check;
+    string input_check;
+    duom local;
+    while(con)
     {
-        if(given.pazymiai.empty())
-            throw invalid_argument("Truksta pazymiu");
+        cout<<"Iveskite varda ir pavarde"<<endl;
+        cin>>local.var>>local.pav;
+        grupe.push_back(local);
+        if(check_menu()=='F')
+            con=0;
     }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-        terminate();
-    }
-    double sum=0.0;
-    for(auto i:given.pazymiai)
-    sum+=i;
-    return sum/given.pazymiai.size();
-}
-double median(duom given)
-{
-    try
-    {
-        if(given.pazymiai.size()==0)
-            throw invalid_argument("Truksta pazymiu");
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-        terminate();
-    }
-    if(given.pazymiai.size()%2==1)
-    {
-        return given.pazymiai[((given.pazymiai.size()/2)+1)-1];
-    }
-    else
-    {
-        double ats=0.0;
-        ats=given.pazymiai[given.pazymiai.size()/2-1];
-        ats+=given.pazymiai[given.pazymiai.size()/2+1-1];
-        ats/=2;
-        return ats;
-    }
-
 }
 void random(vector <duom> &grupe, int m)
 {
@@ -218,41 +186,57 @@ void random_full(vector <duom> &grupe, int record_amount, int mark_amount)
         laik.pazymiai.clear();
     }
 }
-void menu_with_read(vector <duom> &grupe)
+void print_data_to_file(vector <duom> &grupe, int mark_amount, string filename)
 {
-    char rule;
+    ofstream out(filename);
+    stringstream ss;
+    ///
+    ss << left << fixed << setw(20) << "Vardas"<<setw(20)<<"Pavarde";
+    for(int i=0; i<mark_amount; i++)
+    {
+        ss << setw(7) << "ND" + to_string(i+1);
+    }
+    ss << setw(10) << "Egzaminas" <<endl;
+    ///
+    for(auto i:grupe)
+    {
+        ss << setw(20) << i.var << setw(20) << i.pav;
+        for(auto j:i.pazymiai)
+            ss << setw(7) << j;
+        ss << setw(10) << i.exam << endl;
+    }
+    out<<ss.str();
+    out.close();
+}
+void print_answers(vector <duom> &grupe)
+{
+    stringstream ss;
+    ss << left << fixed << setprecision(2) << setw(20) << "Vardas"<<setw(20)<<"Pavarde"<<setw(20)<<"Galutinis"<<endl;
+    ss << "------------------------------------------------------------" << endl;
+    for(auto i:grupe)
+    {
+        ss << left << fixed << setprecision(2) << setw(20) << i.var << " " << setw(20) << i.pav << " " << setw(20) << i.mark << endl;
+    }
+    cout<<ss.str();
+}
+///
+char check_menu()
+{
+    string input;
+    char check;
     do
     {
-        cout<<"Jei duomenis norite ivesti patys (terminalas), spauskite '1'"<<endl;
-        cout<<"Jei duomenis norite ivesti patys (kursiokai.txt), spauskite '2'"<<endl;
-        cout<<"Jei norite sugeneruoti mokinio pazymius atsitiktinai, spauskite '3'"<<endl;
-        cout<<"Jei norite sugeneruoti mokinio pazymius ir vardus atsitiktinai, spauskite '4'"<<endl;
-        cout<<"Jei norite baigti darba, spauskite '5'"<<endl;
-        cin>>rule;
-    } while(rule!='1' and rule!='2' and rule!='3' and rule!='4' and rule!='5');
-    if(rule=='1')
-        read(grupe);
-    else if (rule=='2')
-        read_file(grupe);    
-    else if (rule=='3')
-    {
-        read_names_only(grupe);
-        random(grupe, grupe.size());
-    }
-    else if (rule=='4')
-    {
-        int n=5;
-        random_full(grupe, 1000, n);
-        random_full(grupe, 10000, n);
-        random_full(grupe, 100000, n);
-        random_full(grupe, 1000000, n);
-        random_full(grupe, 10000000, n);
-    }
-    else if (rule=='5')
-    {
-        cout<<"Darbas baigtas"<<endl;
-        terminate();
-    }
+        cout<<"Noredami uzbaigti ivedima iveskite 'F'"<<endl;
+        cout<<"Noredami testi ivedima iveskite 'T'"<<endl;
+        getline(cin, input);
+        if(input.size()>1 or input.size()==0)
+        {
+            cout<<"Netinkama ivestis"<<endl;
+            continue;
+        }
+        check=toupper(input[0]);
+    } while (check!='F' and check!='T');
+    return check;
 }
 void vid_med_calc(vector <duom> &grupe)
 {
@@ -304,27 +288,46 @@ void sorting(vector <duom> &grupe)
     else if(rule=='3')
         sort(grupe.begin(), grupe.end(), [](duom a, duom b){return a.mark>b.mark;});
 }
-void print_data_to_file(vector <duom> &grupe, int mark_amount)
+double average(duom given)
 {
-    stringstream ss;
-    ss << left << fixed << setw(20) << "Vardas"<<setw(20)<<"Pavarde"<<setw(20);
-    for(int i:mark_amount)
-        ss << left << fixed << setw(5) << "ND" + i+1;
-    ss << left << fixed << setw(10) << "Egzaminas";
-    for(auto i:grupe)
+    try
     {
-        ss << left << fixed << setprecision(2) << setw(20) << i.var << " " << setw(20) << i.pav << " " << setw(20) << i.mark << endl;
+        if(given.pazymiai.empty())
+            throw invalid_argument("Truksta pazymiu");
     }
-    cout<<ss.str();
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+        terminate();
+    }
+    double sum=0.0;
+    for(auto i:given.pazymiai)
+    sum+=i;
+    return sum/given.pazymiai.size();
 }
-void print_answers(vector <duom> &grupe)
+double median(duom given)
 {
-    stringstream ss;
-    ss << left << fixed << setprecision(2) << setw(20) << "Vardas"<<setw(20)<<"Pavarde"<<setw(20)<<"Galutinis"<<endl;
-    ss << "------------------------------------------------------------" << endl;
-    for(auto i:grupe)
+    try
     {
-        ss << left << fixed << setprecision(2) << setw(20) << i.var << " " << setw(20) << i.pav << " " << setw(20) << i.mark << endl;
+        if(given.pazymiai.size()==0)
+            throw invalid_argument("Truksta pazymiu");
     }
-    cout<<ss.str();
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+        terminate();
+    }
+    if(given.pazymiai.size()%2==1)
+    {
+        return given.pazymiai[((given.pazymiai.size()/2)+1)-1];
+    }
+    else
+    {
+        double ats=0.0;
+        ats=given.pazymiai[given.pazymiai.size()/2-1];
+        ats+=given.pazymiai[given.pazymiai.size()/2+1-1];
+        ats/=2;
+        return ats;
+    }
+
 }

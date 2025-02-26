@@ -3,7 +3,7 @@
 int main(){
     vector <duom> grupe;
     ///
-    menu_with_read(grupe);
+    menu(grupe);
     ///
     vid_med_calc(grupe);
     ///
