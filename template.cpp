@@ -1,5 +1,7 @@
 #include "template.h"
 
+using namespace std;
+
 void menu(vector <duom> &grupe)
 {
     char rule;
@@ -10,9 +12,10 @@ void menu(vector <duom> &grupe)
         cout<<"Jei norite sugeneruoti mokinio pazymius atsitiktinai, spauskite '3'"<<endl;
         cout<<"Jei norite sugeneruoti mokinio pazymius ir vardus atsitiktinai (konsoleje), spauskite '4'"<<endl;
         cout<<"Jei norite sugeneruoti mokinio pazymius ir vardus atsitiktinai (failuose), spauskite '5'"<<endl;
-        cout<<"Jei norite baigti darba, spauskite '6'"<<endl;
+        cout<<"Jei norite suruosiuoti mokinius pagal ju pazymius is failo, spauskite '6'"<<endl;
+        cout<<"Jei norite baigti darba, spauskite '7'"<<endl;
         cin>>rule;
-    } while(rule!='1' and rule!='2' and rule!='3' and rule!='4' and rule!='5' and rule!='6');
+    } while(rule!='1' and rule!='2' and rule!='3' and rule!='4' and rule!='5' and rule!='6' and rule!='7');
     if(rule=='1')
         read(grupe);
     else if (rule=='2')
@@ -34,6 +37,9 @@ void menu(vector <duom> &grupe)
     }
     else if (rule=='5')
     {
+        auto start = chrono::high_resolution_clock::now();
+        auto end = chrono::high_resolution_clock::now();
+        start = chrono::high_resolution_clock::now();
         grupe.reserve(10000000);
         random_full(grupe, 1000, 5);
         print_data_to_file(grupe, 5, "kursiokai_1000.txt");
@@ -46,12 +52,23 @@ void menu(vector <duom> &grupe)
         random_full(grupe, 10000000, 5);
         print_data_to_file(grupe, 5, "kursiokai_10000000.txt");
         grupe.resize(0);
+        grupe.shrink_to_fit();
+        end = chrono::high_resolution_clock::now();
+        cout << "Failai sugeneruoti per: " << chrono::duration_cast<chrono::seconds>(end - start).count() << " sekund" << endl;
         exit(0);
     }
     else if (rule=='6')
     {
+        string filename;
+        cout<<"Iveskite norimo nuskaityti failo (.txt) pavadinima pvz. (vardai, duomenys, ...)"<<endl;
+        cin>>filename;
+        sort_file_by_grades(grupe, filename);
+        exit(0);
+    }
+    else if (rule=='7')
+    {
         cout<<"Darbas baigtas"<<endl;
-        terminate();
+        exit(0);
     }
 }
 void read(vector <duom> &grupe)
@@ -109,6 +126,7 @@ void read(vector <duom> &grupe)
 }
 void read_file(vector <duom> &grupe, string filename)
 {
+    grupe.reserve(10000);
     duom laik;
     ifstream in(filename);
     try
@@ -171,6 +189,25 @@ void read_names_only(vector <duom> &grupe)
             con=0;
     }
 }
+void sort_file_by_grades(vector <duom> &grupe, string filename)
+{
+    vector <duom> blogi;
+    read_file(grupe, filename+".txt");
+    vid_med_calc(grupe);
+    sorting(grupe, '3');
+    auto it = grupe.rbegin();
+    int i=0;
+    while(it->mark < 5)
+    {
+        blogi.push_back(*it);
+        it++;
+        i++;
+    }
+    grupe.resize(grupe.size()-i);
+    print_answers_to_file(grupe, filename+"_geri.txt");
+    print_answers_to_file(blogi, filename+"_blogi.txt");
+    
+}
 void random(vector <duom> &grupe, int m)
 {
     duom laik;
@@ -230,6 +267,33 @@ void print_data_to_file(vector <duom> &grupe, int mark_amount, string filename)
         for(auto j:i.pazymiai)
             ss << setw(7) << j;
         ss << setw(10) << i.exam << endl;
+        count++; //eiluciu skaicius ss stringstreame
+        if(count==ss_size)
+        {
+            out<<ss.str();
+            ss.str("");
+            count=0;
+            ss.clear();
+        }
+    }
+    if(count!=0) //likusiu eiluciu isvedimas
+        out<<ss.str();
+    out.close();
+}
+void print_answers_to_file(vector <duom> &grupe, string filename)
+{
+    ofstream out(filename);
+    stringstream ss;
+    const int ss_size = 10000; //stringstream max eiluciu skaicius
+    int count = 0;
+    ///
+    ss << left << fixed << setw(20) << "Vardas"<<setw(20)<<"Pavarde";
+    ss << fixed << setprecision(2) << setw(10) << "Galutinis" <<endl;
+    ///
+    for(auto i:grupe)
+    {
+        ss << setw(20) << i.var << setw(20) << i.pav;
+        ss << setw(10) << i.mark << endl;
         count++; //eiluciu skaicius ss stringstreame
         if(count==ss_size)
         {
@@ -305,17 +369,16 @@ bool compare(string a, string b, string rule)
     else
         return a<b;
 }
-void sorting(vector <duom> &grupe)
+void sorting(vector <duom> &grupe, char rule)
 {
-    char rule;
-    do
+    while(rule!='1' and rule!='2' and rule!='3')
     {
         cout<<"Noredami surusiuoti pagal varda, spauskite '1'"<<endl;
         cout<<"Noredami surusiuoti pagal pavarde, spauskite '2'"<<endl;
         cout<<"Noredami surusiuoti pagal galutini bala, spauskite '3'"<<endl;
         cin>>rule;
         rule=tolower(rule);
-    } while(rule!='1' and rule!='2' and rule!='3');
+    }
     if(rule=='1')
         sort(grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.var, b.var, "Vardas");});
     else if(rule=='2')

@@ -7,7 +7,7 @@ int main(){
     ///
     vid_med_calc(grupe);
     ///
-    sorting(grupe);
+    sorting(grupe, '\0');
     ///
     print_answers(grupe);
     return 0;
