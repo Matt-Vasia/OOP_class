@@ -22,7 +22,7 @@ void menu(vector <duom> &grupe)
     else if (rule=='2')
     {
         grupe.reserve(1000);
-        read_file(grupe, "kursiokai.txt");
+        read_file(grupe, "kursiokai.dat");
         grupe.shrink_to_fit();
     }   
     else if (rule=='3')
@@ -41,15 +41,15 @@ void menu(vector <duom> &grupe)
         auto start = chrono::high_resolution_clock::now();
         grupe.reserve(10000000);
         random_full(grupe, 1000, 5);
-        print_data_to_file(grupe, 5, "kursiokai_1000.txt");
+        print_data_to_file(grupe, 5, "kursiokai_1000.dat");
         random_full(grupe, 10000, 5);
-        print_data_to_file(grupe, 5, "kursiokai_10000.txt");
+        print_data_to_file(grupe, 5, "kursiokai_10000.dat");
         random_full(grupe, 100000, 5);
-        print_data_to_file(grupe, 5, "kursiokai_100000.txt");
+        print_data_to_file(grupe, 5, "kursiokai_100000.dat");
         random_full(grupe, 1000000, 5);
-        print_data_to_file(grupe, 5, "kursiokai_1000000.txt");
+        print_data_to_file(grupe, 5, "kursiokai_1000000.dat");
         random_full(grupe, 10000000, 5);
-        print_data_to_file(grupe, 5, "kursiokai_10000000.txt");
+        print_data_to_file(grupe, 5, "kursiokai_10000000.dat");
         grupe.resize(0);
         grupe.shrink_to_fit();
         auto end = chrono::high_resolution_clock::now();
@@ -59,7 +59,7 @@ void menu(vector <duom> &grupe)
     else if (rule=='6')
     {
         string filename;
-        cout<<"Iveskite norimo nuskaityti failo (.txt) pavadinima pvz. (vardai, duomenys, ...)"<<endl;
+        cout<<"Iveskite norimo nuskaityti failo (.dat) pavadinima pvz. (vardai, duomenys, ...)"<<endl;
         cin>>filename;
         sort_file_by_grades(grupe, filename);
         exit(0);
@@ -196,7 +196,7 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
     
     // Timing file reading
     auto start = chrono::high_resolution_clock::now();
-    read_file(grupe, filename + ".txt");
+    read_file(grupe, filename + ".dat");
     auto end = chrono::high_resolution_clock::now();
     auto read_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
     
@@ -221,12 +221,12 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
     
     // Resize the original vector to remove poor students
     grupe.resize(grupe.size() - i);
-    vector<duom> geri = grupe; // Copy the good students to a new vector
+    //vector<duom> geri = grupe; // Copy the good students to a new vector
     
     // Timing file output
     start = chrono::high_resolution_clock::now();
-    print_answers_to_file(geri, filename + "_kietekai.txt");
-    print_answers_to_file(blogi, filename + "_vargsai.txt");
+    print_answers_to_file(grupe, filename + "_kietekai.dat");
+    print_answers_to_file(blogi, filename + "_vargsai.dat");
     end = chrono::high_resolution_clock::now();
     auto write_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
     
