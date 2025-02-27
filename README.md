@@ -2,6 +2,7 @@
 Failu generavimas vidutiniskai truko 3 sekundes
 ------------------------------------------------------------
 Duomenu apdorojimas vidutiniskai truko:
+------------------------------------------------------------
     kursiokai_1000:     Skaitymas 33 ms
                         Rusiavimas 14 ms
                         Rasymas 8 ms
