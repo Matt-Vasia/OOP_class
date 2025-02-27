@@ -140,15 +140,12 @@ void read_file(vector <duom> &grupe, string filename)
         std::cerr << e.what() << '\n';
         terminate();
     }
-    stringstream ss;
-    ss<<in.rdbuf();
-    in.close();
     string eil;
     try
     {
-        if(!getline(ss, eil))
+        if(!getline(in, eil))
             throw invalid_argument("Failas tuscias");
-        while(getline(ss, eil))
+        while(getline(in, eil))
         {
             stringstream line(eil);
             line>>laik.var>>laik.pav;
@@ -163,6 +160,7 @@ void read_file(vector <duom> &grupe, string filename)
             laik.pazymiai.clear();
             laik.exam=0;
         }
+        in.close();
     }
     catch(const std::exception& e)
     {
