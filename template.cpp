@@ -2,6 +2,7 @@
 
 using namespace std;
 
+
 void menu(vector <duom> &grupe)
 {
     char rule;
@@ -38,8 +39,6 @@ void menu(vector <duom> &grupe)
     else if (rule=='5')
     {
         auto start = chrono::high_resolution_clock::now();
-        auto end = chrono::high_resolution_clock::now();
-        start = chrono::high_resolution_clock::now();
         grupe.reserve(10000000);
         random_full(grupe, 1000, 5);
         print_data_to_file(grupe, 5, "kursiokai_1000.txt");
@@ -53,7 +52,7 @@ void menu(vector <duom> &grupe)
         print_data_to_file(grupe, 5, "kursiokai_10000000.txt");
         grupe.resize(0);
         grupe.shrink_to_fit();
-        end = chrono::high_resolution_clock::now();
+        auto end = chrono::high_resolution_clock::now();
         cout << "Failai sugeneruoti per: " << chrono::duration_cast<chrono::seconds>(end - start).count() << " sekund" << endl;
         exit(0);
     }
@@ -189,24 +188,69 @@ void read_names_only(vector <duom> &grupe)
             con=0;
     }
 }
-void sort_file_by_grades(vector <duom> &grupe, string filename)
-{
-    vector <duom> blogi;
-    read_file(grupe, filename+".txt");
+void sort_file_by_grades(vector<duom> &grupe, string filename) {
+    vector<duom> blogi;
+    
+    // Start timing the entire process
+    auto total_start = chrono::high_resolution_clock::now();
+    
+    // Timing file reading
+    auto start = chrono::high_resolution_clock::now();
+    read_file(grupe, filename + ".txt");
+    auto end = chrono::high_resolution_clock::now();
+    auto read_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+    
+    // vid_med_calc() is not timed
+    start = chrono::high_resolution_clock::now();
     vid_med_calc(grupe);
-    sorting(grupe, '3');
+    end = chrono::high_resolution_clock::now();
+    auto excluded_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+
+    // Timing sorting and splitting process
+    start = chrono::high_resolution_clock::now();
+    sorting(grupe, '3'); // Sorting by final grade
     auto it = grupe.rbegin();
-    int i=0;
-    while(it->mark < 5)
-    {
+    int i = 0;
+    while (it != grupe.rend() && it->mark < 5) { // Taking poor students from the end
         blogi.push_back(*it);
         it++;
         i++;
     }
-    grupe.resize(grupe.size()-i);
-    print_answers_to_file(grupe, filename+"_geri.txt");
-    print_answers_to_file(blogi, filename+"_blogi.txt");
+    end = chrono::high_resolution_clock::now();
+    auto sort_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
     
+    // Resize the original vector to remove poor students
+    grupe.resize(grupe.size() - i);
+    
+    // Timing file output
+    start = chrono::high_resolution_clock::now();
+    print_answers_to_file(grupe, filename + "_kietekai.txt");
+    print_answers_to_file(blogi, filename + "_vargsai.txt");
+    end = chrono::high_resolution_clock::now();
+    auto write_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+    
+    // Calculate and display total time
+    auto total_end = chrono::high_resolution_clock::now();
+    auto raw_time = chrono::duration_cast<chrono::milliseconds>(total_end - total_start).count();
+    auto total_time = raw_time - excluded_time;
+    
+    // Display summary of times
+    cout << "\n\nSantrauka:" << endl;
+    if(sort_time >= 1000)
+    {
+        cout << "Skaitymas: " << float(read_time) / 1000 << " s "<< endl;
+        cout << "Rusiavimas: " << float(sort_time) / 1000 << " s "<< endl;
+        cout << "Rasymas: " << float(write_time) / 1000 << " s "<< endl;
+        cout << "Is viso: " << float(total_time) / 1000 << " s" << endl;
+    }
+    else
+    {
+        cout << "Skaitymas: " << read_time << " ms "<< endl;
+        cout << "Rusiavimas: " << sort_time << " ms "<< endl;
+        cout << "Rasymas: " << write_time << " ms "<< endl;
+        cout << "Is viso: " << total_time << " ms" << endl;
+    }
+
 }
 void random(vector <duom> &grupe, int m)
 {
