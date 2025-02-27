@@ -221,10 +221,11 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
     
     // Resize the original vector to remove poor students
     grupe.resize(grupe.size() - i);
+    vector<duom> geri = grupe; // Copy the good students to a new vector
     
     // Timing file output
     start = chrono::high_resolution_clock::now();
-    print_answers_to_file(grupe, filename + "_kietekai.txt");
+    print_answers_to_file(geri, filename + "_kietekai.txt");
     print_answers_to_file(blogi, filename + "_vargsai.txt");
     end = chrono::high_resolution_clock::now();
     auto write_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
