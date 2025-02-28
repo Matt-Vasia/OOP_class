@@ -22,4 +22,9 @@ Duomenu apdorojimas vidutiniskai truko:
                         Rusiavimas 20.95 s
                         Rasymas 5.361 s
                         Viso 48.896 s
+------------------------------------------------------------
+    kursiokai_10000000: Skaitymas 219.401 s
+                        Rusiavimas 221.702 s
+                        Rasymas 43.681 s
+                        Viso 485.923 s
     
