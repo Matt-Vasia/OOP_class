@@ -48,8 +48,10 @@ void menu(vector <duom> &grupe)
         print_data_to_file(grupe, 5, "kursiokai_100000.dat");
         random_full(grupe, 1000000, 5);
         print_data_to_file(grupe, 5, "kursiokai_1000000.dat");
-        grupe.resize(0);
-        grupe.shrink_to_fit();
+        random_full(grupe, 10000000, 5);
+        print_data_to_file(grupe, 5, "kursiokai_10000000.dat");        
+        //grupe.resize(0);
+        //grupe.shrink_to_fit();
         auto end = chrono::high_resolution_clock::now();
         cout << "Failai sugeneruoti per: " << chrono::duration_cast<chrono::seconds>(end - start).count() << " sekund" << endl;
         exit(0);
@@ -189,13 +191,13 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
     
     // Start timing the entire process
     auto total_start = chrono::high_resolution_clock::now();
-    
+
     // Timing file reading
     auto start = chrono::high_resolution_clock::now();
     read_file(grupe, filename + ".dat");
     auto end = chrono::high_resolution_clock::now();
     auto read_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
-    
+
     // vid_med_calc() is not timed
     start = chrono::high_resolution_clock::now();
     vid_med_calc(grupe);
@@ -204,27 +206,30 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
 
     // Timing sorting and splitting process
     start = chrono::high_resolution_clock::now();
+
     sorting(grupe, '3'); // Sorting by final grade
+
     auto it = grupe.rbegin();
     int i = 0;
-    while (it != grupe.rend() && it->mark < 5) { // Taking poor students from the end
-        blogi.push_back(*it);
+    while (it != grupe.rend() && it->mark < 5) { // Taking poor students from the end of the vector
         it++;
         i++;
     }
+    blogi.assign(it.base(), grupe.end());
     end = chrono::high_resolution_clock::now();
     auto sort_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
     
     // Resize the original vector to remove poor students
     grupe.resize(grupe.size() - i);
-    vector<duom> geri = grupe; // Copy the good students to a new vector
+    
+    //vector<duom> geri = grupe; // Copy the good students to a new vector
     // Timing file output
     start = chrono::high_resolution_clock::now();
-    print_answers_to_file(geri, filename + "_kietekai.dat");
+    print_answers_to_file(grupe, filename + "_kietekai.dat");
     print_answers_to_file(blogi, filename + "_vargsai.dat");
     end = chrono::high_resolution_clock::now();
     auto write_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
-    
+
     // Calculate and display total time
     auto total_end = chrono::high_resolution_clock::now();
     auto raw_time = chrono::duration_cast<chrono::milliseconds>(total_end - total_start).count();
