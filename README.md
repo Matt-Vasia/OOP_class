@@ -1,5 +1,11 @@
 # OOP
-Failu generavimas vidutiniskai truko 3 sekundes
+Failu generavimas vidutiniskai truko:
+------------------------------------------------------------
+1 failas sugeneruotas per: 0.004131 sec
+2 failas sugeneruotas per: 0.040138 sec
+3 failas sugeneruotas per: 0.308176 sec
+4 failas sugeneruotas per: 2.37559 sec
+5 failas sugeneruotas per: 21.9686 sec
 ------------------------------------------------------------
 Duomenu apdorojimas vidutiniskai truko:
 ------------------------------------------------------------
@@ -27,4 +33,5 @@ Duomenu apdorojimas vidutiniskai truko:
                         Rusiavimas 221.702 s
                         Rasymas 43.681 s
                         Viso 485.923 s
+------------------------------------------------------------
     
