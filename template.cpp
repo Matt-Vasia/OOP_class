@@ -38,22 +38,31 @@ void menu(vector <duom> &grupe)
     }
     else if (rule=='5')
     {
-        auto start = chrono::high_resolution_clock::now();
         grupe.reserve(10000000);
+        auto start = chrono::high_resolution_clock::now();
         random_full(grupe, 1000, 5);
         print_data_to_file(grupe, 5, "kursiokai_1000.dat");
+        auto end = chrono::high_resolution_clock::now();
+        cout << "1 failas sugeneruotas per: " << chrono::duration_cast<chrono::seconds>(end - start).count() << " sec" << endl;cout << "1 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;start = chrono::high_resolution_clock::now();
         random_full(grupe, 10000, 5);
         print_data_to_file(grupe, 5, "kursiokai_10000.dat");
+        end = chrono::high_resolution_clock::now();
+        cout << "2 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
+        start = chrono::high_resolution_clock::now();
         random_full(grupe, 100000, 5);
         print_data_to_file(grupe, 5, "kursiokai_100000.dat");
+        end = chrono::high_resolution_clock::now();
+        cout << "3 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
+        start = chrono::high_resolution_clock::now();
         random_full(grupe, 1000000, 5);
         print_data_to_file(grupe, 5, "kursiokai_1000000.dat");
+        end = chrono::high_resolution_clock::now();
+        cout << "4 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
+        start = chrono::high_resolution_clock::now();
         random_full(grupe, 10000000, 5);
         print_data_to_file(grupe, 5, "kursiokai_10000000.dat");        
-        //grupe.resize(0);
-        //grupe.shrink_to_fit();
-        auto end = chrono::high_resolution_clock::now();
-        cout << "Failai sugeneruoti per: " << chrono::duration_cast<chrono::seconds>(end - start).count() << " sekund" << endl;
+        end = chrono::high_resolution_clock::now();
+        cout << "5 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
         exit(0);
     }
     else if (rule=='6')
@@ -141,11 +150,14 @@ void read_file(vector <duom> &grupe, string filename)
         terminate();
     }
     string eil;
+    stringstream ss;
+    ss << in.rdbuf();
+    in.close();
     try
     {
-        if(!getline(in, eil))
+        if(!getline(ss, eil))
             throw invalid_argument("Failas tuscias");
-        while(getline(in, eil))
+        while(getline(ss, eil))
         {
             stringstream line(eil);
             line>>laik.var>>laik.pav;
@@ -237,20 +249,10 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
     
     // Display summary of times
     cout << "\n\nSantrauka:" << endl;
-    if(sort_time >= 1000)
-    {
         cout << "Skaitymas: " << float(read_time) / 1000 << " s "<< endl;
         cout << "Rusiavimas: " << float(sort_time) / 1000 << " s "<< endl;
         cout << "Rasymas: " << float(write_time) / 1000 << " s "<< endl;
         cout << "Is viso: " << float(total_time) / 1000 << " s" << endl;
-    }
-    else
-    {
-        cout << "Skaitymas: " << read_time << " ms "<< endl;
-        cout << "Rusiavimas: " << sort_time << " ms "<< endl;
-        cout << "Rasymas: " << write_time << " ms "<< endl;
-        cout << "Is viso: " << total_time << " ms" << endl;
-    }
 
 }
 void random(vector <duom> &grupe, int m)
