@@ -13,15 +13,15 @@ Failu generavimas vidutiniskai truko:
 ------------------------------------------------------------
 Duomenu apdorojimas vidutiniskai truko:
 ------------------------------------------------------------
-    kursiokai_1000:     Skaitymas 33 ms
-                        Rusiavimas 14 ms
-                        Rasymas 8 ms
-                        Viso 55 ms
+    kursiokai_1000:     Skaitymas 0.033 s
+                        Rusiavimas 0.014 s
+                        Rasymas 0.008 s
+                        Viso 0.055 s
 ------------------------------------------------------------
-    kursiokai_10000:    Skaitymas 312 ms
-                        Rusiavimas 159 ms
-                        Rasymas 61 ms
-                        Viso 536 ms
+    kursiokai_10000:    Skaitymas 0.312 s
+                        Rusiavimas 0.159 s
+                        Rasymas 0.061 s
+                        Viso 0.536 s
 ------------------------------------------------------------
     kursiokai_100000:   Skaitymas 2.312 s
                         Rusiavimas 1.465 s
