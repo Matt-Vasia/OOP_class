@@ -43,7 +43,7 @@ void menu(vector <duom> &grupe)
         random_full(grupe, 1000, 5);
         print_data_to_file(grupe, 5, "kursiokai_1000.dat");
         auto end = chrono::high_resolution_clock::now();
-        cout << "1 failas sugeneruotas per: " << chrono::duration_cast<chrono::seconds>(end - start).count() << " sec" << endl;cout << "1 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;start = chrono::high_resolution_clock::now();
+        cout << "1 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
         random_full(grupe, 10000, 5);
         print_data_to_file(grupe, 5, "kursiokai_10000.dat");
         end = chrono::high_resolution_clock::now();
