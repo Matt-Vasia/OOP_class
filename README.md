@@ -1,15 +1,15 @@
 # OOP
 Failu generavimas vidutiniskai truko:
 ------------------------------------------------------------
-1 failas sugeneruotas per: 0.004131 sec
+1 failas sugeneruotas per: 0.013765 s
 ------------------------------------------------------------
-2 failas sugeneruotas per: 0.040138 sec
+2 failas sugeneruotas per: 0.036283 s
 ------------------------------------------------------------
-3 failas sugeneruotas per: 0.308176 sec
+3 failas sugeneruotas per: 0.20049 s
 ------------------------------------------------------------
-4 failas sugeneruotas per: 2.37559 sec
+4 failas sugeneruotas per: 1.87175 a
 ------------------------------------------------------------
-5 failas sugeneruotas per: 21.9686 sec
+5 failas sugeneruotas per: 18.9837 s
 ------------------------------------------------------------
 Duomenu apdorojimas vidutiniskai truko:
 ------------------------------------------------------------
