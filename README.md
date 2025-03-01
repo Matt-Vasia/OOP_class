@@ -13,29 +13,29 @@ Failu generavimas vidutiniskai truko:
 ------------------------------------------------------------
 Duomenu apdorojimas vidutiniskai truko:
 ------------------------------------------------------------
-    kursiokai_1000:     Skaitymas 0.033 s
-                        Rusiavimas 0.014 s
-                        Rasymas 0.008 s
-                        Viso 0.055 s
+    kursiokai_1000:     Skaitymas: 0.022 s
+                        Rusiavimas: 0.001 s
+                        Rasymas: 0.005 s
+                        Is viso: 0.029 s
 ------------------------------------------------------------
-    kursiokai_10000:    Skaitymas 0.312 s
-                        Rusiavimas 0.159 s
-                        Rasymas 0.061 s
-                        Viso 0.536 s
+    kursiokai_10000:    Skaitymas: 0.202 s
+                        Rusiavimas: 0.023 s
+                        Rasymas: 0.042 s
+                        Is viso: 0.268 s
 ------------------------------------------------------------
-    kursiokai_100000:   Skaitymas 2.312 s
-                        Rusiavimas 1.465 s
-                        Rasymas 0.43 s
-                        Viso 4.231 s
+    kursiokai_100000:   Skaitymas: 1.804 s
+                        Rusiavimas: 0.306 s
+                        Rasymas: 0.353 s
+                        Is viso: 2.466 s
 ------------------------------------------------------------
-    kursiokai_1000000:  Skaitymas 22.155 s
-                        Rusiavimas 20.95 s
-                        Rasymas 5.361 s
-                        Viso 48.896 s
+    kursiokai_1000000:  Skaitymas: 18.672 s
+                        Rusiavimas: 4.34 s
+                        Rasymas: 3.704 s
+                        Is viso: 26.774 s
 ------------------------------------------------------------
-    kursiokai_10000000: Skaitymas 219.401 s
-                        Rusiavimas 221.702 s
-                        Rasymas 43.681 s
-                        Viso 485.923 s
+    kursiokai_10000000: Skaitymas: 185.142 s
+                        Rusiavimas: 54.348 s
+                        Rasymas: 37.022 s
+                        Is viso: 277.277 s
 ------------------------------------------------------------
     
