@@ -463,11 +463,11 @@ void sorting(vector <duom> &grupe, char rule)
         rule=tolower(rule);
     }
     if(rule=='1')
-        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.var, b.var, "Vardas");});
+        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.var, b.var, "Vardas");});
     else if(rule=='2')
-        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.pav, b.pav, "Pavarde");});
+        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.pav, b.pav, "Pavarde");});
     else if(rule=='3')
-        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return a.mark>b.mark;});
+        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return a.mark>b.mark;});
 }
 double average(duom given)
 {
