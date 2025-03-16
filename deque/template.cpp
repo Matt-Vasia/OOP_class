@@ -280,8 +280,8 @@ void sort_file_by_grades(deque<duom> &grupe, string filename) {
     
     // Timing file output
     //start = chrono::high_resolution_clock::now();
-    print_answers_to_file(grupe, "../output_files/" + filename + "_kietekai.dat");
-    print_answers_to_file(blogi, "../output_files/" + filename + + "_vargsiukai.dat");
+    print_answers_to_file(grupe, "../output_file/" + filename + "_kietekai.dat");
+    print_answers_to_file(blogi, "../output_file/" + filename + + "_vargsiukai.dat");
     //end = chrono::high_resolution_clock::now();
     //auto write_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
