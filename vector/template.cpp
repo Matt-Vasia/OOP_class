@@ -262,19 +262,18 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
     // Splitting the vector into two
     start = chrono::high_resolution_clock::now();
 
-    auto it = grupe.rbegin();
-    int i = 0;
-    while (it != grupe.rend() && it->mark < 5) { // Taking poor students from the end of the vector
-        it++;
-        i++;
-    }
-    blogi.assign(it.base(), grupe.end());
+    auto it = partition(grupe.begin(), grupe.end(), [](const duom& student) {
+        return student.mark >= 5;
+    });
+
+    blogi.assign(it, grupe.end());
+    grupe.erase(it, grupe.end());
 
     end = chrono::high_resolution_clock::now();
     auto splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
     
     // Resize the original vector to remove poor students
-    grupe.resize(grupe.size() - i);
+    //grupe.resize(grupe.size() - i);
     
     //vector<duom> geri = grupe; // Copy the good students to a new vector
     // Timing file output
