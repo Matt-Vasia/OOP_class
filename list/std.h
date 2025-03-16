@@ -1,6 +1,7 @@
 #ifndef STD_H_INCLUDED
 #define STD_H_INCLUDED
 
+using std::list;
 using std::cout;
 using std::cin;
 using std::string;

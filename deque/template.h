@@ -1,82 +1,47 @@
-#ifndef TEMPLATE_H_INCLUDED
-#define TEMPLATE_H_INCLUDED
+#ifndef TEMPLATE_H
+#define TEMPLATE_H
 
 #include <iostream>
-#include <fstream>
 #include <iomanip>
 #include <string>
+#include <deque>
 #include <vector>
-#include <sstream>
-#include <cstdlib>
-#include <ctime> //time lib
 #include <algorithm>
+#include <fstream>
+#include <sstream>
 #include <random>
-#include <string>
 #include <chrono>
+#include <stdexcept>
 #include <execution>
-#include "std.h"
 
-struct duom
-{
-    string var="test";
-    string pav="test";
-    vector<int> pazymiai;
-    int exam=0;
-    double vid_med=0;
-    double mark;
+using namespace std;
+
+struct duom {
+    string var;
+    string pav;
+    vector<double> pazymiai;
+    double exam = 0;
+    double vid_med = 0;
+    double mark = 0;
 };
 
-vector<string> vardai={
-"Tomas",
-"Andrius",
-"Daumantas",
-"Jonas",
-"Petras",
-"Kestas",
-"Paulius",
-"Juozas",
-"Rokas",
-"Adomas",
-"Amelija",
-"Motiejus",
-"Jonas",
-"Olivija",
-"Lukas",
-"Emilija",
-"Jokubas",
-"Adele",
-"Benas",
-"Ema",
-"Dominykas",
-"Liepa",
-"Nojus",
-"Ugne",
-"Matas",
-"Lukne",
-"Markas",
-"Barbora",
-"Augustas"
-};
+const vector<string> vardai = {"Petras", "Jonas", "Marius", "Juozas", "Vytas", "Matas", "Rimas", "Simas", "Antanas", "Domas", "Herkus", "Benas", "Kajus", "Aistas", "Lukas", "Adomas", "Tauras", "Karolis", "Markas", "Jokubas", "Tadas", "Darius", "Mantas", "Domantas", "Paulius", "Justas", "Mindaugas", "Urte"};
 
-void menu(vector <duom> &grupe);
-void read(vector <duom> &grupe);
-void read_file(vector <duom> &grupe, string filename);
-void read_names_only(vector <duom> &grupe);
-void sort_file_by_grades(vector <duom> &grupe, string filename);
-void random(vector <duom> &grupe, int m);
-void random_full(vector <duom> &grupe, int record_amount, int mark_amount);
-void print_data_to_file(vector <duom> &grupe, int mark_amount, string filename);
-void print_answers_to_file(vector <duom> &grupe, string filename);
-void print_answers(vector <duom> &grupe);
-///
-/// 
+void menu(deque<duom> &grupe);
+void read(deque<duom> &grupe);
+void read_file(deque<duom> &grupe, string filename);
+void read_names_only(deque<duom> &grupe);
+void random(deque<duom> &grupe, int m);
+void random_full(deque<duom> &grupe, int record_amount, int mark_amount);
+void print_data_to_file(deque<duom> &grupe, int mark_amount, string filename);
+void print_answers(deque<duom> &grupe);
 char check_menu();
-void vid_med_calc(vector <duom> &grupe);
-bool compare(string a, string b, string rule);
-void sorting(vector <duom> &grupe, char rule);
+void vid_med_calc(deque<duom> &grupe);
 double average(duom given);
 double median(duom given);
+void sorting(deque<duom> &grupe, char rule);
+bool compare(string a, string b, string rule);
+void print_answers_to_file(deque<duom> &grupe, string filename);
+void sort_file_by_grades(deque<duom> &grupe, string filename);
 
 #endif
-
-

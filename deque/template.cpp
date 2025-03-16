@@ -2,8 +2,7 @@
 
 using namespace std;
 
-
-void menu(vector <duom> &grupe)
+void menu(deque<duom> &grupe)
 {
     char rule;
     do
@@ -17,20 +16,19 @@ void menu(vector <duom> &grupe)
         cout<<"Jei norite baigti darba, spauskite '7'"<<endl;
         cin>>rule;
     } while(rule!='1' and rule!='2' and rule!='3' and rule!='4' and rule!='5' and rule!='6' and rule!='7');
+    
     if(rule=='1')
         read(grupe);
     else if (rule=='2')
     {
-        grupe.reserve(1000);
+        // No exact reserve equivalent for deque, but we can resize to prepare capacity
         read_file(grupe, "kursiokai.dat");
-        grupe.shrink_to_fit();
     }   
     else if (rule=='3')
     {
-        grupe.reserve(1000);
+        // No exact reserve equivalent for deque, but we can prepare some space
         read_names_only(grupe);
         random(grupe, grupe.size());
-        grupe.shrink_to_fit();
     }
     else if (rule=='4')
     {
@@ -38,26 +36,30 @@ void menu(vector <duom> &grupe)
     }
     else if (rule=='5')
     {
-        grupe.reserve(10000000);
+        // No exact reserve equivalent for deque
         auto start = chrono::high_resolution_clock::now();
         random_full(grupe, 1000, 5);
         print_data_to_file(grupe, 5, "kursiokai_1000.dat");
         auto end = chrono::high_resolution_clock::now();
         cout << "1 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
+        
         random_full(grupe, 10000, 5);
         print_data_to_file(grupe, 5, "kursiokai_10000.dat");
         end = chrono::high_resolution_clock::now();
         cout << "2 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
+        
         start = chrono::high_resolution_clock::now();
         random_full(grupe, 100000, 5);
         print_data_to_file(grupe, 5, "kursiokai_100000.dat");
         end = chrono::high_resolution_clock::now();
         cout << "3 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
+        
         start = chrono::high_resolution_clock::now();
         random_full(grupe, 1000000, 5);
         print_data_to_file(grupe, 5, "kursiokai_1000000.dat");
         end = chrono::high_resolution_clock::now();
         cout << "4 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
+        
         start = chrono::high_resolution_clock::now();
         random_full(grupe, 10000000, 5);
         print_data_to_file(grupe, 5, "kursiokai_10000000.dat");        
@@ -70,7 +72,8 @@ void menu(vector <duom> &grupe)
         string filename;
         cout<<"Iveskite norimo nuskaityti failo (.dat) pavadinima pvz. (vardai, duomenys, ...)"<<endl;
         cin>>filename;
-        sort_file_by_grades(grupe, filename);
+        string filepath = "../test_files/" + filename + ".dat";
+        sort_file_by_grades(grupe, filepath);
         exit(0);
     }
     else if (rule=='7')
@@ -79,7 +82,8 @@ void menu(vector <duom> &grupe)
         exit(0);
     }
 }
-void read(vector <duom> &grupe)
+
+void read(deque<duom> &grupe)
 {
     bool con=1;
     char check;
@@ -132,9 +136,9 @@ void read(vector <duom> &grupe)
             con=0;
     }
 }
-void read_file(vector <duom> &grupe, string filename)
+
+void read_file(deque<duom> &grupe, string filename)
 {
-    grupe.reserve(10000);
     duom laik;
     ifstream in(filename);
     try
@@ -215,11 +219,13 @@ void read_file(vector <duom> &grupe, string filename)
             terminate();
         }
     }
-    grupe.shrink_to_fit();
+    
+    // deque doesn't have shrink_to_fit
     for (auto& student : grupe)
         student.pazymiai.shrink_to_fit();
 }
-void read_names_only(vector <duom> &grupe)
+
+void read_names_only(deque<duom> &grupe)
 {
     bool con=1;
     char check;
@@ -234,15 +240,16 @@ void read_names_only(vector <duom> &grupe)
             con=0;
     }
 }
-void sort_file_by_grades(vector<duom> &grupe, string filename) {
-    vector<duom> blogi;
+
+void sort_file_by_grades(deque<duom> &grupe, string filename) {
+    deque<duom> blogi;
     
     // Start timing the entire process
     auto total_start = chrono::high_resolution_clock::now();
 
     // Timing file reading
     auto start = chrono::high_resolution_clock::now();
-    read_file(grupe, filename + ".dat");
+    read_file(grupe, filename); 
     auto end = chrono::high_resolution_clock::now();
     auto read_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
@@ -257,20 +264,23 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
 
     sorting(grupe, '3'); // Sorting by final grade
 
+    // Using deque's equivalent approach to get poor students
     auto it = grupe.rbegin();
     int i = 0;
-    while (it != grupe.rend() && it->mark < 5) { // Taking poor students from the end of the vector
+    while (it != grupe.rend() && it->mark < 5) { // Taking poor students from the end of the deque
         it++;
         i++;
     }
-    blogi.assign(it.base(), grupe.end());
+    
+    // Extract poor students
+    for (int j = 0; j < i; j++) {
+        blogi.push_front(grupe.back());
+        grupe.pop_back();
+    }
+    
     end = chrono::high_resolution_clock::now();
     auto sort_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
     
-    // Resize the original vector to remove poor students
-    grupe.resize(grupe.size() - i);
-    
-    //vector<duom> geri = grupe; // Copy the good students to a new vector
     // Timing file output
     start = chrono::high_resolution_clock::now();
     print_answers_to_file(grupe, filename + "_kietekai.dat");
@@ -285,13 +295,13 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
     
     // Display summary of times
     cout << "\n\nSantrauka:" << endl;
-        cout << "Skaitymas: " << float(read_time) / 1000 << " s "<< endl;
-        cout << "Rusiavimas: " << float(sort_time) / 1000 << " s "<< endl;
-        cout << "Rasymas: " << float(write_time) / 1000 << " s "<< endl;
-        cout << "Is viso: " << float(total_time) / 1000 << " s" << endl;
-
+    cout << "Skaitymas: " << float(read_time) / 1000 << " s "<< endl;
+    cout << "Rusiavimas: " << float(sort_time) / 1000 << " s "<< endl;
+    cout << "Rasymas: " << float(write_time) / 1000 << " s "<< endl;
+    cout << "Is viso: " << float(total_time) / 1000 << " s" << endl;
 }
-void random(vector <duom> &grupe, int m)
+
+void random(deque<duom> &grupe, int m)
 {
     duom laik;
     random_device rd;
@@ -309,7 +319,8 @@ void random(vector <duom> &grupe, int m)
         laik.pazymiai.clear();
     }
 }
-void random_full(vector <duom> &grupe, int record_amount, int mark_amount)
+
+void random_full(deque<duom> &grupe, int record_amount, int mark_amount)
 {
     duom laik;
     random_device rd;
@@ -330,7 +341,8 @@ void random_full(vector <duom> &grupe, int record_amount, int mark_amount)
         laik.pazymiai.clear();
     }
 }
-void print_data_to_file(vector <duom> &grupe, int mark_amount, string filename)
+
+void print_data_to_file(deque<duom> &grupe, int mark_amount, string filename)
 {
     ofstream out(filename);
     stringstream ss;
@@ -363,7 +375,8 @@ void print_data_to_file(vector <duom> &grupe, int mark_amount, string filename)
         out<<ss.str();
     out.close();
 }
-void print_answers_to_file(vector <duom> &grupe, string filename)
+
+void print_answers_to_file(deque<duom> &grupe, string filename)
 {
     ofstream out(filename);
     stringstream ss;
@@ -390,7 +403,8 @@ void print_answers_to_file(vector <duom> &grupe, string filename)
         out<<ss.str();
     out.close();
 }
-void print_answers(vector <duom> &grupe)
+
+void print_answers(deque<duom> &grupe)
 {
     stringstream ss;
     ss << left << fixed << setprecision(2) << setw(20) << "Vardas"<<setw(20)<<"Pavarde"<<setw(20)<<"Galutinis"<<endl;
@@ -401,7 +415,7 @@ void print_answers(vector <duom> &grupe)
     }
     cout<<ss.str();
 }
-///
+
 char check_menu()
 {
     string input;
@@ -420,7 +434,8 @@ char check_menu()
     } while (check!='F' and check!='T');
     return check;
 }
-void vid_med_calc(vector <duom> &grupe)
+
+void vid_med_calc(deque<duom> &grupe)
 {
     char rule;
     do
@@ -445,6 +460,7 @@ void vid_med_calc(vector <duom> &grupe)
         i.mark=0.4*i.vid_med+0.6*i.exam;
     }
 }
+
 bool compare(string a, string b, string rule)
 {
     if(a.rfind(rule, 0)==0 and b.rfind(rule, 0)==0)
@@ -452,7 +468,8 @@ bool compare(string a, string b, string rule)
     else
         return a<b;
 }
-void sorting(vector <duom> &grupe, char rule)
+
+void sorting(deque<duom> &grupe, char rule)
 {
     while(rule!='1' and rule!='2' and rule!='3')
     {
@@ -469,6 +486,7 @@ void sorting(vector <duom> &grupe, char rule)
     else if(rule=='3')
         sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return a.mark>b.mark;});
 }
+
 double average(duom given)
 {
     try
@@ -486,6 +504,7 @@ double average(duom given)
     sum+=i;
     return sum/given.pazymiai.size();
 }
+
 double median(duom given)
 {
     try
@@ -510,5 +529,4 @@ double median(duom given)
         ats/=2;
         return ats;
     }
-
 }

@@ -2,8 +2,7 @@
 
 using namespace std;
 
-
-void menu(vector <duom> &grupe)
+void menu(list<duom> &grupe)
 {
     char rule;
     do
@@ -21,16 +20,16 @@ void menu(vector <duom> &grupe)
         read(grupe);
     else if (rule=='2')
     {
-        grupe.reserve(1000);
+        // Lists don't support reserve, removed the reserve statement
         read_file(grupe, "kursiokai.dat");
-        grupe.shrink_to_fit();
+        // Lists don't support shrink_to_fit
     }   
     else if (rule=='3')
     {
-        grupe.reserve(1000);
+        // Lists don't support reserve
         read_names_only(grupe);
-        random(grupe, grupe.size());
-        grupe.shrink_to_fit();
+        random(grupe, distance(grupe.begin(), grupe.end()));
+        // Lists don't support shrink_to_fit
     }
     else if (rule=='4')
     {
@@ -38,7 +37,7 @@ void menu(vector <duom> &grupe)
     }
     else if (rule=='5')
     {
-        grupe.reserve(10000000);
+        // Lists don't support reserve
         auto start = chrono::high_resolution_clock::now();
         random_full(grupe, 1000, 5);
         print_data_to_file(grupe, 5, "kursiokai_1000.dat");
@@ -70,7 +69,8 @@ void menu(vector <duom> &grupe)
         string filename;
         cout<<"Iveskite norimo nuskaityti failo (.dat) pavadinima pvz. (vardai, duomenys, ...)"<<endl;
         cin>>filename;
-        sort_file_by_grades(grupe, filename);
+        string filepath = "../test_files/" + filename + ".dat";
+        sort_file_by_grades(grupe, filepath);
         exit(0);
     }
     else if (rule=='7')
@@ -79,7 +79,8 @@ void menu(vector <duom> &grupe)
         exit(0);
     }
 }
-void read(vector <duom> &grupe)
+
+void read(list<duom> &grupe)
 {
     bool con=1;
     char check;
@@ -132,9 +133,10 @@ void read(vector <duom> &grupe)
             con=0;
     }
 }
-void read_file(vector <duom> &grupe, string filename)
+
+void read_file(list<duom> &grupe, string filename)
 {
-    grupe.reserve(10000);
+    // Lists don't support reserve
     duom laik;
     ifstream in(filename);
     try
@@ -215,11 +217,11 @@ void read_file(vector <duom> &grupe, string filename)
             terminate();
         }
     }
-    grupe.shrink_to_fit();
-    for (auto& student : grupe)
-        student.pazymiai.shrink_to_fit();
+    // Lists don't support shrink_to_fit
+    // No need to shrink_to_fit the individual pazymiai lists
 }
-void read_names_only(vector <duom> &grupe)
+
+void read_names_only(list<duom> &grupe)
 {
     bool con=1;
     char check;
@@ -234,15 +236,16 @@ void read_names_only(vector <duom> &grupe)
             con=0;
     }
 }
-void sort_file_by_grades(vector<duom> &grupe, string filename) {
-    vector<duom> blogi;
+
+void sort_file_by_grades(list<duom> &grupe, string filename) {
+    list<duom> blogi;
     
     // Start timing the entire process
     auto total_start = chrono::high_resolution_clock::now();
 
     // Timing file reading
     auto start = chrono::high_resolution_clock::now();
-    read_file(grupe, filename + ".dat");
+    read_file(grupe, filename); 
     auto end = chrono::high_resolution_clock::now();
     auto read_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
@@ -257,20 +260,21 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
 
     sorting(grupe, '3'); // Sorting by final grade
 
-    auto it = grupe.rbegin();
-    int i = 0;
-    while (it != grupe.rend() && it->mark < 5) { // Taking poor students from the end of the vector
-        it++;
-        i++;
+    // Split students with marks less than 5
+    // Using iterators since list doesn't have random access
+    auto it = grupe.begin();
+    while (it != grupe.end()) {
+        if (it->mark < 5) {
+            blogi.push_back(*it);
+            it = grupe.erase(it);
+        } else {
+            ++it;
+        }
     }
-    blogi.assign(it.base(), grupe.end());
+    
     end = chrono::high_resolution_clock::now();
     auto sort_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
     
-    // Resize the original vector to remove poor students
-    grupe.resize(grupe.size() - i);
-    
-    //vector<duom> geri = grupe; // Copy the good students to a new vector
     // Timing file output
     start = chrono::high_resolution_clock::now();
     print_answers_to_file(grupe, filename + "_kietekai.dat");
@@ -285,13 +289,13 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
     
     // Display summary of times
     cout << "\n\nSantrauka:" << endl;
-        cout << "Skaitymas: " << float(read_time) / 1000 << " s "<< endl;
-        cout << "Rusiavimas: " << float(sort_time) / 1000 << " s "<< endl;
-        cout << "Rasymas: " << float(write_time) / 1000 << " s "<< endl;
-        cout << "Is viso: " << float(total_time) / 1000 << " s" << endl;
-
+    cout << "Skaitymas: " << float(read_time) / 1000 << " s "<< endl;
+    cout << "Rusiavimas: " << float(sort_time) / 1000 << " s "<< endl;
+    cout << "Rasymas: " << float(write_time) / 1000 << " s "<< endl;
+    cout << "Is viso: " << float(total_time) / 1000 << " s" << endl;
 }
-void random(vector <duom> &grupe, int m)
+
+void random(list<duom> &grupe, int m)
 {
     duom laik;
     random_device rd;
@@ -299,17 +303,21 @@ void random(vector <duom> &grupe, int m)
     uniform_int_distribution<int> dist(1, 10);
     uniform_int_distribution<int> dist2(5, 20);
     int n = dist2(mt);
-    for(int j=0; j<m; j++)
+    
+    // Using iterators since list doesn't have random access
+    auto it = grupe.begin();
+    for(int j=0; j<m && it != grupe.end(); j++, ++it)
     {
         for(int i=0; i<n; i++)
             laik.pazymiai.push_back(dist(mt));
         laik.exam=(dist(mt));
-        grupe[j].pazymiai=laik.pazymiai;
-        grupe[j].exam=laik.exam;
+        it->pazymiai=laik.pazymiai;
+        it->exam=laik.exam;
         laik.pazymiai.clear();
     }
 }
-void random_full(vector <duom> &grupe, int record_amount, int mark_amount)
+
+void random_full(list<duom> &grupe, int record_amount, int mark_amount)
 {
     duom laik;
     random_device rd;
@@ -330,7 +338,8 @@ void random_full(vector <duom> &grupe, int record_amount, int mark_amount)
         laik.pazymiai.clear();
     }
 }
-void print_data_to_file(vector <duom> &grupe, int mark_amount, string filename)
+
+void print_data_to_file(list<duom> &grupe, int mark_amount, string filename)
 {
     ofstream out(filename);
     stringstream ss;
@@ -363,7 +372,8 @@ void print_data_to_file(vector <duom> &grupe, int mark_amount, string filename)
         out<<ss.str();
     out.close();
 }
-void print_answers_to_file(vector <duom> &grupe, string filename)
+
+void print_answers_to_file(list<duom> &grupe, string filename)
 {
     ofstream out(filename);
     stringstream ss;
@@ -390,7 +400,8 @@ void print_answers_to_file(vector <duom> &grupe, string filename)
         out<<ss.str();
     out.close();
 }
-void print_answers(vector <duom> &grupe)
+
+void print_answers(list<duom> &grupe)
 {
     stringstream ss;
     ss << left << fixed << setprecision(2) << setw(20) << "Vardas"<<setw(20)<<"Pavarde"<<setw(20)<<"Galutinis"<<endl;
@@ -401,7 +412,7 @@ void print_answers(vector <duom> &grupe)
     }
     cout<<ss.str();
 }
-///
+
 char check_menu()
 {
     string input;
@@ -420,7 +431,8 @@ char check_menu()
     } while (check!='F' and check!='T');
     return check;
 }
-void vid_med_calc(vector <duom> &grupe)
+
+void vid_med_calc(list<duom> &grupe)
 {
     char rule;
     do
@@ -445,6 +457,7 @@ void vid_med_calc(vector <duom> &grupe)
         i.mark=0.4*i.vid_med+0.6*i.exam;
     }
 }
+
 bool compare(string a, string b, string rule)
 {
     if(a.rfind(rule, 0)==0 and b.rfind(rule, 0)==0)
@@ -452,7 +465,8 @@ bool compare(string a, string b, string rule)
     else
         return a<b;
 }
-void sorting(vector <duom> &grupe, char rule)
+
+void sorting(list<duom> &grupe, char rule)
 {
     while(rule!='1' and rule!='2' and rule!='3')
     {
@@ -462,13 +476,17 @@ void sorting(vector <duom> &grupe, char rule)
         cin>>rule;
         rule=tolower(rule);
     }
+    
+    // Lists don't support parallel execution with std::execution::par
+    // Use regular sort method of list instead
     if(rule=='1')
-        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.var, b.var, "Vardas");});
+        grupe.sort([](duom a, duom b){return compare(a.var, b.var, "Vardas");});
     else if(rule=='2')
-        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.pav, b.pav, "Pavarde");});
+        grupe.sort([](duom a, duom b){return compare(a.pav, b.pav, "Pavarde");});
     else if(rule=='3')
-        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return a.mark>b.mark;});
+        grupe.sort([](duom a, duom b){return a.mark>b.mark;});
 }
+
 double average(duom given)
 {
     try
@@ -483,9 +501,10 @@ double average(duom given)
     }
     double sum=0.0;
     for(auto i:given.pazymiai)
-    sum+=i;
+        sum+=i;
     return sum/given.pazymiai.size();
 }
+
 double median(duom given)
 {
     try
@@ -498,17 +517,25 @@ double median(duom given)
         std::cerr << e.what() << '\n';
         terminate();
     }
-    if(given.pazymiai.size()%2==1)
+    
+    // Lists don't have random access, so we need to create a temporary vector
+    // or iterate to the middle elements
+    list<double> sorted_pazymiai = given.pazymiai;
+    sorted_pazymiai.sort();
+    
+    size_t size = sorted_pazymiai.size();
+    if(size % 2 == 1) // Odd number of elements
     {
-        return given.pazymiai[((given.pazymiai.size()/2)+1)-1];
+        auto it = sorted_pazymiai.begin();
+        advance(it, size / 2);
+        return *it;
     }
-    else
+    else // Even number of elements
     {
-        double ats=0.0;
-        ats=given.pazymiai[given.pazymiai.size()/2-1];
-        ats+=given.pazymiai[given.pazymiai.size()/2+1-1];
-        ats/=2;
-        return ats;
+        auto it1 = sorted_pazymiai.begin();
+        auto it2 = sorted_pazymiai.begin();
+        advance(it1, size / 2 - 1);
+        advance(it2, size / 2);
+        return (*it1 + *it2) / 2.0;
     }
-
 }

@@ -43,7 +43,7 @@ void menu(vector <duom> &grupe)
         random_full(grupe, 1000, 5);
         print_data_to_file(grupe, 5, "kursiokai_1000.dat");
         auto end = chrono::high_resolution_clock::now();
-        cout << "1 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
+        cout << "1 failas sugeneruotas per: " << chrono::duration_cast<chrono::seconds>(end - start).count() << " sec" << endl;cout << "1 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;start = chrono::high_resolution_clock::now();
         random_full(grupe, 10000, 5);
         print_data_to_file(grupe, 5, "kursiokai_10000.dat");
         end = chrono::high_resolution_clock::now();
@@ -70,7 +70,8 @@ void menu(vector <duom> &grupe)
         string filename;
         cout<<"Iveskite norimo nuskaityti failo (.dat) pavadinima pvz. (vardai, duomenys, ...)"<<endl;
         cin>>filename;
-        sort_file_by_grades(grupe, filename);
+        string filepath = "../test_files/" + filename + ".dat";
+        sort_file_by_grades(grupe, filepath);
         exit(0);
     }
     else if (rule=='7')
@@ -242,7 +243,7 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
 
     // Timing file reading
     auto start = chrono::high_resolution_clock::now();
-    read_file(grupe, filename + ".dat");
+    read_file(grupe, filename); 
     auto end = chrono::high_resolution_clock::now();
     auto read_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
@@ -463,11 +464,11 @@ void sorting(vector <duom> &grupe, char rule)
         rule=tolower(rule);
     }
     if(rule=='1')
-        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.var, b.var, "Vardas");});
+        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.var, b.var, "Vardas");});
     else if(rule=='2')
-        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.pav, b.pav, "Pavarde");});
+        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.pav, b.pav, "Pavarde");});
     else if(rule=='3')
-        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return a.mark>b.mark;});
+        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return a.mark>b.mark;});
 }
 double average(duom given)
 {
