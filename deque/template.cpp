@@ -69,8 +69,7 @@ void menu(deque<duom> &grupe)
         string filename;
         cout<<"Iveskite norimo nuskaityti failo (.dat) pavadinima pvz. (vardai, duomenys, ...)"<<endl;
         cin>>filename;
-        string filepath = "../test_files/" + filename + ".dat";
-        sort_file_by_grades(grupe, filepath);
+        sort_file_by_grades(grupe, filename);
         exit(0);
     }
     else if (rule=='7')
@@ -245,7 +244,7 @@ void sort_file_by_grades(deque<duom> &grupe, string filename) {
 
     // Timing file reading
     auto start = chrono::high_resolution_clock::now();
-    read_file(grupe, filename); 
+    read_file(grupe, "../test_files/" + filename + ".dat"); 
     auto end = chrono::high_resolution_clock::now();
     auto read_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
@@ -262,7 +261,7 @@ void sort_file_by_grades(deque<duom> &grupe, string filename) {
     end = chrono::high_resolution_clock::now();
     auto sort_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
-    // Splitting the vector into two
+    // Splitting the vector into two (grupe for geri, blogi for vargsiukai)
     start = chrono::high_resolution_clock::now();
 
     auto it = grupe.rbegin();
@@ -273,18 +272,16 @@ void sort_file_by_grades(deque<duom> &grupe, string filename) {
     }
     
     // Extract poor students
-    for (int j = 0; j < i; j++) {
-        blogi.push_front(grupe.back());
-        grupe.pop_back();
-    }
+    blogi.insert(blogi.begin(), grupe.rbegin(), grupe.rbegin() + i);
+    grupe.erase(grupe.end() - i, grupe.end());
     
     end = chrono::high_resolution_clock::now();
     auto splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
     
     // Timing file output
     //start = chrono::high_resolution_clock::now();
-    print_answers_to_file(grupe, filename + "_kietekai.dat");
-    print_answers_to_file(blogi, filename + "_vargsai.dat");
+    print_answers_to_file(grupe, "../output_files/" + filename + "_kietekai.dat");
+    print_answers_to_file(blogi, "../output_files/" + filename + + "_vargsiukai.dat");
     //end = chrono::high_resolution_clock::now();
     //auto write_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
