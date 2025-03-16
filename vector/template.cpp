@@ -2,7 +2,6 @@
 
 using namespace std;
 
-
 void menu(vector <duom> &grupe)
 {
     char rule;
@@ -239,7 +238,7 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
     vector<duom> blogi;
     
     // Start timing the entire process
-    auto total_start = chrono::high_resolution_clock::now();
+    //auto total_start = chrono::high_resolution_clock::now();
 
     // Timing file reading
     auto start = chrono::high_resolution_clock::now();
@@ -248,15 +247,21 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
     auto read_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
     // vid_med_calc() is not timed
-    start = chrono::high_resolution_clock::now();
+    //start = chrono::high_resolution_clock::now();
     vid_med_calc(grupe);
-    end = chrono::high_resolution_clock::now();
-    auto excluded_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+    //end = chrono::high_resolution_clock::now();
+    //auto excluded_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
-    // Timing sorting and splitting process
+    // Timing sorting
     start = chrono::high_resolution_clock::now();
 
     sorting(grupe, '3'); // Sorting by final grade
+
+    end = chrono::high_resolution_clock::now();
+    auto sort_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+
+    // Splitting the vector into two
+    start = chrono::high_resolution_clock::now();
 
     auto it = grupe.rbegin();
     int i = 0;
@@ -265,31 +270,35 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
         i++;
     }
     blogi.assign(it.base(), grupe.end());
+
     end = chrono::high_resolution_clock::now();
-    auto sort_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+    auto splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
     
     // Resize the original vector to remove poor students
     grupe.resize(grupe.size() - i);
     
     //vector<duom> geri = grupe; // Copy the good students to a new vector
     // Timing file output
-    start = chrono::high_resolution_clock::now();
+    //start = chrono::high_resolution_clock::now();
     print_answers_to_file(grupe, filename + "_kietekai.dat");
     print_answers_to_file(blogi, filename + "_vargsai.dat");
-    end = chrono::high_resolution_clock::now();
-    auto write_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+    //end = chrono::high_resolution_clock::now();
+    //auto write_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
     // Calculate and display total time
+    /*
     auto total_end = chrono::high_resolution_clock::now();
     auto raw_time = chrono::duration_cast<chrono::milliseconds>(total_end - total_start).count();
     auto total_time = raw_time - excluded_time;
+    */
     
     // Display summary of times
     cout << "\n\nSantrauka:" << endl;
         cout << "Skaitymas: " << float(read_time) / 1000 << " s "<< endl;
         cout << "Rusiavimas: " << float(sort_time) / 1000 << " s "<< endl;
-        cout << "Rasymas: " << float(write_time) / 1000 << " s "<< endl;
-        cout << "Is viso: " << float(total_time) / 1000 << " s" << endl;
+        cout << "Skaidymas: " << float(splitting_time) / 1000 << " s "<< endl;
+        //cout << "Rasymas: " << float(write_time) / 1000 << " s "<< endl;
+        //cout << "Is viso: " << float(total_time) / 1000 << " s" << endl;
 
 }
 void random(vector <duom> &grupe, int m)
@@ -464,11 +473,11 @@ void sorting(vector <duom> &grupe, char rule)
         rule=tolower(rule);
     }
     if(rule=='1')
-        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.var, b.var, "Vardas");});
+        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.var, b.var, "Vardas");});
     else if(rule=='2')
-        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.pav, b.pav, "Pavarde");});
+        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.pav, b.pav, "Pavarde");});
     else if(rule=='3')
-        sort(grupe.begin(), grupe.end(), [](duom a, duom b){return a.mark>b.mark;});
+        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return a.mark>b.mark;});
 }
 double average(duom given)
 {

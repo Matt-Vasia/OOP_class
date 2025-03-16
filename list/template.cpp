@@ -20,16 +20,12 @@ void menu(list<duom> &grupe)
         read(grupe);
     else if (rule=='2')
     {
-        // Lists don't support reserve, removed the reserve statement
         read_file(grupe, "kursiokai.dat");
-        // Lists don't support shrink_to_fit
     }   
     else if (rule=='3')
     {
-        // Lists don't support reserve
         read_names_only(grupe);
         random(grupe, distance(grupe.begin(), grupe.end()));
-        // Lists don't support shrink_to_fit
     }
     else if (rule=='4')
     {
@@ -37,7 +33,6 @@ void menu(list<duom> &grupe)
     }
     else if (rule=='5')
     {
-        // Lists don't support reserve
         auto start = chrono::high_resolution_clock::now();
         random_full(grupe, 1000, 5);
         print_data_to_file(grupe, 5, "kursiokai_1000.dat");
@@ -136,7 +131,6 @@ void read(list<duom> &grupe)
 
 void read_file(list<duom> &grupe, string filename)
 {
-    // Lists don't support reserve
     duom laik;
     ifstream in(filename);
     try
@@ -217,8 +211,6 @@ void read_file(list<duom> &grupe, string filename)
             terminate();
         }
     }
-    // Lists don't support shrink_to_fit
-    // No need to shrink_to_fit the individual pazymiai lists
 }
 
 void read_names_only(list<duom> &grupe)
@@ -241,7 +233,7 @@ void sort_file_by_grades(list<duom> &grupe, string filename) {
     list<duom> blogi;
     
     // Start timing the entire process
-    auto total_start = chrono::high_resolution_clock::now();
+    //auto total_start = chrono::high_resolution_clock::now();
 
     // Timing file reading
     auto start = chrono::high_resolution_clock::now();
@@ -249,16 +241,21 @@ void sort_file_by_grades(list<duom> &grupe, string filename) {
     auto end = chrono::high_resolution_clock::now();
     auto read_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
-    // vid_med_calc() is not timed
-    start = chrono::high_resolution_clock::now();
+    //start = chrono::high_resolution_clock::now();
     vid_med_calc(grupe);
-    end = chrono::high_resolution_clock::now();
-    auto excluded_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+    //end = chrono::high_resolution_clock::now();
+    //auto excluded_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
-    // Timing sorting and splitting process
+    // Timing sorting
     start = chrono::high_resolution_clock::now();
 
     sorting(grupe, '3'); // Sorting by final grade
+
+    end = chrono::high_resolution_clock::now();
+    auto sort_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+
+    // Splitting the vector into two
+    start = chrono::high_resolution_clock::now();
 
     // Split students with marks less than 5
     // Using iterators since list doesn't have random access
@@ -273,26 +270,29 @@ void sort_file_by_grades(list<duom> &grupe, string filename) {
     }
     
     end = chrono::high_resolution_clock::now();
-    auto sort_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+    auto splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
     
     // Timing file output
-    start = chrono::high_resolution_clock::now();
+    //start = chrono::high_resolution_clock::now();
     print_answers_to_file(grupe, filename + "_kietekai.dat");
     print_answers_to_file(blogi, filename + "_vargsai.dat");
-    end = chrono::high_resolution_clock::now();
-    auto write_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+    //end = chrono::high_resolution_clock::now();
+    //auto write_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
     // Calculate and display total time
+    /*
     auto total_end = chrono::high_resolution_clock::now();
     auto raw_time = chrono::duration_cast<chrono::milliseconds>(total_end - total_start).count();
     auto total_time = raw_time - excluded_time;
+    */
     
     // Display summary of times
     cout << "\n\nSantrauka:" << endl;
-    cout << "Skaitymas: " << float(read_time) / 1000 << " s "<< endl;
-    cout << "Rusiavimas: " << float(sort_time) / 1000 << " s "<< endl;
-    cout << "Rasymas: " << float(write_time) / 1000 << " s "<< endl;
-    cout << "Is viso: " << float(total_time) / 1000 << " s" << endl;
+        cout << "Skaitymas: " << float(read_time) / 1000 << " s "<< endl;
+        cout << "Rusiavimas: " << float(sort_time) / 1000 << " s "<< endl;
+        cout << "Skaidymas: " << float(splitting_time) / 1000 << " s "<< endl;
+        //cout << "Rasymas: " << float(write_time) / 1000 << " s "<< endl;
+        //cout << "Is viso: " << float(total_time) / 1000 << " s" << endl;
 }
 
 void random(list<duom> &grupe, int m)
@@ -304,7 +304,6 @@ void random(list<duom> &grupe, int m)
     uniform_int_distribution<int> dist2(5, 20);
     int n = dist2(mt);
     
-    // Using iterators since list doesn't have random access
     auto it = grupe.begin();
     for(int j=0; j<m && it != grupe.end(); j++, ++it)
     {
@@ -477,8 +476,6 @@ void sorting(list<duom> &grupe, char rule)
         rule=tolower(rule);
     }
     
-    // Lists don't support parallel execution with std::execution::par
-    // Use regular sort method of list instead
     if(rule=='1')
         grupe.sort([](duom a, duom b){return compare(a.var, b.var, "Vardas");});
     else if(rule=='2')

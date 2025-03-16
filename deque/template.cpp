@@ -21,12 +21,10 @@ void menu(deque<duom> &grupe)
         read(grupe);
     else if (rule=='2')
     {
-        // No exact reserve equivalent for deque, but we can resize to prepare capacity
         read_file(grupe, "kursiokai.dat");
     }   
     else if (rule=='3')
     {
-        // No exact reserve equivalent for deque, but we can prepare some space
         read_names_only(grupe);
         random(grupe, grupe.size());
     }
@@ -36,7 +34,6 @@ void menu(deque<duom> &grupe)
     }
     else if (rule=='5')
     {
-        // No exact reserve equivalent for deque
         auto start = chrono::high_resolution_clock::now();
         random_full(grupe, 1000, 5);
         print_data_to_file(grupe, 5, "kursiokai_1000.dat");
@@ -220,7 +217,6 @@ void read_file(deque<duom> &grupe, string filename)
         }
     }
     
-    // deque doesn't have shrink_to_fit
     for (auto& student : grupe)
         student.pazymiai.shrink_to_fit();
 }
@@ -245,7 +241,7 @@ void sort_file_by_grades(deque<duom> &grupe, string filename) {
     deque<duom> blogi;
     
     // Start timing the entire process
-    auto total_start = chrono::high_resolution_clock::now();
+    //auto total_start = chrono::high_resolution_clock::now();
 
     // Timing file reading
     auto start = chrono::high_resolution_clock::now();
@@ -253,18 +249,22 @@ void sort_file_by_grades(deque<duom> &grupe, string filename) {
     auto end = chrono::high_resolution_clock::now();
     auto read_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
-    // vid_med_calc() is not timed
-    start = chrono::high_resolution_clock::now();
+    //start = chrono::high_resolution_clock::now();
     vid_med_calc(grupe);
-    end = chrono::high_resolution_clock::now();
-    auto excluded_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+    //end = chrono::high_resolution_clock::now();
+    //auto excluded_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
-    // Timing sorting and splitting process
+    // Timing sorting
     start = chrono::high_resolution_clock::now();
 
     sorting(grupe, '3'); // Sorting by final grade
 
-    // Using deque's equivalent approach to get poor students
+    end = chrono::high_resolution_clock::now();
+    auto sort_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+
+    // Splitting the vector into two
+    start = chrono::high_resolution_clock::now();
+
     auto it = grupe.rbegin();
     int i = 0;
     while (it != grupe.rend() && it->mark < 5) { // Taking poor students from the end of the deque
@@ -279,26 +279,29 @@ void sort_file_by_grades(deque<duom> &grupe, string filename) {
     }
     
     end = chrono::high_resolution_clock::now();
-    auto sort_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+    auto splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
     
     // Timing file output
-    start = chrono::high_resolution_clock::now();
+    //start = chrono::high_resolution_clock::now();
     print_answers_to_file(grupe, filename + "_kietekai.dat");
     print_answers_to_file(blogi, filename + "_vargsai.dat");
-    end = chrono::high_resolution_clock::now();
-    auto write_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+    //end = chrono::high_resolution_clock::now();
+    //auto write_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
     // Calculate and display total time
+    /*
     auto total_end = chrono::high_resolution_clock::now();
     auto raw_time = chrono::duration_cast<chrono::milliseconds>(total_end - total_start).count();
     auto total_time = raw_time - excluded_time;
-    
+    */
+
     // Display summary of times
     cout << "\n\nSantrauka:" << endl;
-    cout << "Skaitymas: " << float(read_time) / 1000 << " s "<< endl;
-    cout << "Rusiavimas: " << float(sort_time) / 1000 << " s "<< endl;
-    cout << "Rasymas: " << float(write_time) / 1000 << " s "<< endl;
-    cout << "Is viso: " << float(total_time) / 1000 << " s" << endl;
+        cout << "Skaitymas: " << float(read_time) / 1000 << " s "<< endl;
+        cout << "Rusiavimas: " << float(sort_time) / 1000 << " s "<< endl;
+        cout << "Skaidymas: " << float(splitting_time) / 1000 << " s "<< endl;
+        //cout << "Rasymas: " << float(write_time) / 1000 << " s "<< endl;
+        //cout << "Is viso: " << float(total_time) / 1000 << " s" << endl;
 }
 
 void random(deque<duom> &grupe, int m)
