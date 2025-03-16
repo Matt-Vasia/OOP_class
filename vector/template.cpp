@@ -64,13 +64,12 @@ void menu(vector <duom> &grupe)
         cout << "5 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
         exit(0);
     }
-    else if (rule=='6')
+     else if (rule=='6')
     {
         string filename;
         cout<<"Iveskite norimo nuskaityti failo (.dat) pavadinima pvz. (vardai, duomenys, ...)"<<endl;
         cin>>filename;
-        string filepath = "../test_files/" + filename + ".dat";
-        sort_file_by_grades(grupe, filepath);
+        sort_file_by_grades(grupe, filename);
         exit(0);
     }
     else if (rule=='7')
@@ -242,7 +241,7 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
 
     // Timing file reading
     auto start = chrono::high_resolution_clock::now();
-    read_file(grupe, filename); 
+    read_file(grupe, "../test_files/" + filename + ".dat"); 
     auto end = chrono::high_resolution_clock::now();
     auto read_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
@@ -280,8 +279,8 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
     //vector<duom> geri = grupe; // Copy the good students to a new vector
     // Timing file output
     //start = chrono::high_resolution_clock::now();
-    print_answers_to_file(grupe, filename + "_kietekai.dat");
-    print_answers_to_file(blogi, filename + "_vargsai.dat");
+    print_answers_to_file(grupe, "../output_file/" + filename + "_kietekai.dat");
+    print_answers_to_file(blogi, "../output_file/" + filename + + "_vargsiukai.dat");
     //end = chrono::high_resolution_clock::now();
     //auto write_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
