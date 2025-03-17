@@ -121,7 +121,7 @@ Skaidymas: 1.265 s
 Previous versions included:
 ```
 v0.1 vidurkio ir medianos funkcijos
-v0.2 rūšiavimas
+v0.2 rikiavimas
 v0.3 header files ir exception handling funkcionalumas
 v0.4 studentų rūšiavimas
 v1.0 skirtingų struktūrų naudojimas
