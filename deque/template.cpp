@@ -15,7 +15,7 @@ void menu(deque<duom> &grupe)
         cout<<"Jei norite suruosiuoti mokinius pagal ju pazymius is failo, spauskite '6'"<<endl;
         cout<<"Jei norite baigti darba, spauskite '7'"<<endl;
         cin>>rule;
-    } while(rule!='1' and rule!='2' and rule!='3' and rule!='4' and rule!='5' and rule!='6' and rule!='7');
+    } while(rule!='1' && rule!='2' && rule!='3' && rule!='4' && rule!='5' && rule!='6' && rule!='7');
     
     if(rule=='1')
         read(grupe);
@@ -223,8 +223,6 @@ void read_file(deque<duom> &grupe, string filename)
 void read_names_only(deque<duom> &grupe)
 {
     bool con=1;
-    char check;
-    string input_check;
     duom local;
     while(con)
     {
@@ -425,13 +423,13 @@ char check_menu()
         cout<<"Noredami uzbaigti ivedima iveskite 'F'"<<endl;
         cout<<"Noredami testi ivedima iveskite 'T'"<<endl;
         getline(cin, input);
-        if(input.size()>1 or input.size()==0)
+        if(input.size()>1 || input.size()==0)
         {
             cout<<"Netinkama ivestis"<<endl;
             continue;
         }
         check=toupper(input[0]);
-    } while (check!='F' and check!='T');
+    } while (check!='F' && check!='T');
     return check;
 }
 
@@ -444,7 +442,7 @@ void vid_med_calc(deque<duom> &grupe)
         cout<<"Noredami skaiciuoti naudojant mediana parasykite 'm'"<<endl;
         cin>>rule;
         rule=tolower(rule);
-    } while(rule!='v' and rule!='m');
+    } while(rule!='v' && rule!='m');
     if(rule=='v')
     {
         for(auto &i:grupe)
@@ -463,7 +461,7 @@ void vid_med_calc(deque<duom> &grupe)
 
 bool compare(string a, string b, string rule)
 {
-    if(a.rfind(rule, 0)==0 and b.rfind(rule, 0)==0)
+    if(a.rfind(rule, 0)==0 && b.rfind(rule, 0)==0)
         return stoi(a.substr(rule.length()))<stoi(b.substr(rule.length()));
     else
         return a<b;
@@ -471,7 +469,7 @@ bool compare(string a, string b, string rule)
 
 void sorting(deque<duom> &grupe, char rule)
 {
-    while(rule!='1' and rule!='2' and rule!='3')
+    while(rule!='1' && rule!='2' && rule!='3')
     {
         cout<<"Noredami surusiuoti pagal varda, spauskite '1'"<<endl;
         cout<<"Noredami surusiuoti pagal pavarde, spauskite '2'"<<endl;

@@ -8,7 +8,7 @@
 #include <vector>
 #include <sstream>
 #include <cstdlib>
-#include <ctime> //time lib
+#include <ctime>
 #include <algorithm>
 #include <random>
 #include <string>

@@ -27,5 +27,6 @@ using std::mt19937;
 using std::uniform_int_distribution;
 using std::ofstream;
 using std::to_string;
+using std::ios;
 
 #endif
