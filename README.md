@@ -17,7 +17,8 @@ System type	    Windows 11 64x
 
 ```
 
-To run tests, choose which container (LIST, DEQUE, VECTOR) you would like to use by going to one of the folders ("deque", "list", "vector") and enter the following commands:
+To run tests, go to the main directory of the program.
+Then, choose which container (LIST, DEQUE, VECTOR) you would like to use by going to one of the folders (cd deque, cd list, cd vector) and enter the following commands in the terminal:
 
 ```
 mkdir build
