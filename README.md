@@ -17,14 +17,19 @@ System type	    Windows 11 64x
 
 ```
 
-To run tests, run the following command
+To run tests, choose which container (LIST, DEQUE, VECTOR) you would like to use by going to one of the folders ("deque", "list", "vector") and enter the following commands:
 
 ```
-g++ -O3 -o test uzd.cpp
-./test
-6
-kursiokai_{wanted_sample_size}
+mkdir build
+cd build
+cmake ..
+cmake --build .
+cd Debug
+clear
+./program
 ```
+
+To launch the app again, go to build/Debug and launch program.exe
 
 ```
 VECTOR test times (using average values)
