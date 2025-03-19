@@ -64,6 +64,7 @@ void menu(deque<duom> &grupe)
         cout << "5 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
         // Pause before exiting
         cout << "Press Enter to continue..." << std::endl;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin.get();
         exit(0);
     }
@@ -75,6 +76,7 @@ void menu(deque<duom> &grupe)
         sort_file_by_grades(grupe, filename);
         // Pause before exiting
         cout << "Press Enter to continue..." << std::endl;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin.get();
         exit(0);
     }

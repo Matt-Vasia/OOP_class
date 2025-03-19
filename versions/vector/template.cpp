@@ -62,6 +62,10 @@ void menu(vector <duom> &grupe)
         print_data_to_file(grupe, 5, "kursiokai_10000000.dat");        
         end = chrono::high_resolution_clock::now();
         cout << "5 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
+        // Pause before exiting
+        cout << "Press Enter to continue..." << std::endl;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.get();
         exit(0);
     }
      else if (rule=='6')
@@ -70,6 +74,10 @@ void menu(vector <duom> &grupe)
         cout<<"Iveskite norimo nuskaityti failo (.dat) pavadinima pvz. (vardai, duomenys, ...)"<<endl;
         cin>>filename;
         sort_file_by_grades(grupe, filename);
+        // Pause before exiting
+        cout << "Press Enter to continue..." << std::endl;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.get();
         exit(0);
     }
     else if (rule=='7')

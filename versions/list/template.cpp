@@ -65,11 +65,19 @@ void menu(list<duom> &grupe)
         cout<<"Iveskite norimo nuskaityti failo (.dat) pavadinima pvz. (vardai, duomenys, ...)"<<endl;
         cin>>filename;
         sort_file_by_grades(grupe, filename);
+        // Pause before exiting
+        cout << "Press Enter to continue..." << std::endl;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.get();
         exit(0);
     }
     else if (rule=='7')
     {
         cout<<"Darbas baigtas"<<endl;
+        // Pause before exiting
+        cout << "Press Enter to continue..." << std::endl;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.get();
         exit(0);
     }
 }
@@ -256,12 +264,10 @@ void sort_file_by_grades(list<duom> &grupe, string filename) {
 
     // Split students with marks less than 5
     // Using iterators since list doesn't have random access
-    auto it = grupe.begin();
-    while (it->mark >= 5 && it != grupe.end()) {
-            geri.push_back(*it);
-            grupe.pop_front();
-            it++;
-        }
+    while (!grupe.empty() && grupe.front().mark >= 5) {
+        geri.push_back(grupe.front());
+        grupe.pop_front();
+    }
     
     end = chrono::high_resolution_clock::now();
     auto splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
