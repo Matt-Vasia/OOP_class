@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void menu(deque<duom> &grupe)
+void menu(list<duom> &grupe)
 {
     char rule;
     do
@@ -16,7 +16,6 @@ void menu(deque<duom> &grupe)
         cout<<"Jei norite baigti darba, spauskite '7'"<<endl;
         cin>>rule;
     } while(rule!='1' && rule!='2' && rule!='3' && rule!='4' && rule!='5' && rule!='6' && rule!='7');
-    
     if(rule=='1')
         read(grupe);
     else if (rule=='2')
@@ -26,7 +25,7 @@ void menu(deque<duom> &grupe)
     else if (rule=='3')
     {
         read_names_only(grupe);
-        random(grupe, grupe.size());
+        random(grupe, distance(grupe.begin(), grupe.end()));
     }
     else if (rule=='4')
     {
@@ -39,24 +38,20 @@ void menu(deque<duom> &grupe)
         print_data_to_file(grupe, 5, "kursiokai_1000.dat");
         auto end = chrono::high_resolution_clock::now();
         cout << "1 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
-        
         random_full(grupe, 10000, 5);
         print_data_to_file(grupe, 5, "kursiokai_10000.dat");
         end = chrono::high_resolution_clock::now();
         cout << "2 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
-        
         start = chrono::high_resolution_clock::now();
         random_full(grupe, 100000, 5);
         print_data_to_file(grupe, 5, "kursiokai_100000.dat");
         end = chrono::high_resolution_clock::now();
         cout << "3 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
-        
         start = chrono::high_resolution_clock::now();
         random_full(grupe, 1000000, 5);
         print_data_to_file(grupe, 5, "kursiokai_1000000.dat");
         end = chrono::high_resolution_clock::now();
         cout << "4 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
-        
         start = chrono::high_resolution_clock::now();
         random_full(grupe, 10000000, 5);
         print_data_to_file(grupe, 5, "kursiokai_10000000.dat");        
@@ -79,7 +74,7 @@ void menu(deque<duom> &grupe)
     }
 }
 
-void read(deque<duom> &grupe)
+void read(list<duom> &grupe)
 {
     bool con=1;
     char check;
@@ -133,7 +128,7 @@ void read(deque<duom> &grupe)
     }
 }
 
-void read_file(deque<duom> &grupe, string filename)
+void read_file(list<duom> &grupe, string filename)
 {
     duom laik;
     ifstream in(filename);
@@ -215,12 +210,9 @@ void read_file(deque<duom> &grupe, string filename)
             terminate();
         }
     }
-    
-    for (auto& student : grupe)
-        student.pazymiai.shrink_to_fit();
 }
 
-void read_names_only(deque<duom> &grupe)
+void read_names_only(list<duom> &grupe)
 {
     bool con=1;
     duom local;
@@ -234,15 +226,15 @@ void read_names_only(deque<duom> &grupe)
     }
 }
 
-void sort_file_by_grades(deque<duom> &grupe, string filename) {
-    deque<duom> blogi;
+void sort_file_by_grades(list<duom> &grupe, string filename) {
+    list<duom> geri;
     
     // Start timing the entire process
     //auto total_start = chrono::high_resolution_clock::now();
 
     // Timing file reading
     auto start = chrono::high_resolution_clock::now();
-    read_file(grupe, "../test_files/" + filename + ".dat"); 
+    read_file(grupe, test_file_location + filename + ".dat"); 
     auto end = chrono::high_resolution_clock::now();
     auto read_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
@@ -259,27 +251,25 @@ void sort_file_by_grades(deque<duom> &grupe, string filename) {
     end = chrono::high_resolution_clock::now();
     auto sort_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
-    // Splitting the vector into two (grupe for geri, blogi for vargsiukai)
+    // Splitting the vector into two
     start = chrono::high_resolution_clock::now();
 
-    auto it = grupe.rbegin();
-    int i = 0;
-    while (it != grupe.rend() && it->mark < 5) { // Taking poor students from the end of the deque
-        it++;
-        i++;
-    }
-    
-    // Extract poor students
-    blogi.insert(blogi.begin(), grupe.rbegin(), grupe.rbegin() + i);
-    grupe.erase(grupe.end() - i, grupe.end());
+    // Split students with marks less than 5
+    // Using iterators since list doesn't have random access
+    auto it = grupe.begin();
+    while (it->mark >= 5 && it != grupe.end()) {
+            geri.push_back(*it);
+            grupe.pop_front();
+            it++;
+        }
     
     end = chrono::high_resolution_clock::now();
     auto splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
     
     // Timing file output
     //start = chrono::high_resolution_clock::now();
-    print_answers_to_file(grupe, "../output_file/" + filename + "_kietekai.dat");
-    print_answers_to_file(blogi, "../output_file/" + filename + + "_vargsiukai.dat");
+    print_answers_to_file(geri, "../../output_file/" + filename + "_kietekai.dat");
+    print_answers_to_file(grupe, "../../output_file/" + filename + + "_vargsiukai.dat");
     //end = chrono::high_resolution_clock::now();
     //auto write_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
@@ -289,7 +279,7 @@ void sort_file_by_grades(deque<duom> &grupe, string filename) {
     auto raw_time = chrono::duration_cast<chrono::milliseconds>(total_end - total_start).count();
     auto total_time = raw_time - excluded_time;
     */
-
+    
     // Display summary of times
     cout << "\n\nSantrauka:" << endl;
         cout << "Skaitymas: " << float(read_time) / 1000 << " s "<< endl;
@@ -299,7 +289,7 @@ void sort_file_by_grades(deque<duom> &grupe, string filename) {
         //cout << "Is viso: " << float(total_time) / 1000 << " s" << endl;
 }
 
-void random(deque<duom> &grupe, int m)
+void random(list<duom> &grupe, int m)
 {
     duom laik;
     random_device rd;
@@ -307,18 +297,20 @@ void random(deque<duom> &grupe, int m)
     uniform_int_distribution<int> dist(1, 10);
     uniform_int_distribution<int> dist2(5, 20);
     int n = dist2(mt);
-    for(int j=0; j<m; j++)
+    
+    auto it = grupe.begin();
+    for(int j=0; j<m && it != grupe.end(); j++, ++it)
     {
         for(int i=0; i<n; i++)
             laik.pazymiai.push_back(dist(mt));
         laik.exam=(dist(mt));
-        grupe[j].pazymiai=laik.pazymiai;
-        grupe[j].exam=laik.exam;
+        it->pazymiai=laik.pazymiai;
+        it->exam=laik.exam;
         laik.pazymiai.clear();
     }
 }
 
-void random_full(deque<duom> &grupe, int record_amount, int mark_amount)
+void random_full(list<duom> &grupe, int record_amount, int mark_amount)
 {
     duom laik;
     random_device rd;
@@ -340,7 +332,7 @@ void random_full(deque<duom> &grupe, int record_amount, int mark_amount)
     }
 }
 
-void print_data_to_file(deque<duom> &grupe, int mark_amount, string filename)
+void print_data_to_file(list<duom> &grupe, int mark_amount, string filename)
 {
     ofstream out(filename);
     stringstream ss;
@@ -374,7 +366,7 @@ void print_data_to_file(deque<duom> &grupe, int mark_amount, string filename)
     out.close();
 }
 
-void print_answers_to_file(deque<duom> &grupe, string filename)
+void print_answers_to_file(list<duom> &grupe, string filename)
 {
     ofstream out(filename);
     stringstream ss;
@@ -402,7 +394,7 @@ void print_answers_to_file(deque<duom> &grupe, string filename)
     out.close();
 }
 
-void print_answers(deque<duom> &grupe)
+void print_answers(list<duom> &grupe)
 {
     stringstream ss;
     ss << left << fixed << setprecision(2) << setw(20) << "Vardas"<<setw(20)<<"Pavarde"<<setw(20)<<"Galutinis"<<endl;
@@ -433,7 +425,7 @@ char check_menu()
     return check;
 }
 
-void vid_med_calc(deque<duom> &grupe)
+void vid_med_calc(list<duom> &grupe)
 {
     char rule;
     do
@@ -467,7 +459,7 @@ bool compare(string a, string b, string rule)
         return a<b;
 }
 
-void sorting(deque<duom> &grupe, char rule)
+void sorting(list<duom> &grupe, char rule)
 {
     while(rule!='1' && rule!='2' && rule!='3')
     {
@@ -477,12 +469,13 @@ void sorting(deque<duom> &grupe, char rule)
         cin>>rule;
         rule=tolower(rule);
     }
+    
     if(rule=='1')
-        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.var, b.var, "Vardas");});
+        grupe.sort([](duom a, duom b){return compare(a.var, b.var, "Vardas");});
     else if(rule=='2')
-        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.pav, b.pav, "Pavarde");});
+        grupe.sort([](duom a, duom b){return compare(a.pav, b.pav, "Pavarde");});
     else if(rule=='3')
-        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return a.mark>b.mark;});
+        grupe.sort([](duom a, duom b){return a.mark>b.mark;});
 }
 
 double average(duom given)
@@ -499,7 +492,7 @@ double average(duom given)
     }
     double sum=0.0;
     for(auto i:given.pazymiai)
-    sum+=i;
+        sum+=i;
     return sum/given.pazymiai.size();
 }
 
@@ -515,16 +508,25 @@ double median(duom given)
         std::cerr << e.what() << '\n';
         terminate();
     }
-    if(given.pazymiai.size()%2==1)
+    
+    // Lists don't have random access, so we need to create a temporary vector
+    // or iterate to the middle elements
+    list<double> sorted_pazymiai = given.pazymiai;
+    sorted_pazymiai.sort();
+    
+    size_t size = sorted_pazymiai.size();
+    if(size % 2 == 1) // Odd number of elements
     {
-        return given.pazymiai[((given.pazymiai.size()/2)+1)-1];
+        auto it = sorted_pazymiai.begin();
+        advance(it, size / 2);
+        return *it;
     }
-    else
+    else // Even number of elements
     {
-        double ats=0.0;
-        ats=given.pazymiai[given.pazymiai.size()/2-1];
-        ats+=given.pazymiai[given.pazymiai.size()/2+1-1];
-        ats/=2;
-        return ats;
+        auto it1 = sorted_pazymiai.begin();
+        auto it2 = sorted_pazymiai.begin();
+        advance(it1, size / 2 - 1);
+        advance(it2, size / 2);
+        return (*it1 + *it2) / 2.0;
     }
 }

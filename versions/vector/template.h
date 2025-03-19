@@ -58,6 +58,9 @@ vector<string> vardai={
 "Augustas"
 };
 
+const char* test_file_location = TEST_FILE_LOCATION; //CMake version
+//const char* test_file_location = "../../test_files/"; ///Manual complilation version (debug)
+
 void menu(vector <duom> &grupe);
 void read(vector <duom> &grupe);
 void read_file(vector <duom> &grupe, string filename);

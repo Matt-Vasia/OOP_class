@@ -28,6 +28,9 @@ struct duom {
 
 const vector<string> vardai = {"Petras", "Jonas", "Marius", "Juozas", "Vytas", "Matas", "Rimas", "Simas", "Antanas", "Domas", "Herkus", "Benas", "Kajus", "Aistas", "Lukas", "Adomas", "Tauras", "Karolis", "Markas", "Jokubas", "Tadas", "Darius", "Mantas", "Domantas", "Paulius", "Justas", "Mindaugas", "Urte"};
 
+const char* test_file_location = TEST_FILE_LOCATION; //CMake version
+//const char* test_file_location = "../../test_files/"; ///Manual complilation version (debug)
+
 void menu(deque<duom> &grupe);
 void read(deque<duom> &grupe);
 void read_file(deque<duom> &grupe, string filename);
