@@ -117,6 +117,7 @@ Skaitymas: 125.831 s
 Rusiavimas: 34.058 s
 Skaidymas: 1.265 s
 ```
+
 Previous versions included:
 ```
 v0.1 vidurkio ir medianos funkcijos
@@ -125,3 +126,5 @@ v0.3 header files ir exception handling funkcionalumas
 v0.4 studentų rūšiavimas
 v1.0 skirtingų struktūrų naudojimas
 ```
+
+When running the program in terminal (without CMake), go to template.h and comment line 31 and uncomment line 32.
