@@ -16,7 +16,7 @@ Disk            1TB M.2 NVMe PCIe 4.0 SSD
 System type	    Windows 11 64x
 ```
 
-To run tests, go to the main directory of the program.
+To run tests, go to the main directory of the program and go to versions.
 Then, choose which container (LIST, DEQUE, VECTOR) you would like to use by going to one of the folders (cd deque, cd list, cd vector) and enter the following commands in the terminal:
 
 ```
