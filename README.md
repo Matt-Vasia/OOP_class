@@ -7,6 +7,10 @@ Su DEQUE ir VECTOR struktūromis buvo naudojamas parallel computing funkcionalum
 
 To run tests, choose which container (LIST, DEQUE, VECTOR) you would like to use by going to one of the folders ("deque", "list", "vector") and run "run.bat".
 
+![Instructions](https://github.com/Matt-Vasia/OOP/blob/v1.0/instructions.gif?raw=true)
+
+![Menu example](https://github.com/Matt-Vasia/OOP/blob/v1.0/menu.png?raw=true)
+
 ## Running Tests
 
 Testing equipment:
