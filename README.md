@@ -14,10 +14,10 @@ Processor	    AMD Ryzen 7 7735U   8 cores/16 threads at 2.70 GHz
 Installed RAM	16,0 GB (15,2 GB usable) LPDDR5
 Disk            1TB M.2 NVMe PCIe 4.0 SSD
 System type	    Windows 11 64x
+
 ```
 
-To run tests, go to the main directory of the program and go to versions.
-Then, choose which container (LIST, DEQUE, VECTOR) you would like to use by going to one of the folders (cd deque, cd list, cd vector) and enter the following commands in the terminal:
+To run tests, choose which container (LIST, DEQUE, VECTOR) you would like to use by going to one of the folders ("deque", "list", "vector") and enter the following commands:
 
 ```
 mkdir build
@@ -117,14 +117,3 @@ Skaitymas: 125.831 s
 Rusiavimas: 34.058 s
 Skaidymas: 1.265 s
 ```
-
-Previous versions included:
-```
-v0.1 vidurkio ir medianos funkcijos
-v0.2 rikiavimas
-v0.3 header files ir exception handling funkcionalumas
-v0.4 studentų rūšiavimas
-v1.0 skirtingų struktūrų naudojimas
-```
-
-When running the program in terminal (without CMake), go to template.h and comment line 31 and uncomment line 32.
