@@ -17,19 +17,7 @@ System type	    Windows 11 64x
 
 ```
 
-To run tests, choose which container (LIST, DEQUE, VECTOR) you would like to use by going to one of the folders ("deque", "list", "vector") and enter the following commands:
-
-```
-mkdir build
-cd build
-cmake ..
-cmake --build .
-cd Debug
-clear
-./program
-```
-
-To launch the app again, go to build/Debug and launch program.exe
+To run tests, choose which container (LIST, DEQUE, VECTOR) you would like to use by going to one of the folders ("deque", "list", "vector") and run "run.bat".
 
 ```
 VECTOR test times (using average values)
