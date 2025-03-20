@@ -5,6 +5,7 @@ Programos versija, skirta ištestuoti skirtumus tarp skirtingų duomenų strukt�
 
 Su DEQUE ir VECTOR struktūromis buvo naudojamas parallel computing funkcionalumas.
 
+To run tests, choose which container (LIST, DEQUE, VECTOR) you would like to use by going to one of the folders ("deque", "list", "vector") and run "run.bat".
 
 ## Running Tests
 
@@ -16,8 +17,6 @@ Disk            1TB M.2 NVMe PCIe 4.0 SSD
 System type	    Windows 11 64x
 
 ```
-
-To run tests, choose which container (LIST, DEQUE, VECTOR) you would like to use by going to one of the folders ("deque", "list", "vector") and run "run.bat".
 
 ```
 VECTOR test times (using average values)
