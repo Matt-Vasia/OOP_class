@@ -15,7 +15,6 @@ Processor	    AMD Ryzen 7 7735U   8 cores/16 threads at 2.70 GHz
 Installed RAM	16,0 GB (15,2 GB usable) LPDDR5
 Disk            1TB M.2 NVMe PCIe 4.0 SSD
 System type	    Windows 11 64x
-
 ```
 
 ```
