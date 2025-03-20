@@ -21,85 +21,85 @@ System type	    Windows 11 64x
 VECTOR test times (using average values)
 
 Santrauka: (1000)
-Skaitymas: 0.016 s
+Skaitymas: 0.024 s
 Rusiavimas: 0.001 s
 Skaidymas: 0 s
 
 Santrauka: (10000)
-Skaitymas: 0.144 s
-Rusiavimas: 0.012 s
+Skaitymas: 0.085 s
+Rusiavimas: 0.006 s
 Skaidymas: 0 s
 
 Santrauka: (100000)
-Skaitymas: 1.246 s
-Rusiavimas: 0.147 s
-Skaidymas: 0.002 s
+Skaitymas: 0.509 s
+Rusiavimas: 0.102 s
+Skaidymas: 0.009 s
 
 Santrauka: (1000000)
-Skaitymas: 12.143 s
-Rusiavimas: 2.3 s
-Skaidymas: 0.07 s
+Skaitymas: 3.913 s
+Rusiavimas: 0.88 s
+Skaidymas: 0.196 s
 
 Santrauka: (10000000)
-Skaitymas: 125.888 s
-Rusiavimas: 29.741 s
-Skaidymas: 0.74 s
+Skaitymas: 30.363 s
+Rusiavimas: 7.862 s
+Skaidymas: 1.662 s
 ```
 
 ```
 LIST test times (using average values)
 
 Santrauka: (1000)
-Skaitymas: 0.016 s
-Rusiavimas: 0.003 s
+Skaitymas: 0.005 s
+Rusiavimas: 0.004 s
 Skaidymas: 0 s
 
 Santrauka: (10000)
-Skaitymas: 0.15 s
-Rusiavimas: 0.043 s
-Skaidymas: 0.001 s
+Skaitymas: 0.053 s
+Rusiavimas: 0.077 s
+Skaidymas: 0.003 s
 
 Santrauka: (100000)
-Skaitymas: 1.271 s
-Rusiavimas: 0.563 s
-Skaidymas: 0.034 s
+Skaitymas: 0.545 s
+Rusiavimas: 1.346 s
+Skaidymas: 0.102 s
 
 Santrauka: (1000000)
-Skaitymas: 12.827 s
-Rusiavimas: 8.536 s
-Skaidymas: 0.431 s
+Skaitymas: 4.346 s
+Rusiavimas: 12.331 s
+Skaidymas: 0.718 s
 
 Santrauka: (10000000)
-Skaitymas: 131.641 s
-Rusiavimas: 121.717 s
-Skaidymas: 5.079 s
+Skaitymas: 32.58 s
+Rusiavimas: 152.558 s
+Skaidymas: 7.395 s
 ```
 
 ```
 DEQUE test times (using average values)
 
 Santrauka: (1000)
-Skaitymas: 0.016 s
+Skaitymas: 0.006 s
 Rusiavimas: 0.001 s
 Skaidymas: 0 s
 
 Santrauka: (10000)
-Skaitymas: 0.145 s
-Rusiavimas: 0.013 s
-Skaidymas: 0 s
+Skaitymas: 0.054 s
+Rusiavimas: 0.007 s
+Skaidymas: 0.001 s
 
 Santrauka: (100000)
-Skaitymas: 1.246 s
-Rusiavimas: 0.169 s
-Skaidymas: 0.004 s
+Skaitymas: 0.485 s
+Rusiavimas: 0.119 s
+Skaidymas: 0.021 s
 
 Santrauka: (1000000)
-Skaitymas: 12.44 s
-Rusiavimas: 2.538 s
-Skaidymas: 0.104 s
+Skaitymas: 3.631 s
+Rusiavimas: 1.275 s
+Skaidymas: 0.193 s
 
 Santrauka: (10000000)
-Skaitymas: 125.831 s
-Rusiavimas: 34.058 s
-Skaidymas: 1.265 s
+Skaitymas: 30.93 s
+Rusiavimas: 10.29 s
+Skaidymas: 2.631 s
 ```
