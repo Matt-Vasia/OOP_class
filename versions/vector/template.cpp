@@ -240,7 +240,6 @@ void read_names_only(vector <duom> &grupe)
     }
 }
 void sort_file_by_grades(vector<duom> &grupe, string filename) {
-    vector<duom> blogi;
     
     // Start timing the entire process
     //auto total_start = chrono::high_resolution_clock::now();
@@ -265,29 +264,75 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
     end = chrono::high_resolution_clock::now();
     auto sort_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
-    // Splitting the vector into two
-    start = chrono::high_resolution_clock::now();
 
-    auto it = partition(grupe.begin(), grupe.end(), [](const duom& student) {
-        return student.mark >= 5;
-    });
 
-    blogi.assign(it, grupe.end());
-    grupe.erase(it, grupe.end());
+    cout<<"Kuria strategija norite naudoti?"<<endl;
+    char rule='0';
+    while(rule!='1' && rule!='2' && rule!='3')
+    {
+        cout<<"Jei norite naudoti 1 strategija, spauskite '1'"<<endl;
+        cout<<"Jei norite naudoti 2 strategija, spauskite '2'"<<endl;
+        cout<<"Jei norite naudoti 3 strategija, spauskite '3'"<<endl; 
+        cin>>rule;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    auto splitting_time = 0;
+    if(rule=='1')
+    {
+            //1 strategija
+            vector<duom> blogi;
+            vector<duom> geri;
+            start = chrono::high_resolution_clock::now();
+            for(auto i:grupe)
+            {
+                if(i.mark<5)
+                    blogi.push_back(i);
+                else
+                    geri.push_back(i);
+            }
+            end = chrono::high_resolution_clock::now();
+            splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+            print_answers_to_file(geri, test_file_location + "/../output_file/" + filename + "_kietekai.dat");
+            print_answers_to_file(blogi, test_file_location + "/../output_file/" + filename + + "_vargsiukai.dat");
+    }
+    else if(rule=='2')
+    {
+            //2 strategija
+            vector<duom> blogi;
+            // Splitting the vector into two
+            start = chrono::high_resolution_clock::now();
 
-    end = chrono::high_resolution_clock::now();
-    auto splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
-    
-    // Resize the original vector to remove poor students
-    //grupe.resize(grupe.size() - i);
-    
-    //vector<duom> geri = grupe; // Copy the good students to a new vector
-    // Timing file output
-    //start = chrono::high_resolution_clock::now();
-    print_answers_to_file(grupe, test_file_location + "/../output_file/" + filename + "_kietekai.dat");
-    print_answers_to_file(blogi, test_file_location + "/../output_file/" + filename + + "_vargsiukai.dat");
-    //end = chrono::high_resolution_clock::now();
-    //auto write_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+            auto it = std::remove_if(grupe.begin(), grupe.end(), [](const duom& student) {
+                return student.mark >= 5;
+            });
+
+            blogi.assign(it, grupe.end());
+            grupe.erase(it, grupe.end());
+
+            end = chrono::high_resolution_clock::now();
+            splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+            print_answers_to_file(grupe, test_file_location + "/../output_file/" + filename + "_kietekai.dat");
+            print_answers_to_file(blogi, test_file_location + "/../output_file/" + filename + + "_vargsiukai.dat");
+    }
+    else if(rule=='3')
+    {
+            //3 strategija
+            vector<duom> blogi;
+            // Splitting the vector into two
+            start = chrono::high_resolution_clock::now();
+
+            auto it = partition(grupe.begin(), grupe.end(), [](const duom& student) {
+                return student.mark >= 5;
+            });
+
+            blogi.assign(it, grupe.end());
+            grupe.erase(it, grupe.end());
+
+            end = chrono::high_resolution_clock::now();
+            auto splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+            print_answers_to_file(grupe, test_file_location + "/../output_file/" + filename + "_kietekai.dat");
+            print_answers_to_file(blogi, test_file_location + "/../output_file/" + filename + + "_vargsiukai.dat");
+    }
 
     // Calculate and display total time
     /*
