@@ -235,8 +235,6 @@ void read_names_only(list<duom> &grupe)
 }
 
 void sort_file_by_grades(list<duom> &grupe, string filename) {
-    list<duom> geri;
-    
     // Start timing the entire process
     //auto total_start = chrono::high_resolution_clock::now();
 
@@ -246,6 +244,7 @@ void sort_file_by_grades(list<duom> &grupe, string filename) {
     auto end = chrono::high_resolution_clock::now();
     auto read_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
+    // vid_med_calc() is not timed
     //start = chrono::high_resolution_clock::now();
     vid_med_calc(grupe);
     //end = chrono::high_resolution_clock::now();
@@ -259,40 +258,99 @@ void sort_file_by_grades(list<duom> &grupe, string filename) {
     end = chrono::high_resolution_clock::now();
     auto sort_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
-    // Splitting the vector into two
-    start = chrono::high_resolution_clock::now();
-
-    // Split students with marks less than 5
-    // Using iterators since list doesn't have random access
-    while (!grupe.empty() && grupe.front().mark >= 5) {
-        geri.push_back(grupe.front());
-        grupe.pop_front();
+    cout << "Kuria strategija norite naudoti?" << endl;
+    char rule = '0';
+    while(rule != '1' && rule != '2' && rule != '3')
+    {
+        cout << "Jei norite naudoti 1 strategija, spauskite '1'" << endl;
+        cout << "Jei norite naudoti 2 strategija, spauskite '2'" << endl;
+        cout << "Jei norite naudoti 3 strategija, spauskite '3'" << endl; 
+        cin >> rule;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
     
-    end = chrono::high_resolution_clock::now();
-    auto splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
-    
-    // Timing file output
-    //start = chrono::high_resolution_clock::now();
-    print_answers_to_file(geri, test_file_location + "/../output_file/" + filename + "_kietekai.dat");
-    print_answers_to_file(grupe, test_file_location + "/../output_file/" + filename + + "_vargsiukai.dat");
-    //end = chrono::high_resolution_clock::now();
-    //auto write_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+    auto splitting_time = 0;
+    if(rule == '1')
+    {
+        // 1 strategija
+        list<duom> blogi;
+        list<duom> geri;
+        start = chrono::high_resolution_clock::now();
+        
+        for(const auto& i : grupe)
+        {
+            if(i.mark < 5)
+                blogi.push_back(i);
+            else
+                geri.push_back(i);
+        }
+        
+        end = chrono::high_resolution_clock::now();
+        splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+        print_answers_to_file(geri, test_file_location + "/../output_file/" + filename + "_kietekai.dat");
+        print_answers_to_file(blogi, test_file_location + "/../output_file/" + filename + "_vargsiukai.dat");
+    }
+    else if(rule == '2')
+    {
+        // 2 strategija
+        list<duom> blogi;
+        
+        // Splitting the list into two
+        start = chrono::high_resolution_clock::now();
+        
+        // For lists, we need to use a different approach since remove_if works differently
+        auto it = grupe.begin();
+        while (it != grupe.end()) {
+            if (it->mark >= 5) {
+                ++it;
+            } else {
+                blogi.push_back(*it);
+                it = grupe.erase(it);
+            }
+        }
+        
+        end = chrono::high_resolution_clock::now();
+        splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+        print_answers_to_file(grupe, test_file_location + "/../output_file/" + filename + "_kietekai.dat");
+        print_answers_to_file(blogi, test_file_location + "/../output_file/" + filename + "_vargsiukai.dat");
+    }
+    else if(rule == '3')
+    {
+        // 3 strategija
+        list<duom> blogi;
+        list<duom> kieti;
+        
+        // Splitting the list using partition-like logic
+        start = chrono::high_resolution_clock::now();
+        
+        // For lists, we implement partition-like behavior manually
+        auto it = grupe.begin();
+        while (it != grupe.end()) {
+            if (it->mark >= 5) {
+                kieti.push_back(*it);
+            } else {
+                blogi.push_back(*it);
+            }
+            ++it;
+        }
+        
+        // Clear original list and replace with kieti students
+        grupe.clear();
+        grupe = std::move(kieti);
+        
+        end = chrono::high_resolution_clock::now();
+        splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+        print_answers_to_file(grupe, test_file_location + "/../output_file/" + filename + "_kietekai.dat");
+        print_answers_to_file(blogi, test_file_location + "/../output_file/" + filename + "_vargsiukai.dat");
+    }
 
-    // Calculate and display total time
-    /*
-    auto total_end = chrono::high_resolution_clock::now();
-    auto raw_time = chrono::duration_cast<chrono::milliseconds>(total_end - total_start).count();
-    auto total_time = raw_time - excluded_time;
-    */
-    
     // Display summary of times
     cout << "\n\nSantrauka:" << endl;
-        cout << "Skaitymas: " << float(read_time) / 1000 << " s "<< endl;
-        cout << "Rusiavimas: " << float(sort_time) / 1000 << " s "<< endl;
-        cout << "Skaidymas: " << float(splitting_time) / 1000 << " s "<< endl;
-        //cout << "Rasymas: " << float(write_time) / 1000 << " s "<< endl;
-        //cout << "Is viso: " << float(total_time) / 1000 << " s" << endl;
+    cout << "Skaitymas: " << float(read_time) / 1000 << " s " << endl;
+    cout << "Rusiavimas: " << float(sort_time) / 1000 << " s " << endl;
+    cout << "Skaidymas: " << float(splitting_time) / 1000 << " s " << endl;
+    //cout << "Rasymas: " << float(write_time) / 1000 << " s " << endl;
+    //cout << "Is viso: " << float(total_time) / 1000 << " s" << endl;
 }
 
 void random(list<duom> &grupe, int m)

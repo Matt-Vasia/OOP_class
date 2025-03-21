@@ -267,29 +267,74 @@ void sort_file_by_grades(deque<duom> &grupe, string filename) {
     end = chrono::high_resolution_clock::now();
     auto sort_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
-    // Splitting the vector into two (grupe for geri, blogi for vargsiukai)
-    start = chrono::high_resolution_clock::now();
 
-    auto it = grupe.rbegin();
-    int i = 0;
-    while (it != grupe.rend() && it->mark < 5) { // Taking poor students from the end of the deque
-        it++;
-        i++;
+    cout<<"Kuria strategija norite naudoti?"<<endl;
+    char rule='0';
+    while(rule!='1' && rule!='2' && rule!='3')
+    {
+        cout<<"Jei norite naudoti 1 strategija, spauskite '1'"<<endl;
+        cout<<"Jei norite naudoti 2 strategija, spauskite '2'"<<endl;
+        cout<<"Jei norite naudoti 3 strategija, spauskite '3'"<<endl; 
+        cin>>rule;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
-    
-    // Extract poor students
-    blogi.insert(blogi.begin(), grupe.rbegin(), grupe.rbegin() + i);
-    grupe.erase(grupe.end() - i, grupe.end());
-    
-    end = chrono::high_resolution_clock::now();
-    auto splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
-    
-    // Timing file output
-    //start = chrono::high_resolution_clock::now();
-    print_answers_to_file(grupe, test_file_location + "/../output_file/" + filename + "_kietekai.dat");
-    print_answers_to_file(blogi, test_file_location + "/../output_file/" + filename + + "_vargsiukai.dat");
-    //end = chrono::high_resolution_clock::now();
-    //auto write_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+    auto splitting_time = 0;
+    if(rule=='1')
+    {
+            //1 strategija
+            deque<duom> blogi;
+            deque<duom> geri;
+            start = chrono::high_resolution_clock::now();
+            for(auto i:grupe)
+            {
+                if(i.mark<5)
+                    blogi.push_back(i);
+                else
+                    geri.push_back(i);
+            }
+            end = chrono::high_resolution_clock::now();
+            splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+            print_answers_to_file(geri, test_file_location + "/../output_file/" + filename + "_kietekai.dat");
+            print_answers_to_file(blogi, test_file_location + "/../output_file/" + filename + + "_vargsiukai.dat");
+    }
+    else if(rule=='2')
+    {
+            //2 strategija
+            deque<duom> blogi;
+            // Splitting the vector into two
+            start = chrono::high_resolution_clock::now();
+
+            auto it = std::remove_if(grupe.begin(), grupe.end(), [](const duom& student) {
+                return student.mark >= 5;
+            });
+
+            blogi.assign(it, grupe.end());
+            grupe.erase(it, grupe.end());
+
+            end = chrono::high_resolution_clock::now();
+            splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+            print_answers_to_file(grupe, test_file_location + "/../output_file/" + filename + "_kietekai.dat");
+            print_answers_to_file(blogi, test_file_location + "/../output_file/" + filename + + "_vargsiukai.dat");
+    }
+    else if(rule=='3')
+    {
+            //3 strategija
+            deque<duom> blogi;
+            // Splitting the vector into two
+            start = chrono::high_resolution_clock::now();
+
+            auto it = partition(grupe.begin(), grupe.end(), [](const duom& student) {
+                return student.mark >= 5;
+            });
+
+            blogi.assign(it, grupe.end());
+            grupe.erase(it, grupe.end());
+
+            end = chrono::high_resolution_clock::now();
+            auto splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+            print_answers_to_file(grupe, test_file_location + "/../output_file/" + filename + "_kietekai.dat");
+            print_answers_to_file(blogi, test_file_location + "/../output_file/" + filename + + "_vargsiukai.dat");
+    }
 
     // Calculate and display total time
     /*
@@ -297,7 +342,7 @@ void sort_file_by_grades(deque<duom> &grupe, string filename) {
     auto raw_time = chrono::duration_cast<chrono::milliseconds>(total_end - total_start).count();
     auto total_time = raw_time - excluded_time;
     */
-
+   
     // Display summary of times
     cout << "\n\nSantrauka:" << endl;
         cout << "Skaitymas: " << float(read_time) / 1000 << " s "<< endl;
