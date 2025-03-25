@@ -1,0 +1,16 @@
+*.exe
+*.o
+*.dat
+versions/deque/*.exe
+versions/deque/*.o
+versions/list/*.exe
+versions/list/*.o
+versions/vector/*.exe
+versions/vector/*.o
+test_files/kursiokai_10000000.dat
+versions/deque/*.dat
+versions/list/*.dat
+versions/vector/*.dat
+versions/deque/build
+versions/list/build
+versions/vector/build
