@@ -51,7 +51,7 @@ Skaitymas: 32.382 s
 Rusiavimas: 8.519 s
 Skaidymas: 0 s
 ```
-
+```
 VECTOR test times with STRUCT structure (using average values)
 
 Santrauka: (1000)
