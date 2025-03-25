@@ -46,6 +46,15 @@ class duom
             this->vid_med=a.vid_med;
             this->mark=a.mark;
         }
+        ~duom()
+        {
+            var.clear();
+            pav.clear(); 
+            pazymiai.clear();
+            exam=0;
+            vid_med=0;
+            mark=0;
+        }
         string getVar()
         {
             return var;
