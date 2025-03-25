@@ -74,6 +74,7 @@ class duom
         {
             return mark;
         }
+        /// 
         void setPazymiai(vector<int> pazymiai)
         {
             this->pazymiai=pazymiai;
