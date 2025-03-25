@@ -1,0 +1,3 @@
+C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/vector/build/CMakeFiles/program.dir
+C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/vector/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/vector/build/CMakeFiles/ZERO_CHECK.dir

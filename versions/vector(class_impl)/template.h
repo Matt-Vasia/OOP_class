@@ -16,7 +16,7 @@
 #include <execution>
 #include "std.h"
 
-struct duom
+struct temp
 {
     string var="test";
     string pav="test";
@@ -24,6 +24,72 @@ struct duom
     int exam=0;
     double vid_med=0;
     double mark;
+};
+
+
+class duom
+{
+    private:
+        string var;
+        string pav;
+        vector<int> pazymiai;
+        int exam;
+        double vid_med;
+        double mark;
+    public:
+        duom(temp a)
+        {
+            this->var=a.var;
+            this->pav=a.pav;
+            this->pazymiai=a.pazymiai;
+            this->exam=a.exam;
+            this->vid_med=a.vid_med;
+            this->mark=a.mark;
+        }
+        string getVar()
+        {
+            return var;
+        }
+        string getPav()
+        {
+            return pav;
+        }
+        int getPazymiai_at(int i)
+        {
+            return pazymiai[i];
+        }
+        vector<int> getPazymiai()
+        {
+            return pazymiai;
+        }
+        int getExam()
+        {
+            return exam;
+        }
+        double getVid_med()
+        {
+            return vid_med;
+        }
+        double getMark()
+        {
+            return mark;
+        }
+        void setPazymiai(vector<int> pazymiai)
+        {
+            this->pazymiai=pazymiai;
+        }
+        void setExam(int exam)
+        {
+            this->exam=exam;
+        }
+        void setVid_med(double vid_med)
+        {
+            this->vid_med=vid_med;
+        }
+        void setMark(double mark)
+        {
+            this->mark=mark;
+        }
 };
 
 vector<string> vardai={

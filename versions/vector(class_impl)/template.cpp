@@ -90,7 +90,7 @@ void read(vector <duom> &grupe)
 {
     bool con=1;
     char check;
-    duom local;
+    temp local;
     while(con)
     {
         cout<<"Iveskite varda ir pavarde"<<endl;
@@ -130,7 +130,10 @@ void read(vector <duom> &grupe)
         }
         local.exam=local.pazymiai.back();
         local.pazymiai.pop_back();
-        grupe.push_back(local);
+        ///
+        duom to_push(local);
+        grupe.push_back(to_push);
+        ///
         local.pazymiai.clear();
         local.exam=0;
         cout<<"Noredami uzbaigti ivedima iveskite 0"<<endl;
@@ -142,7 +145,7 @@ void read(vector <duom> &grupe)
 void read_file(vector <duom> &grupe, string filename)
 {
     grupe.reserve(10000);
-    duom laik;
+    temp laik;
     ifstream in(filename);
     try
     {
@@ -179,7 +182,10 @@ void read_file(vector <duom> &grupe, string filename)
                     throw invalid_argument("Truksta pazymiu");
                 laik.exam=laik.pazymiai.back();
                 laik.pazymiai.pop_back();
-                grupe.push_back(laik);
+                ///
+                duom to_push(laik);
+                grupe.push_back(to_push);
+                ///
                 laik.pazymiai.clear();
                 laik.exam=0;
             }
@@ -211,7 +217,10 @@ void read_file(vector <duom> &grupe, string filename)
                     throw invalid_argument("Truksta pazymiu");
                 laik.exam=laik.pazymiai.back();
                 laik.pazymiai.pop_back();
-                grupe.push_back(laik);
+                ///
+                duom to_push(laik);
+                grupe.push_back(to_push);
+                ///
                 laik.pazymiai.clear();
                 laik.exam=0;
             }
@@ -223,18 +232,19 @@ void read_file(vector <duom> &grupe, string filename)
         }
     }
     grupe.shrink_to_fit();
-    for (auto& student : grupe)
-        student.pazymiai.shrink_to_fit();
 }
 void read_names_only(vector <duom> &grupe)
 {
     bool con=1;
-    duom local;
+    temp local;
     while(con)
     {
         cout<<"Iveskite varda ir pavarde"<<endl;
         cin>>local.var>>local.pav;
-        grupe.push_back(local);
+        ///
+        duom to_push(local);
+        grupe.push_back(to_push);
+        ///
         if(check_menu()=='F')
             con=0;
     }
@@ -285,7 +295,7 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
             start = chrono::high_resolution_clock::now();
             for(auto &i:grupe)
             {
-                if(i.mark<5)
+                if(i.getMark()<5)
                     blogi.push_back(i);
                 else
                     geri.push_back(i);
@@ -302,8 +312,8 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
             // Splitting the vector into two
             start = chrono::high_resolution_clock::now();
 
-            auto it = std::remove_if(grupe.begin(), grupe.end(), [](const duom& student) {
-                return student.mark >= 5;
+            auto it = std::remove_if(grupe.begin(), grupe.end(), [](duom& student) {
+                return student.getMark() >= 5;
             });
 
             blogi.assign(it, grupe.end());
@@ -320,8 +330,8 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
             vector<duom> blogi;
             // Splitting the vector into two
             start = chrono::high_resolution_clock::now();
-            auto it = partition(grupe.begin(), grupe.end(), [](const duom& student) {
-                return student.mark >= 5;
+            auto it = partition(grupe.begin(), grupe.end(), [](duom& student) {
+                return student.getMark() >= 5;
             });
 
             blogi.assign(it, grupe.end());
@@ -351,7 +361,7 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
 }
 void random(vector <duom> &grupe, int m)
 {
-    duom laik;
+    temp laik;
     random_device rd;
     mt19937 mt(rd());
     uniform_int_distribution<int> dist(1, 10);
@@ -362,14 +372,14 @@ void random(vector <duom> &grupe, int m)
         for(int i=0; i<n; i++)
             laik.pazymiai.push_back(dist(mt));
         laik.exam=(dist(mt));
-        grupe[j].pazymiai=laik.pazymiai;
-        grupe[j].exam=laik.exam;
+        grupe[j].setPazymiai(laik.pazymiai);
+        grupe[j].setExam(laik.exam);
         laik.pazymiai.clear();
     }
 }
 void random_full(vector <duom> &grupe, int record_amount, int mark_amount)
 {
-    duom laik;
+    temp laik;
     random_device rd;
     mt19937 mt(rd());
     uniform_int_distribution<int> dist(1, 10);
@@ -384,7 +394,10 @@ void random_full(vector <duom> &grupe, int record_amount, int mark_amount)
         for(int i=0; i<mark_amount; i++)
             laik.pazymiai.push_back(dist(mt));
         laik.exam=(dist(mt));
-        grupe.push_back(laik);
+        ///
+        duom to_push(laik);
+        grupe.push_back(to_push);
+        ///
         laik.pazymiai.clear();
     }
 }
@@ -404,10 +417,10 @@ void print_data_to_file(vector <duom> &grupe, int mark_amount, string filename)
     ///
     for(auto i:grupe)
     {
-        ss << setw(20) << i.var << setw(20) << i.pav;
-        for(auto j:i.pazymiai)
+        ss << setw(20) << i.getVar() << setw(20) << i.getPav();
+        for(auto j:i.getPazymiai())
             ss << setw(7) << j;
-        ss << setw(10) << i.exam << endl;
+        ss << setw(10) << i.getExam() << endl;
         count++; //eiluciu skaicius ss stringstreame
         if(count==ss_size)
         {
@@ -433,8 +446,8 @@ void print_answers_to_file(vector <duom> &grupe, string filename)
     ///
     for(auto i:grupe)
     {
-        ss << setw(20) << i.var << setw(20) << i.pav;
-        ss << setw(10) << i.mark << endl;
+        ss << setw(20) << i.getVar() << setw(20) << i.getPav();
+        ss << setw(10) << i.getMark() << endl;
         count++; //eiluciu skaicius ss stringstreame
         if(count==ss_size)
         {
@@ -455,7 +468,7 @@ void print_answers(vector <duom> &grupe)
     ss << "------------------------------------------------------------" << endl;
     for(auto i:grupe)
     {
-        ss << left << fixed << setprecision(2) << setw(20) << i.var << " " << setw(20) << i.pav << " " << setw(20) << i.mark << endl;
+        ss << left << fixed << setprecision(2) << setw(20) << i.getVar() << " " << setw(20) << i.getPav() << " " << setw(20) << i.getMark() << endl;
     }
     cout<<ss.str();
 }
@@ -491,16 +504,16 @@ void vid_med_calc(vector <duom> &grupe)
     if(rule=='v')
     {
         for(auto &i:grupe)
-            i.vid_med=average(i);
+            i.setVid_med(average(i));
     }
     else
     {
         for(auto &i:grupe)
-            i.vid_med=median(i);
+            i.setVid_med(median(i));
     }
     for(auto &i:grupe)
     {
-        i.mark=0.4*i.vid_med+0.6*i.exam;
+        i.setMark(0.4*i.getVid_med()+0.6*i.getExam());
     }
 }
 bool compare(string a, string b, string rule)
@@ -521,17 +534,17 @@ void sorting(vector <duom> &grupe, char rule)
         rule=tolower(rule);
     }
     if(rule=='1')
-        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.var, b.var, "Vardas");});
+        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.getVar(), b.getVar(), "Vardas");});
     else if(rule=='2')
-        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.pav, b.pav, "Pavarde");});
+        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.getVar(), b.getPav(), "Pavarde");});
     else if(rule=='3')
-        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return a.mark>b.mark;});
+        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return a.getMark()>b.getMark();});
 }
 double average(duom given)
 {
     try
     {
-        if(given.pazymiai.empty())
+        if(given.getPazymiai().empty())
             throw invalid_argument("Truksta pazymiu");
     }
     catch(const std::exception& e)
@@ -540,15 +553,15 @@ double average(duom given)
         terminate();
     }
     double sum=0.0;
-    for(auto i:given.pazymiai)
+    for(auto i:given.getPazymiai())
     sum+=i;
-    return sum/given.pazymiai.size();
+    return sum/given.getPazymiai().size();
 }
 double median(duom given)
 {
     try
     {
-        if(given.pazymiai.size()==0)
+        if(given.getPazymiai().size()==0)
             throw invalid_argument("Truksta pazymiu");
     }
     catch(const std::exception& e)
@@ -556,15 +569,15 @@ double median(duom given)
         std::cerr << e.what() << '\n';
         terminate();
     }
-    if(given.pazymiai.size()%2==1)
+    if(given.getPazymiai().size()%2==1)
     {
-        return given.pazymiai[((given.pazymiai.size()/2)+1)-1];
+        return given.getPazymiai()[((given.getPazymiai().size()/2)+1)-1];
     }
     else
     {
         double ats=0.0;
-        ats=given.pazymiai[given.pazymiai.size()/2-1];
-        ats+=given.pazymiai[given.pazymiai.size()/2+1-1];
+        ats=given.getPazymiai()[given.getPazymiai().size()/2-1];
+        ats+=given.getPazymiai()[given.getPazymiai().size()/2+1-1];
         ats/=2;
         return ats;
     }

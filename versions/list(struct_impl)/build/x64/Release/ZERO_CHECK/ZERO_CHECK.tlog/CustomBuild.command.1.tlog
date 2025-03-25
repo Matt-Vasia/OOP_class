@@ -1,0 +1,10 @@
+^C:\USERS\MATAS\DESKTOP\VS CODING\OOP (C++)\OOP\VERSIONS\LIST\BUILD\CMAKEFILES\C7B894FA323885B74B6BB6D23861F109\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/list" "-BC:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/list/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/list/build/OOP_list.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
