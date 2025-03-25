@@ -320,7 +320,6 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
             vector<duom> blogi;
             // Splitting the vector into two
             start = chrono::high_resolution_clock::now();
-            
             auto it = partition(grupe.begin(), grupe.end(), [](const duom& student) {
                 return student.mark >= 5;
             });
