@@ -1,6 +1,5 @@
 *.exe
 *.o
-*.dat
 versions/deque(struct_impl)/*.exe
 versions/deque(struct_impl)/*.o
 versions/list(struct_impl)/*.exe
