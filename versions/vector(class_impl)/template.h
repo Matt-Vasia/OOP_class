@@ -30,14 +30,14 @@ struct temp
 class duom
 {
     private:
-        string var;
-        string pav;
+        string var = "";
+        string pav = "";
         vector<int> pazymiai;
-        int exam;
-        double vid_med;
-        double mark;
+        int exam = 0;
+        double vid_med = 0.0;
+        double mark = 0.0;
     public:
-        duom(temp a)
+        duom(temp &a)
         {
             this->var=a.var;
             this->pav=a.pav;
@@ -46,6 +46,18 @@ class duom
             this->vid_med=a.vid_med;
             this->mark=a.mark;
         }
+        duom(string var, string pav)
+        {
+            this->var=var;
+            this->pav=pav;
+        }
+        duom(string var, string pav, vector<int> &pazymiai, int exam)
+        {
+            this->var=var;
+            this->pav=pav;
+            this->pazymiai=pazymiai;
+            this->exam=exam;
+        }        
         ~duom()
         {
             var.clear();
@@ -84,21 +96,37 @@ class duom
             return mark;
         }
         /// 
-        void setPazymiai(vector<int> pazymiai)
+        void setPazymiai(vector<int> &pazymiai)
         {
             this->pazymiai=pazymiai;
         }
+        void addPazymiai(int grade)
+        {
+            if(grade>=1 && grade <=10)
+                pazymiai.push_back(grade);
+            else
+                throw("Neteisingas pazymys");
+        }
         void setExam(int exam)
         {
-            this->exam=exam;
+            if(exam>=1 && exam <=10)
+                this->exam = exam;
+            else
+                throw("Neteisingas pazymys");
         }
         void setVid_med(double vid_med)
         {
-            this->vid_med=vid_med;
+            if(vid_med>=1 && vid_med <=10)
+                this->vid_med=vid_med;
+            else
+                throw("Neteisingas pazymys");
         }
         void setMark(double mark)
         {
-            this->mark=mark;
+            if(mark>=1 && mark <=10)
+                this->mark=mark;
+            else
+                throw("Neteisingas pazymys");
         }
 };
 
