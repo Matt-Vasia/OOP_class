@@ -126,7 +126,15 @@ class duom
         friend std::ifstream& operator>>(std::ifstream& in, duom& student)
         {
             string eil;
-            std::getline(in, eil);
+            try
+            {
+                std::getline(in, eil);
+            }
+            catch(const std::exception& e)
+            {
+                std::cerr << e.what() << '\n';
+            }
+            
             stringstream line(eil);
             line>>student.var>>student.pav;
 
@@ -244,8 +252,8 @@ vector<string> vardai={
 "Augustas"
 };
 
-//const string test_file_location = TEST_FILE_LOCATION; //CMake version
-const string test_file_location = "../../test_files/"; ///Manual complilation version (debug)
+const string test_file_location = TEST_FILE_LOCATION; //CMake version
+//const string test_file_location = "../../test_files/"; ///Manual complilation version (debug)
 
 void menu(vector <duom> &grupe);
 void read(vector <duom> &grupe);

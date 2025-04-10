@@ -157,10 +157,18 @@ void read_file(vector <duom> &grupe, string filename)
         std::cerr << e.what() << '\n';
         terminate();
     }
+    string header_line;
+    std::getline(in, header_line);
     ///
     duom laik;
-    while(in>>laik)
-        grupe.push_back(laik);
+    try
+    {
+        while(in>>laik)
+        {
+            grupe.push_back(std::move(laik));
+        }
+    }
+    catch(const std::exception& e){}
     grupe.shrink_to_fit();
 }
 void read_names_only(vector <duom> &grupe)
@@ -173,7 +181,7 @@ void read_names_only(vector <duom> &grupe)
         cin>>local.var>>local.pav;
         ///
         duom to_push(local);
-        grupe.push_back(to_push);
+        grupe.push_back(std::move(to_push));
         ///
         if(check_menu()=='F')
             con=0;
@@ -234,6 +242,7 @@ void sort_file_by_grades(vector<duom> &grupe, string filename) {
             splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
             print_answers_to_file(geri, test_file_location + "/../output_file/" + filename + "_kietekai.dat");
             print_answers_to_file(blogi, test_file_location + "/../output_file/" + filename + + "_vargsiukai.dat");
+            cout<<"printed"<<endl;
     }
     else if(rule=='2')
     {
