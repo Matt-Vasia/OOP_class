@@ -464,7 +464,7 @@ void print_answers_to_file(vector <duom> &grupe, string filename)
 void print_answers(vector <duom> &grupe)
 {
     stringstream ss;
-    ss << left << fixed << setprecision(2) << setw(20) << "Vardas"<<setw(20)<<"Pavarde"<<setw(20)<<"Galutinis"<<endl;
+    cout << left << fixed << setprecision(2) << setw(20) << "Vardas"<<setw(20)<<"Pavarde"<<setw(20)<<"Galutinis"<<endl;
     ss << "------------------------------------------------------------" << endl;
     for(auto i:grupe)
     {

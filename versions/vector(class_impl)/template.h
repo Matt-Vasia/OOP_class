@@ -135,6 +135,10 @@ class duom
             student.exam=student.pazymiai.back();
             student.pazymiai.pop_back();
         }
+        friend ostream& operator<<(ostream& out, duom& student)
+        {
+            out << left << fixed << setprecision(2) << setw(20) << student.var << " " << setw(20) << student.pav << " " << setw(20) << student.mark << endl;
+        }
     ///
         string getVar()
         {
