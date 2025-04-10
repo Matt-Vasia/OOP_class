@@ -67,6 +67,7 @@ class duom
             vid_med=0;
             mark=0;
         }
+    ///
         duom(const duom &to_copy)
         {
             this->var=to_copy.var;
@@ -90,7 +91,50 @@ class duom
             to_move.mark=0;
             ///move naudojam tik su elementais saugomais heap'e
         }
-           
+        //
+        duom& operator=(const duom &to_copy)
+        {
+            if(this == &to_copy) return *this;
+            //
+            this->var=to_copy.var;
+            this->pav=to_copy.pav;
+            this->pazymiai=to_copy.pazymiai;
+            this->exam=to_copy.exam;
+            this->vid_med=to_copy.vid_med;
+            this->mark=to_copy.mark;   
+            return *this;
+        }
+        duom& operator=(duom &&to_move) noexcept
+        {
+            if(this == &to_move) return *this;
+            //
+            this->var=std::move(to_move.var);
+            this->pav=std::move(to_move.pav);
+            this->pazymiai=std::move(to_move.pazymiai);
+            this->exam=to_move.exam;
+            to_move.exam=0;
+            this->vid_med=to_move.vid_med;
+            to_move.vid_med=0;
+            this->mark=to_move.mark;
+            to_move.mark=0;
+            ///move naudojam tik su elementais saugomais heap'e
+            return *this;
+        }
+    ///
+        friend ifstream& operator>>(ifstream& in, duom& student)
+        {
+            string eil;
+            getline(in, eil);
+            stringstream line(eil);
+            line>>student.var>>student.pav;
+            double grade;
+            while(line>>grade)
+                student.pazymiai.push_back(grade);
+            if(student.pazymiai.size()==0)
+                throw invalid_argument("Truksta pazymiu");
+            student.exam=student.pazymiai.back();
+            student.pazymiai.pop_back();
+        }
     ///
         string getVar()
         {
@@ -188,8 +232,8 @@ vector<string> vardai={
 "Augustas"
 };
 
-const string test_file_location = TEST_FILE_LOCATION; //CMake version
-//const string test_file_location = "../../test_files/"; ///Manual complilation version (debug)
+//const string test_file_location = TEST_FILE_LOCATION; //CMake version
+const string test_file_location = "../../test_files/"; ///Manual complilation version (debug)
 
 void menu(vector <duom> &grupe);
 void read(vector <duom> &grupe);
