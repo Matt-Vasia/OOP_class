@@ -121,23 +121,30 @@ class duom
             return *this;
         }
     ///
-        friend ifstream& operator>>(ifstream& in, duom& student)
+        friend std::ifstream& operator>>(std::ifstream& in, duom& student)
         {
             string eil;
-            getline(in, eil);
+            if (!std::getline(in, eil)) return in;
+
             stringstream line(eil);
             line>>student.var>>student.pav;
+
             double grade;
+            student.pazymiai.clear();
             while(line>>grade)
                 student.pazymiai.push_back(grade);
+
             if(student.pazymiai.size()==0)
                 throw invalid_argument("Truksta pazymiu");
+
             student.exam=student.pazymiai.back();
             student.pazymiai.pop_back();
+
+            return in;
         }
-        friend ostream& operator<<(ostream& out, duom& student)
+        friend std::ostream& operator<<(std::ostream& out, duom& student)
         {
-            out << left << fixed << setprecision(2) << setw(20) << student.var << " " << setw(20) << student.pav << " " << setw(20) << student.mark << endl;
+            return out << left << fixed << setprecision(2) << setw(20) << student.var << " " << setw(20) << student.pav << " " << setw(20) << student.mark << endl;
         }
     ///
         string getVar()
