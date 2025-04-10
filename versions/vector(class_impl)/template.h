@@ -67,6 +67,31 @@ class duom
             vid_med=0;
             mark=0;
         }
+        duom(const duom &to_copy)
+        {
+            this->var=to_copy.var;
+            this->pav=to_copy.pav;
+            this->pazymiai=to_copy.pazymiai;
+            this->exam=to_copy.exam;
+            this->vid_med=to_copy.vid_med;
+            this->mark=to_copy.mark;
+            
+        }
+        duom(duom &&to_move) noexcept
+        {
+            this->var=std::move(to_move.var);
+            this->pav=std::move(to_move.pav);
+            this->pazymiai=std::move(to_move.pazymiai);
+            this->exam=to_move.exam;
+            to_move.exam=0;
+            this->vid_med=to_move.vid_med;
+            to_move.vid_med=0;
+            this->mark=to_move.mark;
+            to_move.mark=0;
+            ///move naudojam tik su elementais saugomais heap'e
+        }
+           
+    ///
         string getVar()
         {
             return var;
@@ -95,7 +120,7 @@ class duom
         {
             return mark;
         }
-        /// 
+    /// 
         void setPazymiai(vector<int> &pazymiai)
         {
             this->pazymiai=pazymiai;
@@ -128,6 +153,7 @@ class duom
             else
                 throw("Neteisingas pazymys");
         }
+    ///
 };
 
 vector<string> vardai={
