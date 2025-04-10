@@ -144,8 +144,6 @@ void read(vector <duom> &grupe)
 }
 void read_file(vector <duom> &grupe, string filename)
 {
-    grupe.reserve(10000);
-    temp laik;
     ifstream in(filename);
     try
     {
@@ -160,77 +158,9 @@ void read_file(vector <duom> &grupe, string filename)
         terminate();
     }
     ///
-    in.seekg(0, ios::end);///pointeris i gala
-    streamsize size = in.tellg();///nustatomas failo dydis
-    in.seekg(0, ios::beg);///pointeris i pradzia
-    ///
-    string eil;
-    if(size>419430400)
-    {
-        try
-        {
-            if(!getline(in, eil))
-                throw invalid_argument("Failas tuscias");
-            while(getline(in, eil))
-            {
-                stringstream line(eil);
-                line>>laik.var>>laik.pav;
-                double grade;
-                while(line>>grade)
-                    laik.pazymiai.push_back(grade);
-                if(laik.pazymiai.size()==0)
-                    throw invalid_argument("Truksta pazymiu");
-                laik.exam=laik.pazymiai.back();
-                laik.pazymiai.pop_back();
-                ///
-                duom to_push(laik);
-                grupe.push_back(to_push);
-                ///
-                laik.pazymiai.clear();
-                laik.exam=0;
-            }
-            in.close();
-        }
-        catch(const std::exception& e)
-        {
-            std::cerr << e.what() << '\n';
-            terminate();
-        }
-    }
-    else
-    {
-        stringstream ss;
-        ss<<in.rdbuf();
-        in.close();
-        try
-        {
-            if(!getline(ss, eil))
-                throw invalid_argument("Failas tuscias");
-            while(getline(ss, eil))
-            {
-                stringstream line(eil);
-                line>>laik.var>>laik.pav;
-                double grade;
-                while(line>>grade)
-                    laik.pazymiai.push_back(grade);
-                if(laik.pazymiai.size()==0)
-                    throw invalid_argument("Truksta pazymiu");
-                laik.exam=laik.pazymiai.back();
-                laik.pazymiai.pop_back();
-                ///
-                duom to_push(laik);
-                grupe.push_back(to_push);
-                ///
-                laik.pazymiai.clear();
-                laik.exam=0;
-            }
-        }
-        catch(const std::exception& e)
-        {
-            std::cerr << e.what() << '\n';
-            terminate();
-        }
-    }
+    duom laik;
+    while(in>>laik)
+        grupe.push_back(laik);
     grupe.shrink_to_fit();
 }
 void read_names_only(vector <duom> &grupe)

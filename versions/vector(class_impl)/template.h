@@ -57,7 +57,9 @@ class duom
             this->pav=pav;
             this->pazymiai=pazymiai;
             this->exam=exam;
-        }        
+        }     
+        duom()
+        {}   
         ~duom()
         {
             var.clear();
@@ -124,8 +126,7 @@ class duom
         friend std::ifstream& operator>>(std::ifstream& in, duom& student)
         {
             string eil;
-            if (!std::getline(in, eil)) return in;
-
+            std::getline(in, eil);
             stringstream line(eil);
             line>>student.var>>student.pav;
 
