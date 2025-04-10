@@ -437,40 +437,21 @@ void print_data_to_file(vector <duom> &grupe, int mark_amount, string filename)
 void print_answers_to_file(vector <duom> &grupe, string filename)
 {
     ofstream out(filename);
-    stringstream ss;
-    const int ss_size = 10000; //stringstream max eiluciu skaicius
-    int count = 0;
-    ///
-    ss << left << fixed << setw(20) << "Vardas"<<setw(20)<<"Pavarde";
-    ss << fixed << setprecision(2) << setw(10) << "Galutinis" <<endl;
+    out << left << fixed << setw(20) << "Vardas"<<setw(20)<<"Pavarde"
+    << fixed << setprecision(2) << setw(20) << "Galutinis" <<endl;
     ///
     for(auto i:grupe)
-    {
-        ss << setw(20) << i.getVar() << setw(20) << i.getPav();
-        ss << setw(10) << i.getMark() << endl;
-        count++; //eiluciu skaicius ss stringstreame
-        if(count==ss_size)
-        {
-            out<<ss.str();
-            ss.str("");
-            count=0;
-            ss.clear();
-        }
-    }
-    if(count!=0) //likusiu eiluciu isvedimas
-        out<<ss.str();
+        out<<i;
     out.close();
 }
 void print_answers(vector <duom> &grupe)
 {
-    stringstream ss;
-    cout << left << fixed << setprecision(2) << setw(20) << "Vardas"<<setw(20)<<"Pavarde"<<setw(20)<<"Galutinis"<<endl;
-    ss << "------------------------------------------------------------" << endl;
+    cout << left << fixed << setw(20) << "Vardas"<<setw(20)<<"Pavarde"
+    << fixed << setprecision(2) << setw(20) << "Galutinis" <<endl;
+    cout << "------------------------------------------------------------" << endl;
+    ///
     for(auto i:grupe)
-    {
-        ss << left << fixed << setprecision(2) << setw(20) << i.getVar() << " " << setw(20) << i.getPav() << " " << setw(20) << i.getMark() << endl;
-    }
-    cout<<ss.str();
+        cout<<i;
 }
 ///
 char check_menu()
