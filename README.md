@@ -1,7 +1,16 @@
 
 # OOP
 
-Programos versija, skirta ištestuoti skirtumus tarp CLASS ir STRUCT duomenų struktūrų tipų.
+Programoje perdengemi šie metodai:
+```
+  Įvesties iš failo
+```
+```
+  Išvesties į failą
+```
+```
+  Išvesties į konsolę
+```
 
 Su VECTOR struktūra naudojamas parallel computing funkcionalumas.
 
@@ -37,18 +46,18 @@ Rusiavimas: 0.004 s
 Skaidymas: 0 s
 
 Santrauka: (100000)
-Skaitymas: 0.324 s
+Skaitymas: 0.424 s
 Rusiavimas: 0.048 s
 Skaidymas: 0 s
 
 Santrauka: (1000000)
-Skaitymas: 3.176 s
-Rusiavimas: 0.526 s
+Skaitymas: 5.201 s
+Rusiavimas: 0.331 s
 Skaidymas: 0 s
 
 Santrauka: (10000000)
-Skaitymas: 32.382 s
-Rusiavimas: 8.519 s
+Skaitymas: 48.142 s
+Rusiavimas: 0.421 s
 Skaidymas: 0 s
 ```
 ```
