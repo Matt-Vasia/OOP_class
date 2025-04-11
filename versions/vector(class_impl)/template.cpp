@@ -162,12 +162,20 @@ void read_file(vector <duom> &grupe, string filename)
     streamsize size = in.tellg();///nustatomas failo dydis
     in.seekg(0, ios::beg);///pointeris i pradzia
 
-    if(size>100000000)
-        grupe.reserve(10000000);
-    else if(size>10000000)
-        grupe.reserve(1000000);
-    else
-        grupe.reserve(100000);
+    try
+    {
+        if(size>100000000)
+            grupe.reserve(10000000);
+        else if(size>10000000)
+            grupe.reserve(1000000);
+        else
+            grupe.reserve(100000);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << "Nepavyko rezervuoti atminties" << '\n';
+    }
+    
 
     string header_line;
     std::getline(in, header_line);
