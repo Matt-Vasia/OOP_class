@@ -13,9 +13,10 @@ void menu(vector <duom> &grupe)
         cout<<"Jei norite sugeneruoti mokinio pazymius ir vardus atsitiktinai (konsoleje), spauskite '4'"<<endl;
         cout<<"Jei norite sugeneruoti mokinio pazymius ir vardus atsitiktinai (failuose), spauskite '5'"<<endl;
         cout<<"Jei norite suruosiuoti mokinius pagal ju pazymius is failo, spauskite '6'"<<endl;
-        cout<<"Jei norite baigti darba, spauskite '7'"<<endl;
+        cout<<"Jei norite istestuoti metodu perdengima, spauskite '7"<<endl;
+        cout<<"Jei norite baigti darba, spauskite '8'"<<endl;
         cin>>rule;
-    } while(rule!='1' && rule!='2' && rule!='3' && rule!='4' && rule!='5' && rule!='6' && rule!='7');
+    } while(rule!='1' && rule!='2' && rule!='3' && rule!='4' && rule!='5' && rule!='6' && rule!='7' && rule!='8');
     if(rule=='1')
         read(grupe);
     else if (rule=='2')
@@ -80,7 +81,12 @@ void menu(vector <duom> &grupe)
         cin.get();
         exit(0);
     }
-    else if (rule=='7')
+     else if (rule=='7')
+    {
+        method_test(grupe);
+        exit(0);
+    }    
+    else if (rule=='8')
     {
         cout<<"Darbas baigtas"<<endl;
         exit(0);
@@ -522,4 +528,24 @@ double median(duom given)
         return ats;
     }
 
+}
+void method_test(vector <duom> &grupe)
+{
+    string filename;
+    cout<<"Iveskite norimo nuskaityti failo (.dat) pavadinima pvz. (vardai, duomenys, ...)"<<endl;
+    cin>>filename;
+    read_file(grupe, test_file_location + filename + ".dat");
+    ///
+    // copy konstruktorius
+    vector <duom> copy_constr = grupe;
+    // copy assignment operatorius
+    vector <duom> copy_assign;
+    copy_assign = grupe;
+    // move konstruktorius
+    vector <duom> move_constr = std::move(grupe);
+    // move assignment operatorius
+    vector <duom> move_assign;
+    copy_assign = std::move(grupe);
+    ///
+    cout<<"Testai ivykdyti sekmingai"<<endl;
 }

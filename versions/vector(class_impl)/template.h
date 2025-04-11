@@ -273,6 +273,8 @@ bool compare(const string a, const string b, string rule);
 void sorting(vector <duom> &grupe, char rule);
 double average(duom given);
 double median(duom given);
+///
+void method_test(vector <duom> &grupe);
 
 #endif
 
