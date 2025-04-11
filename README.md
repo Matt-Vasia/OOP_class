@@ -2,9 +2,15 @@
 # OOP
 
 Programoje perdengemi šie metodai:
+```
   Įvesties iš failo
+```
+```
   Išvesties į failą
+```
+```
   Išvesties į konsolę
+```
 
 Su VECTOR struktūra naudojamas parallel computing funkcionalumas.
 
