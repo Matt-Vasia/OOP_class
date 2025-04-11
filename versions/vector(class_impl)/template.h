@@ -156,31 +156,31 @@ class duom
             return out << left << fixed << setprecision(2) << setw(20) << student.var << " " << setw(20) << student.pav << " " << setw(20) << student.mark << endl;
         }
     ///
-        string getVar()
+        string getVar() const
         {
             return var;
         }
-        string getPav()
+        string getPav() const
         {
             return pav;
         }
-        int getPazymiai_at(int i)
+        int getPazymiai_at(int i) const
         {
             return pazymiai[i];
         }
-        vector<int> getPazymiai()
+        vector<int> getPazymiai() const
         {
             return pazymiai;
         }
-        int getExam()
+        int getExam() const
         {
             return exam;
         }
-        double getVid_med()
+        double getVid_med() const
         {
             return vid_med;
         }
-        double getMark()
+        double getMark() const
         {
             return mark;
         }
@@ -269,7 +269,7 @@ void print_answers(vector <duom> &grupe);
 /// 
 char check_menu();
 void vid_med_calc(vector <duom> &grupe);
-bool compare(string a, string b, string rule);
+bool compare(const string a, const string b, string rule);
 void sorting(vector <duom> &grupe, char rule);
 double average(duom given);
 double median(duom given);

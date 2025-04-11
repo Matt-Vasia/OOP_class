@@ -436,7 +436,7 @@ void vid_med_calc(vector <duom> &grupe)
         i.setMark(0.4*i.getVid_med()+0.6*i.getExam());
     }
 }
-bool compare(string a, string b, string rule)
+bool compare(const string a, const string b, string rule)
 {
     if(a.rfind(rule, 0)==0 && b.rfind(rule, 0)==0)
         return stoi(a.substr(rule.length()))<stoi(b.substr(rule.length()));
@@ -454,11 +454,11 @@ void sorting(vector <duom> &grupe, char rule)
         rule=tolower(rule);
     }
     if(rule=='1')
-        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.getVar(), b.getVar(), "Vardas");});
+        std::stable_sort(std::execution::par, grupe.begin(), grupe.end(), [](const duom& a, const duom& b){return compare(a.getVar(), b.getVar(), "Vardas");});
     else if(rule=='2')
-        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return compare(a.getVar(), b.getPav(), "Pavarde");});
+        std::stable_sort(std::execution::par, grupe.begin(), grupe.end(), [](const duom& a, const duom& b){return compare(a.getPav(), b.getPav(), "Vardas");});
     else if(rule=='3')
-        sort(std::execution::par, grupe.begin(), grupe.end(), [](duom a, duom b){return a.getMark()>b.getMark();});
+        std::stable_sort(std::execution::par, grupe.begin(), grupe.end(), [](const duom& a, const duom& b){return a.getMark() > b.getMark();});
 }
 double average(duom given)
 {
