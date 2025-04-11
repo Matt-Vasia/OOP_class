@@ -24,7 +24,7 @@ System type	    Windows 11 64x
 ```
 
 ```
-VECTOR test times with CLASS structure (using average values)
+VECTOR test times with CLASS structure (No compile flags)
 
 Santrauka: (1000)
 Skaitymas: 0.006 s
@@ -32,50 +32,107 @@ Rusiavimas: 0.001 s
 Skaidymas: 0 s
 
 Santrauka: (10000)
-Skaitymas: 0.03 s
-Rusiavimas: 0.004 s
+Skaitymas: 0.058 s
+Rusiavimas: 0.0012 s
 Skaidymas: 0 s
 
 Santrauka: (100000)
-Skaitymas: 0.324 s
-Rusiavimas: 0.048 s
+Skaitymas: 0.579 s
+Rusiavimas: 0.154 s
 Skaidymas: 0 s
 
 Santrauka: (1000000)
-Skaitymas: 3.176 s
-Rusiavimas: 0.526 s
+Skaitymas: 5.886 s
+Rusiavimas: 1.328 s
 Skaidymas: 0 s
 
 Santrauka: (10000000)
-Skaitymas: 32.382 s
-Rusiavimas: 8.519 s
+Skaitymas: 59.7582 s
+Rusiavimas: 10.422 s
 Skaidymas: 0 s
 ```
 ```
-VECTOR test times with STRUCT structure (using average values)
+VECTOR test times with CLASS structure (Compile flag -O1)
 
 Santrauka: (1000)
-Skaitymas: 0.024 s
+Skaitymas: 0.007 s
 Rusiavimas: 0.001 s
 Skaidymas: 0 s
 
 Santrauka: (10000)
-Skaitymas: 0.085 s
-Rusiavimas: 0.006 s
+Skaitymas: 0.052 s
+Rusiavimas: 0.009 s
 Skaidymas: 0 s
 
 Santrauka: (100000)
-Skaitymas: 0.509 s
-Rusiavimas: 0.102 s
-Skaidymas: 0.009 s
+Skaitymas: 0.604 s
+Rusiavimas: 0.152 s
+Skaidymas: 0 s
 
 Santrauka: (1000000)
-Skaitymas: 3.913 s
-Rusiavimas: 0.88 s
-Skaidymas: 0.196 s
+Skaitymas: 5.797 s
+Rusiavimas: 1.599 s
+Skaidymas: 0 s
 
 Santrauka: (10000000)
-Skaitymas: 30.363 s
-Rusiavimas: 7.862 s
-Skaidymas: 1.662 s
+Skaitymas: 58.542 s
+Rusiavimas: 8.142 s
+Skaidymas: 0 s
 ```
+```
+VECTOR test times with CLASS structure (Compile flag -O2)
+
+Santrauka: (1000)
+Skaitymas: 0.006 s
+Rusiavimas: 0.001 s
+Skaidymas: 0 s
+
+Santrauka: (10000)
+Skaitymas: 0.048 s
+Rusiavimas: 0.011 s
+Skaidymas: 0 s
+
+Santrauka: (100000)
+Skaitymas: 0.604 s
+Rusiavimas: 0.152 s
+Skaidymas: 0 s
+
+Santrauka: (1000000)
+Skaitymas: 5.829 s
+Rusiavimas: 1.324 s
+Skaidymas: 0 s
+
+Santrauka: (10000000)
+Skaitymas: 57.7582 s
+Rusiavimas: 10.120 s
+Skaidymas: 0 s
+```
+```
+VECTOR test times with CLASS structure (Compile flag -O3)
+
+Santrauka: (1000)
+Skaitymas: 0.007 s
+Rusiavimas: 0.001 s
+Skaidymas: 0 s
+
+Santrauka: (10000)
+Skaitymas: 0.048 s
+Rusiavimas: 0.008 s
+Skaidymas: 0 s
+
+Santrauka: (100000)
+Skaitymas: 0.619 s
+Rusiavimas: 0.154 s
+Skaidymas: 0 s
+
+Santrauka: (1000000)
+Skaitymas: 5.916 s
+Rusiavimas: 1.381 s
+Skaidymas: 0 s
+
+Santrauka: (10000000)
+Skaitymas: 55.4582 s
+Rusiavimas: 1.120 s
+Skaidymas: 0 s
+```
+
