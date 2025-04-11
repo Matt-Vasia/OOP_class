@@ -26,6 +26,8 @@ System type	    Windows 11 64x
 ```
 VECTOR test times with CLASS structure (No compile flags)
 
+exe file size 136KB
+
 Santrauka: (1000)
 Skaitymas: 0.006 s
 Rusiavimas: 0.001 s
@@ -53,6 +55,8 @@ Skaidymas: 0 s
 ```
 ```
 VECTOR test times with CLASS structure (Compile flag -O1)
+
+exe file size 101KB
 
 Santrauka: (1000)
 Skaitymas: 0.007 s
@@ -82,6 +86,8 @@ Skaidymas: 0 s
 ```
 VECTOR test times with CLASS structure (Compile flag -O2)
 
+exe file size 136KB
+
 Santrauka: (1000)
 Skaitymas: 0.006 s
 Rusiavimas: 0.001 s
@@ -109,6 +115,8 @@ Skaidymas: 0 s
 ```
 ```
 VECTOR test times with CLASS structure (Compile flag -O3)
+
+exe file size 136KB
 
 Santrauka: (1000)
 Skaitymas: 0.007 s
