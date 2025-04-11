@@ -1,7 +1,10 @@
 
 # OOP
 
-Programos versija, skirta ištestuoti skirtumus tarp CLASS ir STRUCT duomenų struktūrų tipų.
+Programoje perdengemi šie metodai:
+  Įvesties iš failo
+  Išvesties į failą
+  Išvesties į konsolę
 
 Su VECTOR struktūra naudojamas parallel computing funkcionalumas.
 
