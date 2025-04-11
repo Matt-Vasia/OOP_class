@@ -37,18 +37,18 @@ Rusiavimas: 0.004 s
 Skaidymas: 0 s
 
 Santrauka: (100000)
-Skaitymas: 0.324 s
+Skaitymas: 0.424 s
 Rusiavimas: 0.048 s
 Skaidymas: 0 s
 
 Santrauka: (1000000)
-Skaitymas: 3.176 s
-Rusiavimas: 0.526 s
+Skaitymas: 5.201 s
+Rusiavimas: 0.331 s
 Skaidymas: 0 s
 
 Santrauka: (10000000)
 Skaitymas: 48.142 s
-Rusiavimas: 0.331 s
+Rusiavimas: 0.421 s
 Skaidymas: 0 s
 ```
 ```
