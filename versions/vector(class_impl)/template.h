@@ -122,7 +122,22 @@ class duom
             ///move naudojam tik su elementais saugomais heap'e
             return *this;
         }
-    ///
+        bool operator==(duom &&to_compare) noexcept
+        {
+            if(this->var==to_compare.var && this->pav==to_compare.pav && this->pazymiai==to_compare.pazymiai && this->exam==to_compare.exam && this->vid_med==to_compare.vid_med
+            && this->mark==to_compare.mark)
+                return true;
+            else
+             return false;
+        }
+        friend bool operator==(const duom &a, const duom &b) noexcept
+        {
+            if(a.var==b.var && a.pav==b.pav && a.pazymiai==b.pazymiai && a.exam==b.exam && a.vid_med==b.vid_med
+            && a.mark==b.mark)
+                return true;
+            return false;
+        }    
+        ///
         friend std::ifstream& operator>>(std::ifstream& in, duom& student)
         {
             string eil;

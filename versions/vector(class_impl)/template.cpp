@@ -531,21 +531,34 @@ double median(duom given)
 }
 void method_test(vector <duom> &grupe)
 {
-    string filename;
-    cout<<"Iveskite norimo nuskaityti failo (.dat) pavadinima pvz. (vardai, duomenys, ...)"<<endl;
-    cin>>filename;
-    read_file(grupe, test_file_location + filename + ".dat");
+    read_file(grupe, test_file_location + "kursiokai_1000" + ".dat");
     ///
-    // copy konstruktorius
-    vector <duom> copy_constr = grupe;
-    // copy assignment operatorius
-    vector <duom> copy_assign;
-    copy_assign = grupe;
-    // move konstruktorius
-    vector <duom> move_constr = std::move(grupe);
-    // move assignment operatorius
-    vector <duom> move_assign;
-    copy_assign = std::move(grupe);
+    duom test_case = grupe.at(0);
+    //
+    duom copy_constr = test_case;
+    if(copy_constr==test_case)
+        cout<<"copy constr succesful"<<endl;
+    else
+        cout<<"copy constr unsuccesful"<<endl;
     ///
-    cout<<"Testai ivykdyti sekmingai"<<endl;
+    duom copy_method;
+    copy_method=test_case;
+    if(copy_method==test_case)
+        cout<<"copy method succesful"<<endl;
+    else
+        cout<<"copy method unsuccesful"<<endl;
+    ///
+    duom move_constr = std::move(test_case);
+    if(move_constr==test_case && move_constr==grupe.at(0))
+        cout<<"move constr unsuccesful"<<endl;
+    else
+        cout<<"move constr succesful"<<endl;
+    ///
+    test_case = grupe.at(0);
+    duom move_method;
+    move_method=std::move(test_case);
+    if(move_method==test_case && move_method==grupe.at(0))
+        cout<<"move method succesful"<<endl;
+    else
+        cout<<"move method succesful"<<endl;
 }
