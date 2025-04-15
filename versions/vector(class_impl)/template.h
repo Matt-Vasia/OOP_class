@@ -26,9 +26,21 @@ struct temp
     double mark;
 };
 
-
-class duom
+class human
 {
+    public:
+        virtual void abstractClassFunction() = 0;
+        ///
+        string var = "";
+        string pav = "";
+};
+
+
+class duom : private human
+{
+    public:
+        void abstractClassFunction() override{};
+
     private:
         string var = "";
         string pav = "";
