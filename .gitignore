@@ -6,6 +6,4 @@
 versions/vector(class_impl)/build
 versions/vector(class_impl)/html
 versions/vector(class_impl)/latex
-versions/vector(class_impl)/.vscode
-versions/vector(class_impl)/Doxyfile
-versions/vector(class_impl)/CMakeLists.txt
+/.vscode
