@@ -1,8 +1,0 @@
-var searchData=
-[
-  ['random_5fgrades_0',['random_grades',['../main_8cpp.html#acac6582b2bf47b1a3522bf24a69dd354',1,'random_grades(vector&lt; duom &gt; &amp;grupe, int m):&#160;main.cpp'],['../template_8h.html#acac6582b2bf47b1a3522bf24a69dd354',1,'random_grades(vector&lt; duom &gt; &amp;grupe, int m):&#160;main.cpp']]],
-  ['random_5fnames_5fgrades_1',['random_names_grades',['../main_8cpp.html#a8f8de2ed5ca34dc0d86e9efb48199c80',1,'random_names_grades(vector&lt; duom &gt; &amp;grupe, int record_amount, int mark_amount):&#160;main.cpp'],['../template_8h.html#a8f8de2ed5ca34dc0d86e9efb48199c80',1,'random_names_grades(vector&lt; duom &gt; &amp;grupe, int record_amount, int mark_amount):&#160;main.cpp']]],
-  ['read_5ffile_2',['read_file',['../main_8cpp.html#a8937950931bb74763cb9f816c2bf49ff',1,'read_file(vector&lt; duom &gt; &amp;grupe, string filename):&#160;main.cpp'],['../template_8h.html#a8937950931bb74763cb9f816c2bf49ff',1,'read_file(vector&lt; duom &gt; &amp;grupe, string filename):&#160;main.cpp']]],
-  ['read_5ffrom_5fconsole_3',['read_from_console',['../main_8cpp.html#a90d1ccf9db770af30cceb80cdcbfe675',1,'read_from_console(vector&lt; duom &gt; &amp;grupe):&#160;main.cpp'],['../template_8h.html#a90d1ccf9db770af30cceb80cdcbfe675',1,'read_from_console(vector&lt; duom &gt; &amp;grupe):&#160;main.cpp']]],
-  ['read_5fnames_5ffrom_5fconsole_4',['read_names_from_console',['../main_8cpp.html#a54fea75d1ce526f609bcc66a039b6bec',1,'read_names_from_console(vector&lt; duom &gt; &amp;grupe):&#160;main.cpp'],['../template_8h.html#a54fea75d1ce526f609bcc66a039b6bec',1,'read_names_from_console(vector&lt; duom &gt; &amp;grupe):&#160;main.cpp']]]
-];
