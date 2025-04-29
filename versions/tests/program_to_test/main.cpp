@@ -1,12 +1,12 @@
 #include "template.h"
 
-
+/*
 int main(){
     vector <duom> grupe;
     
     menu(grupe);
     return 0;
-}
+}*/
 void menu(vector <duom> &grupe)
 {
     string input;
