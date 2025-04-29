@@ -1,10 +1,9 @@
 @echo off
 cd /d %~dp0
-echo Creating build directory...
+
 if not exist build mkdir build
 cd build
 
-echo Running CMake configuration...
 cmake ..
 if %ERRORLEVEL% NEQ 0 (
     echo CMake configuration failed! Make sure CMake is installed and in your PATH.
@@ -12,7 +11,6 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b 1
 )
 
-echo Building project...
 cmake --build . --config Release
 if %ERRORLEVEL% NEQ 0 (
     echo Build failed!
@@ -20,7 +18,6 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b 1
 )
 
-echo Looking for program executable...
 if exist Release\program.exe (
     cd Release
 ) else if exist program.exe (
@@ -32,7 +29,6 @@ if exist Release\program.exe (
 )
 
 cls
-echo Running program...
 program.exe
 
 pause

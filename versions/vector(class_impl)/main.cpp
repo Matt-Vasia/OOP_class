@@ -1,7 +1,5 @@
 #include "template.h"
 
-using namespace std;
-
 int main(){
     vector <duom> grupe;
     
@@ -11,6 +9,7 @@ int main(){
 
 void menu(vector <duom> &grupe)
 {
+    string input;
     char rule;
     do
     {
@@ -22,7 +21,10 @@ void menu(vector <duom> &grupe)
         cout<<"Jei norite suruosiuoti mokinius pagal ju pazymius is failo, spauskite '6'"<<endl;
         cout<<"Jei norite istestuoti metodu perdengima, spauskite '7"<<endl;
         cout<<"Jei norite baigti darba, spauskite '8'"<<endl;
-        cin>>rule;
+        cin>>input;
+        if(input.length()!=1)
+            continue;
+        rule=input.at(0);
     } while(rule!='1' && rule!='2' && rule!='3' && rule!='4' && rule!='5' && rule!='6' && rule!='7' && rule!='8');
     if(rule=='1')
     {
@@ -60,30 +62,35 @@ void menu(vector <duom> &grupe)
     else if (rule=='5')
     {
         grupe.reserve(10000000);
-        auto start = chrono::high_resolution_clock::now();
+        auto start = std::chrono::high_resolution_clock::now();
+
         random_names_grades(grupe, 1000, 5);
         print_data_to_file(grupe, 5, "kursiokai_1000.dat");
-        auto end = chrono::high_resolution_clock::now();
-        cout << "1 failas sugeneruotas per: " << chrono::duration_cast<chrono::seconds>(end - start).count() << " sec" << endl;cout << "1 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;start = chrono::high_resolution_clock::now();
+        auto end = std::chrono::high_resolution_clock::now();
+        cout << "1 failas sugeneruotas per: " << std::chrono::duration_cast<std::chrono::seconds>(end - start).count() << " sec" << endl;
+
         random_names_grades(grupe, 10000, 5);
         print_data_to_file(grupe, 5, "kursiokai_10000.dat");
-        end = chrono::high_resolution_clock::now();
-        cout << "2 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
-        start = chrono::high_resolution_clock::now();
+        end = std::chrono::high_resolution_clock::now();
+        cout << "2 failas sugeneruotas per: " << std::chrono::duration_cast<std::chrono::duration<double>>(end - start).count() << " sec" << endl;
+
+        start = std::chrono::high_resolution_clock::now();
         random_names_grades(grupe, 100000, 5);
         print_data_to_file(grupe, 5, "kursiokai_100000.dat");
-        end = chrono::high_resolution_clock::now();
-        cout << "3 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
-        start = chrono::high_resolution_clock::now();
+        end = std::chrono::high_resolution_clock::now();
+        cout << "3 failas sugeneruotas per: " << std::chrono::duration_cast<std::chrono::duration<double>>(end - start).count() << " sec" << endl;
+
+        start = std::chrono::high_resolution_clock::now();
         random_names_grades(grupe, 1000000, 5);
         print_data_to_file(grupe, 5, "kursiokai_1000000.dat");
-        end = chrono::high_resolution_clock::now();
-        cout << "4 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
-        start = chrono::high_resolution_clock::now();
+        end = std::chrono::high_resolution_clock::now();
+        cout << "4 failas sugeneruotas per: " << std::chrono::duration_cast<std::chrono::duration<double>>(end - start).count() << " sec" << endl;
+        
+        start = std::chrono::high_resolution_clock::now();
         random_names_grades(grupe, 10000000, 5);
         print_data_to_file(grupe, 5, "kursiokai_10000000.dat");        
-        end = chrono::high_resolution_clock::now();
-        cout << "5 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
+        end = std::chrono::high_resolution_clock::now();
+        cout << "5 failas sugeneruotas per: " << std::chrono::duration_cast<std::chrono::duration<double>>(end - start).count() << " sec" << endl;
     }
      else if (rule=='6')
     {
@@ -92,47 +99,47 @@ void menu(vector <duom> &grupe)
         cin>>filename;
         //
         // Start timing the entire process
-        auto total_start = chrono::high_resolution_clock::now();
+        auto total_start = std::chrono::high_resolution_clock::now();
 
         // Timing file reading
-        auto start = chrono::high_resolution_clock::now();
+        auto start = std::chrono::high_resolution_clock::now();
         read_file(grupe, test_file_location + filename + ".dat"); 
-        auto end = chrono::high_resolution_clock::now();
-        auto read_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+        auto end = std::chrono::high_resolution_clock::now();
+        auto read_time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
 
         // Timing user input
-        start = chrono::high_resolution_clock::now();
+        start = std::chrono::high_resolution_clock::now();
         vid_med_calc(grupe);
-        end = chrono::high_resolution_clock::now();
-        auto excluded_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+        end = std::chrono::high_resolution_clock::now();
+        auto excluded_time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
 
         // Timing sorting
-        start = chrono::high_resolution_clock::now();
+        start = std::chrono::high_resolution_clock::now();
         sorting(grupe, '3'); // Sorting by final grade
-        end = chrono::high_resolution_clock::now();
-        auto sort_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+        end = std::chrono::high_resolution_clock::now();
+        auto sort_time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
 
         //3 skaidymo strategija
         vector<duom> blogi;
         // Splitting the vector into two
-        start = chrono::high_resolution_clock::now();
+        start = std::chrono::high_resolution_clock::now();
 
         auto it = partition(grupe.begin(), grupe.end(), [](duom& student) { return student.getMark() >= 5;});
         blogi.assign(it, grupe.end());
         grupe.erase(it, grupe.end());
 
-        end = chrono::high_resolution_clock::now();
-        auto splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+        end = std::chrono::high_resolution_clock::now();
+        auto splitting_time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
 
-        start = chrono::high_resolution_clock::now();
+        start = std::chrono::high_resolution_clock::now();
         print_answers_to_file(grupe, test_file_location + "/../output_file/" + filename + "_kietekai.dat");
         print_answers_to_file(blogi, test_file_location + "/../output_file/" + filename + + "_vargsiukai.dat");
-        end = chrono::high_resolution_clock::now();
-        auto write_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+        end = std::chrono::high_resolution_clock::now();
+        auto write_time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
 
         //Calculate and display total time
-        auto total_end = chrono::high_resolution_clock::now();
-        auto raw_time = chrono::duration_cast<chrono::milliseconds>(total_end - total_start).count();
+        auto total_end = std::chrono::high_resolution_clock::now();
+        auto raw_time = std::chrono::duration_cast<std::chrono::milliseconds>(total_end - total_start).count();
         auto total_time = raw_time - excluded_time;
     
         // Display summary of times

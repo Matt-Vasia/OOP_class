@@ -28,5 +28,6 @@ using std::uniform_int_distribution;
 using std::ofstream;
 using std::to_string;
 using std::ios;
+using namespace std::chrono;
 
 #endif
