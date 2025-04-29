@@ -30,7 +30,7 @@ class human
 {
     public:
         virtual void abstractClassFunction() = 0;
-        ///
+        //
         string var = "";
         string pav = "";
 };
@@ -81,7 +81,7 @@ class duom : private human
             vid_med=0;
             mark=0;
         }
-    ///
+    //
         duom(const duom &to_copy)
         {
             this->var=to_copy.var;
@@ -103,7 +103,7 @@ class duom : private human
             to_move.vid_med=0;
             this->mark=to_move.mark;
             to_move.mark=0;
-            ///move naudojam tik su elementais saugomais heap'e
+            //move naudojam tik su elementais saugomais heap'e
         }
         //
         duom& operator=(const duom &to_copy)
@@ -131,7 +131,7 @@ class duom : private human
             to_move.vid_med=0;
             this->mark=to_move.mark;
             to_move.mark=0;
-            ///move naudojam tik su elementais saugomais heap'e
+            //move naudojam tik su elementais saugomais heap'e
             return *this;
         }
         bool operator==(duom &&to_compare) noexcept
@@ -149,7 +149,7 @@ class duom : private human
                 return true;
             return false;
         }    
-        ///
+        //
         friend std::ifstream& operator>>(std::ifstream& in, duom& student)
         {
             string eil;
@@ -182,7 +182,7 @@ class duom : private human
         {
             return out << left << fixed << setprecision(2) << setw(20) << student.var << " " << setw(20) << student.pav << " " << setw(20) << student.mark << endl;
         }
-    ///
+    //
         string getVar() const
         {
             return var;
@@ -211,7 +211,7 @@ class duom : private human
         {
             return mark;
         }
-    /// 
+    //
         void setPazymiai(vector<int> &pazymiai)
         {
             this->pazymiai=pazymiai;
@@ -244,7 +244,7 @@ class duom : private human
             else
                 throw("Neteisingas pazymys");
         }
-    ///
+    //
 };
 
 vector<string> vardai={
@@ -283,24 +283,22 @@ const string test_file_location = TEST_FILE_LOCATION; //CMake version
 //const string test_file_location = "../../test_files/"; ///Manual complilation version (debug)
 
 void menu(vector <duom> &grupe);
-void read(vector <duom> &grupe);
+void read_from_console(vector <duom> &grupe);
 void read_file(vector <duom> &grupe, string filename);
-void read_names_only(vector <duom> &grupe);
-void sort_file_by_grades(vector <duom> &grupe, string filename);
-void random(vector <duom> &grupe, int m);
-void random_full(vector <duom> &grupe, int record_amount, int mark_amount);
+void read_names_from_console(vector <duom> &grupe);
+void random_grades(vector <duom> &grupe, int m);
+void random_names_grades(vector <duom> &grupe, int record_amount, int mark_amount);
 void print_data_to_file(vector <duom> &grupe, int mark_amount, string filename);
 void print_answers_to_file(vector <duom> &grupe, string filename);
-void print_answers(vector <duom> &grupe);
-///
-/// 
+void print_answers_console(vector <duom> &grupe);
+//
 char check_menu();
 void vid_med_calc(vector <duom> &grupe);
 bool compare(const string a, const string b, string rule);
 void sorting(vector <duom> &grupe, char rule);
 double average(duom given);
 double median(duom given);
-///
+//
 void method_test(vector <duom> &grupe);
 
 #endif

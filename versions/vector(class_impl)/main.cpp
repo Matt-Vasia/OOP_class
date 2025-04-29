@@ -2,6 +2,13 @@
 
 using namespace std;
 
+int main(){
+    vector <duom> grupe;
+    
+    menu(grupe);
+    return 0;
+}
+
 void menu(vector <duom> &grupe)
 {
     char rule;
@@ -18,81 +25,131 @@ void menu(vector <duom> &grupe)
         cin>>rule;
     } while(rule!='1' && rule!='2' && rule!='3' && rule!='4' && rule!='5' && rule!='6' && rule!='7' && rule!='8');
     if(rule=='1')
-        read(grupe);
+    {
+        read_from_console(grupe);
+        vid_med_calc(grupe);
+        sorting(grupe, '\0');
+        print_answers_console(grupe);
+    }
     else if (rule=='2')
     {
         grupe.reserve(1000);
         read_file(grupe, "kursiokai.dat");
         grupe.shrink_to_fit();
+        vid_med_calc(grupe);
+        sorting(grupe, '\0');
+        print_answers_console(grupe);
     }   
     else if (rule=='3')
     {
         grupe.reserve(1000);
-        read_names_only(grupe);
-        random(grupe, grupe.size());
+        read_names_from_console(grupe);
+        random_grades(grupe, grupe.size());
         grupe.shrink_to_fit();
+        vid_med_calc(grupe);
+        sorting(grupe, '\0');
+        print_answers_console(grupe);
     }
     else if (rule=='4')
     {
-        random_full(grupe, 10, 5);
+        random_names_grades(grupe, 10, 5);
+        vid_med_calc(grupe);
+        sorting(grupe, '\0');
+        print_answers_console(grupe);
     }
     else if (rule=='5')
     {
         grupe.reserve(10000000);
         auto start = chrono::high_resolution_clock::now();
-        random_full(grupe, 1000, 5);
+        random_names_grades(grupe, 1000, 5);
         print_data_to_file(grupe, 5, "kursiokai_1000.dat");
         auto end = chrono::high_resolution_clock::now();
         cout << "1 failas sugeneruotas per: " << chrono::duration_cast<chrono::seconds>(end - start).count() << " sec" << endl;cout << "1 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;start = chrono::high_resolution_clock::now();
-        random_full(grupe, 10000, 5);
+        random_names_grades(grupe, 10000, 5);
         print_data_to_file(grupe, 5, "kursiokai_10000.dat");
         end = chrono::high_resolution_clock::now();
         cout << "2 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
         start = chrono::high_resolution_clock::now();
-        random_full(grupe, 100000, 5);
+        random_names_grades(grupe, 100000, 5);
         print_data_to_file(grupe, 5, "kursiokai_100000.dat");
         end = chrono::high_resolution_clock::now();
         cout << "3 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
         start = chrono::high_resolution_clock::now();
-        random_full(grupe, 1000000, 5);
+        random_names_grades(grupe, 1000000, 5);
         print_data_to_file(grupe, 5, "kursiokai_1000000.dat");
         end = chrono::high_resolution_clock::now();
         cout << "4 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
         start = chrono::high_resolution_clock::now();
-        random_full(grupe, 10000000, 5);
+        random_names_grades(grupe, 10000000, 5);
         print_data_to_file(grupe, 5, "kursiokai_10000000.dat");        
         end = chrono::high_resolution_clock::now();
         cout << "5 failas sugeneruotas per: " << chrono::duration_cast<chrono::duration<double>>(end - start).count() << " sec" << endl;
-        // Pause before exiting
-        cout << "Press Enter to continue..." << std::endl;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cin.get();
-        exit(0);
     }
      else if (rule=='6')
     {
         string filename;
         cout<<"Iveskite norimo nuskaityti failo (.dat) pavadinima pvz. (vardai, duomenys, ...)"<<endl;
         cin>>filename;
-        sort_file_by_grades(grupe, filename);
-        // Pause before exiting
-        cout << "Press Enter to continue..." << std::endl;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cin.get();
-        exit(0);
+        //
+        // Start timing the entire process
+        auto total_start = chrono::high_resolution_clock::now();
+
+        // Timing file reading
+        auto start = chrono::high_resolution_clock::now();
+        read_file(grupe, test_file_location + filename + ".dat"); 
+        auto end = chrono::high_resolution_clock::now();
+        auto read_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+
+        // Timing user input
+        start = chrono::high_resolution_clock::now();
+        vid_med_calc(grupe);
+        end = chrono::high_resolution_clock::now();
+        auto excluded_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+
+        // Timing sorting
+        start = chrono::high_resolution_clock::now();
+        sorting(grupe, '3'); // Sorting by final grade
+        end = chrono::high_resolution_clock::now();
+        auto sort_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+
+        //3 skaidymo strategija
+        vector<duom> blogi;
+        // Splitting the vector into two
+        start = chrono::high_resolution_clock::now();
+
+        auto it = partition(grupe.begin(), grupe.end(), [](duom& student) { return student.getMark() >= 5;});
+        blogi.assign(it, grupe.end());
+        grupe.erase(it, grupe.end());
+
+        end = chrono::high_resolution_clock::now();
+        auto splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+
+        start = chrono::high_resolution_clock::now();
+        print_answers_to_file(grupe, test_file_location + "/../output_file/" + filename + "_kietekai.dat");
+        print_answers_to_file(blogi, test_file_location + "/../output_file/" + filename + + "_vargsiukai.dat");
+        end = chrono::high_resolution_clock::now();
+        auto write_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+
+        //Calculate and display total time
+        auto total_end = chrono::high_resolution_clock::now();
+        auto raw_time = chrono::duration_cast<chrono::milliseconds>(total_end - total_start).count();
+        auto total_time = raw_time - excluded_time;
+    
+        // Display summary of times
+        cout << "\n\nSantrauka:" << endl;
+        cout << "Skaitymas: " << float(read_time) / 1000 << " s "<< endl;
+        cout << "Rusiavimas: " << float(sort_time) / 1000 << " s "<< endl;
+        cout << "Skaidymas: " << float(splitting_time) / 1000 << " s "<< endl;
+        cout << "Rasymas: " << float(write_time) / 1000 << " s "<< endl;
+        cout << "Is viso: " << float(total_time) / 1000 << " s" << endl;
+
     }
-     else if (rule=='7')
-    {
-        method_test(grupe);
-        exit(0);
-    }    
+    else if (rule=='7')
+        method_test(grupe); 
     else if (rule=='8')
-    {
         cout<<"Darbas baigtas"<<endl;
-        exit(0);
-    }
 }
-void read(vector <duom> &grupe)
+void read_from_console(vector <duom> &grupe)
 {
     bool con=1;
     char check;
@@ -136,10 +193,10 @@ void read(vector <duom> &grupe)
         }
         local.exam=local.pazymiai.back();
         local.pazymiai.pop_back();
-        ///
+        //
         duom to_push(local);
         grupe.push_back(to_push);
-        ///
+        //
         local.pazymiai.clear();
         local.exam=0;
         cout<<"Noredami uzbaigti ivedima iveskite 0"<<endl;
@@ -164,9 +221,9 @@ void read_file(vector <duom> &grupe, string filename)
         terminate();
     }
 
-    in.seekg(0, ios::end);///pointeris i gala
-    streamsize size = in.tellg();///nustatomas failo dydis
-    in.seekg(0, ios::beg);///pointeris i pradzia
+    in.seekg(0, ios::end);//pointeris i gala
+    streamsize size = in.tellg();//nustatomas failo dydis
+    in.seekg(0, ios::beg);//pointeris i pradzia
 
     try
     {
@@ -185,7 +242,7 @@ void read_file(vector <duom> &grupe, string filename)
 
     string header_line;
     std::getline(in, header_line);
-    ///
+    //
     duom laik;
     try
     {
@@ -197,7 +254,7 @@ void read_file(vector <duom> &grupe, string filename)
     catch(const std::exception& e){}
     grupe.shrink_to_fit();
 }
-void read_names_only(vector <duom> &grupe)
+void read_names_from_console(vector <duom> &grupe)
 {
     bool con=1;
     temp local;
@@ -205,126 +262,15 @@ void read_names_only(vector <duom> &grupe)
     {
         cout<<"Iveskite varda ir pavarde"<<endl;
         cin>>local.var>>local.pav;
-        ///
+        //
         duom to_push(local);
         grupe.push_back(std::move(to_push));
-        ///
+        //
         if(check_menu()=='F')
             con=0;
     }
 }
-void sort_file_by_grades(vector<duom> &grupe, string filename) {
-    
-    // Start timing the entire process
-    //auto total_start = chrono::high_resolution_clock::now();
-
-    // Timing file reading
-    auto start = chrono::high_resolution_clock::now();
-    read_file(grupe, test_file_location + filename + ".dat"); 
-    auto end = chrono::high_resolution_clock::now();
-    auto read_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
-
-    // vid_med_calc() is not timed
-    //start = chrono::high_resolution_clock::now();
-    vid_med_calc(grupe);
-    //end = chrono::high_resolution_clock::now();
-    //auto excluded_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
-
-    // Timing sorting
-    start = chrono::high_resolution_clock::now();
-
-    sorting(grupe, '3'); // Sorting by final grade
-
-    end = chrono::high_resolution_clock::now();
-    auto sort_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
-
-
-
-    cout<<"Kuria strategija norite naudoti?"<<endl;
-    char rule='0';
-    while(rule!='1' && rule!='2' && rule!='3')
-    {
-        cout<<"Jei norite naudoti 1 strategija, spauskite '1'"<<endl;
-        cout<<"Jei norite naudoti 2 strategija, spauskite '2'"<<endl;
-        cout<<"Jei norite naudoti 3 strategija, spauskite '3'"<<endl; 
-        cin>>rule;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    }
-    auto splitting_time = 0;
-    if(rule=='1')
-    {
-            //1 strategija
-            vector<duom> blogi;
-            vector<duom> geri;
-            start = chrono::high_resolution_clock::now();
-            for(auto &i:grupe)
-            {
-                if(i.getMark()<5)
-                    blogi.push_back(i);
-                else
-                    geri.push_back(i);
-            }
-            end = chrono::high_resolution_clock::now();
-            splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
-            print_answers_to_file(geri, test_file_location + "/../output_file/" + filename + "_kietekai.dat");
-            print_answers_to_file(blogi, test_file_location + "/../output_file/" + filename + + "_vargsiukai.dat");
-            cout<<"printed"<<endl;
-    }
-    else if(rule=='2')
-    {
-            //2 strategija
-            vector<duom> blogi;
-            // Splitting the vector into two
-            start = chrono::high_resolution_clock::now();
-
-            auto it = std::remove_if(grupe.begin(), grupe.end(), [](duom& student) {
-                return student.getMark() >= 5;
-            });
-
-            blogi.assign(it, grupe.end());
-            grupe.erase(it, grupe.end());
-
-            end = chrono::high_resolution_clock::now();
-            splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
-            print_answers_to_file(grupe, test_file_location + "/../output_file/" + filename + "_kietekai.dat");
-            print_answers_to_file(blogi, test_file_location + "/../output_file/" + filename + + "_vargsiukai.dat");
-    }
-    else if(rule=='3')
-    {
-            //3 strategija
-            vector<duom> blogi;
-            // Splitting the vector into two
-            start = chrono::high_resolution_clock::now();
-            auto it = partition(grupe.begin(), grupe.end(), [](duom& student) {
-                return student.getMark() >= 5;
-            });
-
-            blogi.assign(it, grupe.end());
-            grupe.erase(it, grupe.end());
-
-            end = chrono::high_resolution_clock::now();
-            auto splitting_time = chrono::duration_cast<chrono::milliseconds>(end - start).count();
-            print_answers_to_file(grupe, test_file_location + "/../output_file/" + filename + "_kietekai.dat");
-            print_answers_to_file(blogi, test_file_location + "/../output_file/" + filename + + "_vargsiukai.dat");
-    }
-
-    // Calculate and display total time
-    /*
-    auto total_end = chrono::high_resolution_clock::now();
-    auto raw_time = chrono::duration_cast<chrono::milliseconds>(total_end - total_start).count();
-    auto total_time = raw_time - excluded_time;
-    */
-    
-    // Display summary of times
-    cout << "\n\nSantrauka:" << endl;
-        cout << "Skaitymas: " << float(read_time) / 1000 << " s "<< endl;
-        cout << "Rusiavimas: " << float(sort_time) / 1000 << " s "<< endl;
-        cout << "Skaidymas: " << float(splitting_time) / 1000 << " s "<< endl;
-        //cout << "Rasymas: " << float(write_time) / 1000 << " s "<< endl;
-        //cout << "Is viso: " << float(total_time) / 1000 << " s" << endl;
-
-}
-void random(vector <duom> &grupe, int m)
+void random_grades(vector <duom> &grupe, int m)
 {
     temp laik;
     random_device rd;
@@ -342,7 +288,7 @@ void random(vector <duom> &grupe, int m)
         laik.pazymiai.clear();
     }
 }
-void random_full(vector <duom> &grupe, int record_amount, int mark_amount)
+void random_names_grades(vector <duom> &grupe, int record_amount, int mark_amount)
 {
     temp laik;
     random_device rd;
@@ -359,10 +305,10 @@ void random_full(vector <duom> &grupe, int record_amount, int mark_amount)
         for(int i=0; i<mark_amount; i++)
             laik.pazymiai.push_back(dist(mt));
         laik.exam=(dist(mt));
-        ///
+        //
         duom to_push(laik);
         grupe.push_back(to_push);
-        ///
+        //
         laik.pazymiai.clear();
     }
 }
@@ -372,14 +318,14 @@ void print_data_to_file(vector <duom> &grupe, int mark_amount, string filename)
     stringstream ss;
     const int ss_size = 10000; //stringstream max eiluciu skaicius
     int count = 0;
-    ///
+    //
     ss << left << fixed << setw(20) << "Vardas"<<setw(20)<<"Pavarde";
     for(int i=0; i<mark_amount; i++)
     {
         ss << setw(7) << "ND" + to_string(i+1);
     }
     ss << setw(10) << "Egzaminas" <<endl;
-    ///
+    //
     for(auto i:grupe)
     {
         ss << setw(20) << i.getVar() << setw(20) << i.getPav();
@@ -404,21 +350,21 @@ void print_answers_to_file(vector <duom> &grupe, string filename)
     ofstream out(filename);
     out << left << fixed << setw(20) << "Vardas"<<setw(20)<<"Pavarde"
     << fixed << setprecision(2) << setw(20) << "Galutinis" <<endl;
-    ///
+    //
     for(auto i:grupe)
         out<<i;
     out.close();
 }
-void print_answers(vector <duom> &grupe)
+void print_answers_console(vector <duom> &grupe)
 {
     cout << left << fixed << setw(20) << "Vardas"<<setw(20)<<"Pavarde"
     << fixed << setprecision(2) << setw(20) << "Galutinis" <<endl;
     cout << "------------------------------------------------------------" << endl;
-    ///
+    //
     for(auto i:grupe)
         cout<<i;
 }
-///
+//
 char check_menu()
 {
     string input;
@@ -532,7 +478,7 @@ double median(duom given)
 void method_test(vector <duom> &grupe)
 {
     read_file(grupe, test_file_location + "kursiokai_1000" + ".dat");
-    ///
+    //
     duom test_case = grupe.at(0);
     //
     duom copy_constr = test_case;
@@ -540,20 +486,20 @@ void method_test(vector <duom> &grupe)
         cout<<"copy constr succesful"<<endl;
     else
         cout<<"copy constr unsuccesful"<<endl;
-    ///
+    //
     duom copy_method;
     copy_method=test_case;
     if(copy_method==test_case)
         cout<<"copy method succesful"<<endl;
     else
         cout<<"copy method unsuccesful"<<endl;
-    ///
+    //
     duom move_constr = std::move(test_case);
     if(move_constr==test_case && move_constr==grupe.at(0))
         cout<<"move constr unsuccesful"<<endl;
     else
         cout<<"move constr succesful"<<endl;
-    ///
+    //
     test_case = grupe.at(0);
     duom move_method;
     move_method=std::move(test_case);

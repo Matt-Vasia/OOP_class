@@ -16,7 +16,7 @@ elseif(MSVC)
 endif()
 
 # Add executable
-add_executable(program uzd.cpp)
+add_executable(program main.cpp)
 
 # Add test file location
 set(TEST_FILE_LOCATION "${CMAKE_SOURCE_DIR}/../../test_files/")
