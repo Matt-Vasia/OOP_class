@@ -159,7 +159,7 @@ class duom : private human
             }
             catch(const std::exception& e)
             {
-                std::cerr << e.what() << '\n';
+                std::cerr << e.what() << '/n';
             }
             
             stringstream line(eil);
