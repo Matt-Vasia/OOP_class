@@ -1,7 +1,7 @@
 
 # OOP
 
-Programoje implementuoti unit tipo testai
+Programoje implementuoti unit tipo testai.
 
 To run the main code, use build.bat to build the code and run.bat to run them.
 
@@ -48,32 +48,4 @@ Santrauka: (10000000)
 Skaitymas: 48.142 s
 Rusiavimas: 0.421 s
 Skaidymas: 0 s
-```
-```
-VECTOR test times with STRUCT structure (using average values)
-
-Santrauka: (1000)
-Skaitymas: 0.024 s
-Rusiavimas: 0.001 s
-Skaidymas: 0 s
-
-Santrauka: (10000)
-Skaitymas: 0.085 s
-Rusiavimas: 0.006 s
-Skaidymas: 0 s
-
-Santrauka: (100000)
-Skaitymas: 0.509 s
-Rusiavimas: 0.102 s
-Skaidymas: 0.009 s
-
-Santrauka: (1000000)
-Skaitymas: 3.913 s
-Rusiavimas: 0.88 s
-Skaidymas: 0.196 s
-
-Santrauka: (10000000)
-Skaitymas: 30.363 s
-Rusiavimas: 7.862 s
-Skaidymas: 1.662 s
 ```
