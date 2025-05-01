@@ -511,7 +511,7 @@ void method_test(vector <duom> &grupe)
     duom move_method;
     move_method=std::move(test_case);
     if(move_method==test_case && move_method==grupe.at(0))
-        cout<<"move method succesful"<<endl;
+        cout<<"move method unsuccesful"<<endl;
     else
         cout<<"move method succesful"<<endl;
 }

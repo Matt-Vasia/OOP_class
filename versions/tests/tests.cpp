@@ -50,31 +50,46 @@ TEST(Random_function, Handles_zero_grades)
         EXPECT_EQ(student.getPazymiai().size(), 0);
     }
 }
-/*
 TEST(Five_rule_test, Handles_data_correctly)
 {
     vector<duom> test_vector;
+    bool rule;
 
     read_file(test_vector, test_file_location + "kursiokai_1000" + ".dat");
     //
     duom test_case = test_vector.at(0);
     //
     duom copy_constr = test_case;
-    EXPECT_EQ(copy_constr==test_case, true);
+    if(copy_constr==test_case)
+        rule=true;
+    else
+        rule=false;
+    EXPECT_EQ(rule, true);
     //
     duom copy_method;
     copy_method=test_case;
-    EXPECT_EQ(copy_method==test_case, true);
+    if(copy_method==test_case)
+        rule=true;
+    else
+        rule=false;
+    EXPECT_EQ(rule, true);
     //
     duom move_constr = std::move(test_case);
-    //EXPECT_EQ(move_constr==test_case && move_constr==test_vector.at(0), false);
+    if(move_constr==test_case && move_constr==test_vector.at(0))
+        rule=false;
+    else
+        rule=true;
+    EXPECT_EQ(rule, true);
     //
     test_case = test_vector.at(0);
     duom move_method;
     move_method=std::move(test_case);
-    EXPECT_EQ(move_method==test_case && move_method==test_vector.at(0), true);
+    if(move_method==test_case && move_method==test_vector.at(0))
+        rule=false;
+    else
+        rule=true;
+    EXPECT_EQ(rule, true);
 }
-*/
 int main(int argc, char **argv){
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
