@@ -3,9 +3,9 @@
 
 Programoje implementuoti unit tipo testai.
 
-To run the main code, use build.bat to build the code and run.bat to run them.
+To run the main code, navigate to versions/{current_version}. Use build.bat to build the code and run.bat to run it.
 
-To run the tests, use build.bat to build the code and run.bat to run them.
+To run the tests, navigate to versions/tests. Use build.bat to build the code and run.bat to run them.
 
 ![Instructions](https://github.com/Matt-Vasia/OOP/blob/v1.0/instructions.gif?raw=true)
 
