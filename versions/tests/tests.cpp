@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "main.cpp"
+#include "program_to_test/main.cpp"
 
 TEST(Random_function, Random_grade_check)
 {
