@@ -3,8 +3,12 @@
 *_kietekai.dat
 *_vargsiukai.dat
 *kursiokai_10000000.dat
-versions/v2.0/build
-/.vscode
-versions/v2.0/.vscode/settings.json
-/.idea
-/versions/tests/build
+versions/deque(struct_impl)/*.exe
+versions/deque(struct_impl)/*.o
+versions/list(struct_impl)/*.exe
+versions/list(struct_impl)/*.o
+versions/vector(class_impl)/*.exe
+versions/vector(class_impl)/*.o
+versions/deque(struct_impl)/build
+versions/list(struct_impl)/build
+versions/vector(class_impl)/build
