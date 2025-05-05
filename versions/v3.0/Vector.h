@@ -16,4 +16,11 @@ public:
     using const_iterator         = const T*;
     using reverse_iterator       = std::reverse_iterator<iterator>;
     using const_reverse_iterator = std::reverse_iterator<const_iterator>;
+
+// --- Member Variables ---
+private:
+    pointer data_     = nullptr; // Pointer to the beginning of the allocated buffer
+    size_type size_     = 0;     // Number of elements currently stored
+    size_type capacity_ = 0;     // Total capacity of the allocated buffer
+    static inline int memory_realocated = 0;
 }
