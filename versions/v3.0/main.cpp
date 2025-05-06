@@ -19,7 +19,8 @@ void menu(Vector <duom> &grupe)
         cout<<"Jei norite sugeneruoti mokinio pazymius ir vardus atsitiktinai (failuose), spauskite '5'"<<endl;
         cout<<"Jei norite suruosiuoti mokinius pagal ju pazymius is failo, spauskite '6'"<<endl;
         cout<<"Jei norite istestuoti metodu perdengima, spauskite '7"<<endl;
-        cout<<"Jei norite baigti darba, spauskite '8'"<<endl;
+        cout<<"Jei norite istestuoti vector ir Vector klasiu spartos skirtuma, spauskite '8"<<endl;
+        cout<<"Jei norite baigti darba, spauskite '9'"<<endl;
         cin>>input;
         if(input.length()!=1)
             continue;
@@ -160,6 +161,8 @@ void menu(Vector <duom> &grupe)
     else if (rule=='7')
         method_test(grupe); 
     else if (rule=='8')
+        class_write_test();
+    else if (rule=='9')
         cout<<"Darbas baigtas"<<endl;
     cout<<"Atmintis perskirstyta: "<< grupe.getMemory_realocated() << " karta(-us)" <<endl;
 }
@@ -525,4 +528,38 @@ void method_test(Vector <duom> &grupe)
         cout<<"move method succesful"<<endl;
     else
         cout<<"move method succesful"<<endl;
+}
+void class_write_test()
+{
+    vector <duom> stl_vector;
+    Vector <duom> new_vector;
+    duom obj;
+
+    auto start = std::chrono::high_resolution_clock::now();
+    auto end = std::chrono::high_resolution_clock::now();
+    auto total = std::chrono::duration_cast<std::chrono::seconds>(end - start).count();
+
+    for(int i=1000; i<=100000000; i*=10)
+    {
+        start = std::chrono::high_resolution_clock::now();
+        for(int j=0; j<i; j++)
+            stl_vector.push_back(obj);
+        end = std::chrono::high_resolution_clock::now();
+        total = std::chrono::duration_cast<std::chrono::seconds>(end - start).count();
+        cout<<"Laikas skirtas uzpildyti stl::vector tipo struktura" << i << " objektu: " << total << " s"<<endl;
+        //
+        stl_vector.clear();
+        stl_vector.shrink_to_fit();
+        //
+        start = std::chrono::high_resolution_clock::now();
+        for(int j=0; j<i; j++)
+            new_vector.push_back(obj);
+        end = std::chrono::high_resolution_clock::now();
+        total = std::chrono::duration_cast<std::chrono::seconds>(end - start).count();
+        cout<<"Laikas skirtas uzpildyti Vector tipo struktura" << i << " objektu: " << total << " s"<<endl;
+        cout<<"///"<<endl;
+        //
+        new_vector.clear();
+        new_vector.shrink_to_fit();
+    }
 }

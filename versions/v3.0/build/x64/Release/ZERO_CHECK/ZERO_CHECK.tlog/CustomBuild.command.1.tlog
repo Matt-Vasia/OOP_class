@@ -1,6 +1,6 @@
-^C:\USERS\MATAS\DESKTOP\VS CODING\OOP (C++)\OOP(V1.5)\VERSIONS\VECTOR(CLASS_IMPL)\BUILD\CMAKEFILES\9F3A27CB867815CD265E92713969C3DB\GENERATE.STAMP.RULE
+^C:\USERS\MATAS\DESKTOP\VS CODING\OOP (C++)\OOP\VERSIONS\V3.0\BUILD\CMAKEFILES\F030E904741643075A8D99E93AE40EE9\GENERATE.STAMP.RULE
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/matas/Desktop/VS coding/OOP (c++)/OOP(v1.5)/versions/vector(class_impl)" "-BC:/Users/matas/Desktop/VS coding/OOP (c++)/OOP(v1.5)/versions/vector(class_impl)/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP(v1.5)/versions/vector(class_impl)/build/OOP_vector.sln"
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/v3.0" "-BC:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/v3.0/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/v3.0/build/OOP_vector.sln"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone

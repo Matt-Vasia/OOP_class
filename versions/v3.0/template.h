@@ -14,7 +14,7 @@
 #include <chrono>
 #include <execution>
 #include "std.h"
-//#include <vector>
+#include <vector>
 #include "Vector.h"
 
 struct temp
@@ -283,6 +283,7 @@ Vector<string> vardai={
 const string test_file_location = TEST_FILE_LOCATION; //CMake version
 //const string test_file_location = "../../test_files/"; ///Manual complilation version (debug)
 
+
 void menu(Vector <duom> &grupe);
 void read_from_console(Vector <duom> &grupe);
 void read_file(Vector <duom> &grupe, string filename);
@@ -301,6 +302,7 @@ double average(duom given);
 double median(duom given);
 //
 void method_test(Vector <duom> &grupe);
+void class_write_test();
 
 #endif
 
