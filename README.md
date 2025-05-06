@@ -1,18 +1,6 @@
 
 # OOP
 
-Programoje naudojama Abstract klasė human
-
-Su VECTOR struktūra naudojamas parallel computing funkcionalumas.
-
-<mark>CLASS duomenų struktūra realizuota TIK VECTOR versijoje<mark>
-
-To run tests, choose which container (LIST, DEQUE, VECTOR) you would like to use by going to one of the folders ("deque", "list", "vector") and run "run.bat".
-
-![Instructions](https://github.com/Matt-Vasia/OOP/blob/v1.0/instructions.gif?raw=true)
-
-![Menu example](https://github.com/Matt-Vasia/OOP/blob/v1.0/menu.png?raw=true)
-
 ## Running Tests
 
 Testing equipment:
@@ -24,58 +12,72 @@ System type	    Windows 11 64x
 ```
 
 ```
-VECTOR test times with CLASS structure (using average values)
+PUSH_BACK TIPO TESTAI
+```
 
-Santrauka: (1000)
-Skaitymas: 0.006 s
-Rusiavimas: 0.001 s
-Skaidymas: 0 s
+```
+Laikas skirtas uzpildyti stl::vector tipo struktura 1000 objektu: 0 s
+Laikas skirtas uzpildyti Vector tipo struktura 1000 objektu: 0 s
+```
+```
+Laikas skirtas uzpildyti stl::vector tipo struktura 10000 objektu: 0 s
+Laikas skirtas uzpildyti Vector tipo struktura 10000 objektu: 0 s
+```
+```
+Laikas skirtas uzpildyti stl::vector tipo struktura 100000 objektu: 0 s
+Laikas skirtas uzpildyti Vector tipo struktura 100000 objektu: 0 s
+```
+```
+Laikas skirtas uzpildyti stl::vector tipo struktura 1000000 objektu: 0 s
+Laikas skirtas uzpildyti Vector tipo struktura 1000000 objektu: 0 s
+```
+```
+Laikas skirtas uzpildyti stl::vector tipo struktura 10000000 objektu: 3 s
+Laikas skirtas uzpildyti Vector tipo struktura 10000000 objektu: 2 s
+```
+```
+Laikas skirtas uzpildyti stl::vector tipo struktura 100000000 objektu: 147 s
+Laikas skirtas uzpildyti Vector tipo struktura 100000000 objektu: 141 s
+```
 
-Santrauka: (10000)
-Skaitymas: 0.03 s
-Rusiavimas: 0.004 s
-Skaidymas: 0 s
+```
+FAILU APDOROJIMO TIPO TESTAI (6 parinktis)
+```
 
-Santrauka: (100000)
+```
+Santrauka: (100000) stl::vector
 Skaitymas: 0.424 s
 Rusiavimas: 0.048 s
 Skaidymas: 0 s
-
-Santrauka: (1000000)
+```
+```
+Santrauka: (1000000) stl::vector
 Skaitymas: 5.201 s
 Rusiavimas: 0.331 s
 Skaidymas: 0 s
-
-Santrauka: (10000000)
+```
+```
+Santrauka: (10000000) stl::vector
 Skaitymas: 48.142 s
 Rusiavimas: 0.421 s
 Skaidymas: 0 s
 ```
+
 ```
-VECTOR test times with STRUCT structure (using average values)
-
-Santrauka: (1000)
-Skaitymas: 0.024 s
-Rusiavimas: 0.001 s
-Skaidymas: 0 s
-
-Santrauka: (10000)
-Skaitymas: 0.085 s
-Rusiavimas: 0.006 s
-Skaidymas: 0 s
-
-Santrauka: (100000)
-Skaitymas: 0.509 s
-Rusiavimas: 0.102 s
-Skaidymas: 0.009 s
-
-Santrauka: (1000000)
-Skaitymas: 3.913 s
-Rusiavimas: 0.88 s
-Skaidymas: 0.196 s
-
-Santrauka: (10000000)
-Skaitymas: 30.363 s
-Rusiavimas: 7.862 s
-Skaidymas: 1.662 s
+Santrauka: (100000) Vector
+Skaitymas: 0.593 s
+Rusiavimas: 0.069 s
+Skaidymas: 0.071 s
+```
+```
+Santrauka: (1000000) Vector
+Skaitymas: 5.327 s
+Rusiavimas: 0.677 s
+Skaidymas: 0.657 s
+```
+```
+Santrauka: (10000000) Vector
+Skaitymas: 44.439 s
+Rusiavimas: 7.48 s
+Skaidymas: 6.605 s
 ```
