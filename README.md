@@ -24,6 +24,10 @@ System type	    Windows 11 64x
 ```
 
 ```
+push_back tipo testai
+```
+
+```
 Laikas skirtas uzpildyti stl::vector tipo struktura 1000 objektu: 0 s
 Laikas skirtas uzpildyti Vector tipo struktura 1000 objektu: 0 s
 ```
@@ -46,4 +50,54 @@ Laikas skirtas uzpildyti Vector tipo struktura 10000000 objektu: 2 s
 ```
 Laikas skirtas uzpildyti stl::vector tipo struktura 100000000 objektu: 147 s
 Laikas skirtas uzpildyti Vector tipo struktura 100000000 objektu: 141 s
+```
+
+```
+failu apdorojimo tipo testai
+```
+
+```
+Rezultatai naudojant stl::vector klase
+```
+
+```
+Santrauka: (100000)
+Skaitymas: 0.424 s
+Rusiavimas: 0.048 s
+Skaidymas: 0 s
+```
+```
+Santrauka: (1000000)
+Skaitymas: 5.201 s
+Rusiavimas: 0.331 s
+Skaidymas: 0 s
+```
+```
+Santrauka: (10000000)
+Skaitymas: 48.142 s
+Rusiavimas: 0.421 s
+Skaidymas: 0 s
+```
+
+```
+Rezultatai naudojant Vector klase
+```
+
+```
+Santrauka: (100000)
+Skaitymas: 0.593 s
+Rusiavimas: 0.069 s
+Skaidymas: 0.071 s
+```
+```
+Santrauka: (1000000)
+Skaitymas: 5.327 s
+Rusiavimas: 0.677 s
+Skaidymas: 0.657 s
+```
+```
+Santrauka: (10000000)
+Skaitymas: 44.439 s
+Rusiavimas: 7.48 s
+Skaidymas: 6.605 s
 ```
