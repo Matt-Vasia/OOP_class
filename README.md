@@ -1,18 +1,6 @@
 
 # OOP
 
-Programoje naudojama Abstract klasė human
-
-Su VECTOR struktūra naudojamas parallel computing funkcionalumas.
-
-<mark>CLASS duomenų struktūra realizuota TIK VECTOR versijoje<mark>
-
-To run tests, choose which container (LIST, DEQUE, VECTOR) you would like to use by going to one of the folders ("deque", "list", "vector") and run "run.bat".
-
-![Instructions](https://github.com/Matt-Vasia/OOP/blob/v1.0/instructions.gif?raw=true)
-
-![Menu example](https://github.com/Matt-Vasia/OOP/blob/v1.0/menu.png?raw=true)
-
 ## Running Tests
 
 Testing equipment:
