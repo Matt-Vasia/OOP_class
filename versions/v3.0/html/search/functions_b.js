@@ -1,0 +1,12 @@
+var searchData=
+[
+  ['random_5fgrades_0',['random_grades',['../program_8cpp.html#a94533809ee6878a109c8d242542bb0f1',1,'random_grades(Vector&lt; duom &gt; &amp;grupe, int m):&#160;program.cpp'],['../template_8h.html#a94533809ee6878a109c8d242542bb0f1',1,'random_grades(Vector&lt; duom &gt; &amp;grupe, int m):&#160;program.cpp']]],
+  ['random_5fnames_5fgrades_1',['random_names_grades',['../program_8cpp.html#a6152e89a38004b2c221df83748db2ce6',1,'random_names_grades(Vector&lt; duom &gt; &amp;grupe, int record_amount, int mark_amount):&#160;program.cpp'],['../template_8h.html#a6152e89a38004b2c221df83748db2ce6',1,'random_names_grades(Vector&lt; duom &gt; &amp;grupe, int record_amount, int mark_amount):&#160;program.cpp']]],
+  ['rbegin_2',['rbegin',['../class_vector.html#a1ccf775c0a9c61b415508d88b4e79792',1,'Vector::rbegin() noexcept'],['../class_vector.html#a4fb453506efb9306cc4f722f60ae9eee',1,'Vector::rbegin() const noexcept']]],
+  ['read_5ffile_3',['read_file',['../program_8cpp.html#aa0f6434077fe84d14f8c0e1376c74dfb',1,'read_file(Vector&lt; duom &gt; &amp;grupe, string filename):&#160;program.cpp'],['../template_8h.html#aa0f6434077fe84d14f8c0e1376c74dfb',1,'read_file(Vector&lt; duom &gt; &amp;grupe, string filename):&#160;program.cpp']]],
+  ['read_5ffrom_5fconsole_4',['read_from_console',['../program_8cpp.html#a64c1fe3b0dafb6410c5aaa895af94190',1,'read_from_console(Vector&lt; duom &gt; &amp;grupe):&#160;program.cpp'],['../template_8h.html#a64c1fe3b0dafb6410c5aaa895af94190',1,'read_from_console(Vector&lt; duom &gt; &amp;grupe):&#160;program.cpp']]],
+  ['read_5fnames_5ffrom_5fconsole_5',['read_names_from_console',['../program_8cpp.html#acb5777bfbd5b71d837c8d315f91928bc',1,'read_names_from_console(Vector&lt; duom &gt; &amp;grupe):&#160;program.cpp'],['../template_8h.html#acb5777bfbd5b71d837c8d315f91928bc',1,'read_names_from_console(Vector&lt; duom &gt; &amp;grupe):&#160;program.cpp']]],
+  ['rend_6',['rend',['../class_vector.html#afb561678461f36ba0a0adb79484ff394',1,'Vector::rend() noexcept'],['../class_vector.html#a1034cd20b0fcf0067b1fe198dea14672',1,'Vector::rend() const noexcept']]],
+  ['reserve_7',['reserve',['../class_vector.html#a18ced2e01a4cd11e87c20d1442a19353',1,'Vector']]],
+  ['resize_8',['resize',['../class_vector.html#aa33cb6ea7ef1dd4676db9d77a8c66e48',1,'Vector::resize(size_type count)'],['../class_vector.html#acb0712ac1db3ca948505603c877aa71f',1,'Vector::resize(size_type count, const value_type &amp;value)']]]
+];

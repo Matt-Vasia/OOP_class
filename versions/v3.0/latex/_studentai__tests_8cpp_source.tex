@@ -1,0 +1,111 @@
+\doxysection{Studentai\+\_\+tests.\+cpp}
+\hypertarget{_studentai__tests_8cpp_source}{}\label{_studentai__tests_8cpp_source}\mbox{\hyperlink{_studentai__tests_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{template_8h}{template.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <gtest/gtest.h>}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00004}\mbox{\hyperlink{class_studentai_test}{00004}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_studentai_test}{StudentaiTest}}\ :\ \textcolor{keyword}{public}\ ::testing::Test\ \{}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00005}00005\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00006}\mbox{\hyperlink{class_studentai_test_a519f3cd0edbb2111823b691176f0c7ca}{00006}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_studentai_test_a519f3cd0edbb2111823b691176f0c7ca}{SetUp}}()\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00007}00007\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_studentai_test_ae5be0f27a2b5641fea7459313f27a802}{testNd}}\ =\ \{8,\ 9,\ 7,\ 10,\ 6\};}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00008}00008\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00009}\mbox{\hyperlink{class_studentai_test_ae5be0f27a2b5641fea7459313f27a802}{00009}}\ \ \ \ \ \mbox{\hyperlink{class_vector}{Vector<int>}}\ \mbox{\hyperlink{class_studentai_test_ae5be0f27a2b5641fea7459313f27a802}{testNd}};}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00011}\mbox{\hyperlink{class_studentai_test_a6a04d2c8cc6700a445995a7551bea39d}{00011}}\ \ \ \ \ \mbox{\hyperlink{classduom}{duom}}\ \mbox{\hyperlink{class_studentai_test_a6a04d2c8cc6700a445995a7551bea39d}{createSampleStudent}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtemp}{temp}}\ input;}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00013}00013\ \ \ \ \ \ \ \ \ input.\mbox{\hyperlink{structtemp_ac075b60896a58c4976283c4b125a5ebc}{pazymiai}}\ =\ \mbox{\hyperlink{class_studentai_test_ae5be0f27a2b5641fea7459313f27a802}{testNd}};}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classduom}{duom}}\ test(input);}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ test;}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00016}00016\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00017}00017\ \};}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00018}\mbox{\hyperlink{_studentai__tests_8cpp_a9684f03321088e54d74b25d71ca42a93}{00018}}\ \mbox{\hyperlink{_studentai__tests_8cpp_a9684f03321088e54d74b25d71ca42a93}{TEST\_F}}(\mbox{\hyperlink{class_studentai_test}{StudentaiTest}},\ Random\_grade\_check)}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00019}00019\ \{}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00020}00020\ \ \ \ \ \mbox{\hyperlink{class_vector}{Vector<duom>}}\ test\_vector;}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00022}00022\ \ \ \ \ \textcolor{comment}{//\ Generate\ random\ names\ and\ grades\ for\ 10\ students,\ each\ with\ 5\ grades}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00023}00023\ \ \ \ \ \mbox{\hyperlink{program_8cpp_a6152e89a38004b2c221df83748db2ce6}{random\_names\_grades}}(test\_vector,\ 10,\ 5);}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00025}00025\ \ \ \ \ \textcolor{comment}{//\ Check\ that\ the\ vector\ contains\ 10\ students}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00026}00026\ \ \ \ \ EXPECT\_EQ(test\_vector.\mbox{\hyperlink{class_vector_a820aa7774df7f171db7ced1049adce57}{size}}(),\ 10);}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00028}00028\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ student\ :\ test\_vector)}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00029}00029\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ that\ each\ student\ has\ 5\ grades}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ EXPECT\_EQ(student.getPazymiai().size(),\ 5);}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ mark\ :\ student.getPazymiai())}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ that\ each\ grade\ is\ between\ 1\ and\ 10}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ EXPECT\_GE(mark,\ 1);}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ EXPECT\_LE(mark,\ 10);}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00039}00039\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00040}00040\ \}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00041}\mbox{\hyperlink{_studentai__tests_8cpp_ac6d8959aa27a5b962aebd8ffc97bfd8d}{00041}}\ \mbox{\hyperlink{_studentai__tests_8cpp_a9684f03321088e54d74b25d71ca42a93}{TEST\_F}}(\mbox{\hyperlink{class_studentai_test}{StudentaiTest}},\ Handles\_zero\_students)}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00042}00042\ \{}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00043}00043\ \ \ \ \ \mbox{\hyperlink{class_vector}{Vector<duom>}}\ test\_vector;}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{comment}{//\ Generate\ random\ names\ and\ grades\ for\ 0\ students}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00046}00046\ \ \ \ \ \mbox{\hyperlink{program_8cpp_a6152e89a38004b2c221df83748db2ce6}{random\_names\_grades}}(test\_vector,\ 0,\ 5);}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00048}00048\ \ \ \ \ \textcolor{comment}{//\ Check\ that\ the\ vector\ is\ empty}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00049}00049\ \ \ \ \ EXPECT\_EQ(test\_vector.\mbox{\hyperlink{class_vector_a820aa7774df7f171db7ced1049adce57}{size}}(),\ 0);}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00050}00050\ \}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00051}\mbox{\hyperlink{_studentai__tests_8cpp_abdaff41dff9c963f740c8301a35ede23}{00051}}\ \mbox{\hyperlink{_studentai__tests_8cpp_a9684f03321088e54d74b25d71ca42a93}{TEST\_F}}(\mbox{\hyperlink{class_studentai_test}{StudentaiTest}},\ Handles\_zero\_grades)}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00052}00052\ \{}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00053}00053\ \ \ \ \ \mbox{\hyperlink{class_vector}{Vector<duom>}}\ test\_vector;}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00055}00055\ \ \ \ \ \textcolor{comment}{//\ Generate\ random\ names\ and\ grades\ for\ 10\ students,\ each\ with\ 0\ grades}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00056}00056\ \ \ \ \ \mbox{\hyperlink{program_8cpp_a6152e89a38004b2c221df83748db2ce6}{random\_names\_grades}}(test\_vector,\ 10,\ 0);}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00058}00058\ \ \ \ \ \textcolor{comment}{//\ Check\ that\ the\ vector\ contains\ 10\ students}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00059}00059\ \ \ \ \ EXPECT\_EQ(test\_vector.\mbox{\hyperlink{class_vector_a820aa7774df7f171db7ced1049adce57}{size}}(),\ 10);}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00061}00061\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ student\ :\ test\_vector)}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00062}00062\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ that\ each\ student\ has\ 0\ grades}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ EXPECT\_EQ(student.getPazymiai().size(),\ 0);}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00065}00065\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00066}00066\ \}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00067}\mbox{\hyperlink{_studentai__tests_8cpp_a82f651d3eb07a74267db35ca8ca76d94}{00067}}\ \mbox{\hyperlink{_studentai__tests_8cpp_a9684f03321088e54d74b25d71ca42a93}{TEST\_F}}(\mbox{\hyperlink{class_studentai_test}{StudentaiTest}},\ Handles\_data\_correctly)}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00068}00068\ \{}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00069}00069\ \ \ \ \ \mbox{\hyperlink{class_vector}{Vector<duom>}}\ test\_vector;}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00070}00070\ \ \ \ \ \textcolor{keywordtype}{bool}\ rule;}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00072}00072\ \ \ \ \ \mbox{\hyperlink{program_8cpp_aa0f6434077fe84d14f8c0e1376c74dfb}{read\_file}}(test\_vector,\ \mbox{\hyperlink{template_8h_a9a69dcce9fbb892f1a64f881f041f42c}{test\_file\_location}}\ +\ \textcolor{stringliteral}{"{}kursiokai\_1000"{}}\ +\ \textcolor{stringliteral}{"{}.dat"{}});}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00073}00073\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00074}00074\ \ \ \ \ \mbox{\hyperlink{classduom}{duom}}\ test\_case\ =\ test\_vector.\mbox{\hyperlink{class_vector_a1aaa89866e5ab494268603e434ff0be9}{at}}(0);}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00075}00075\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00076}00076\ \ \ \ \ \mbox{\hyperlink{classduom}{duom}}\ copy\_constr\ =\ test\_case;}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00077}00077\ \ \ \ \ \textcolor{keywordflow}{if}(copy\_constr==test\_case)}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ rule=\textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00079}00079\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ rule=\textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00081}00081\ \ \ \ \ EXPECT\_EQ(rule,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00082}00082\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00083}00083\ \ \ \ \ \mbox{\hyperlink{classduom}{duom}}\ copy\_method;}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00084}00084\ \ \ \ \ copy\_method=test\_case;}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00085}00085\ \ \ \ \ \textcolor{keywordflow}{if}(copy\_method==test\_case)}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ rule=\textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00087}00087\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ rule=\textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00089}00089\ \ \ \ \ EXPECT\_EQ(rule,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00090}00090\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00091}00091\ \ \ \ \ \mbox{\hyperlink{classduom}{duom}}\ move\_constr\ =\ std::move(test\_case);}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00092}00092\ \ \ \ \ \textcolor{keywordflow}{if}(move\_constr==test\_case\ \&\&\ move\_constr==test\_vector.\mbox{\hyperlink{class_vector_a1aaa89866e5ab494268603e434ff0be9}{at}}(0))}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ rule=\textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00094}00094\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ rule=\textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00096}00096\ \ \ \ \ EXPECT\_EQ(rule,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00097}00097\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00098}00098\ \ \ \ \ test\_case\ =\ test\_vector.\mbox{\hyperlink{class_vector_a1aaa89866e5ab494268603e434ff0be9}{at}}(0);}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00099}00099\ \ \ \ \ \mbox{\hyperlink{classduom}{duom}}\ move\_method;}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00100}00100\ \ \ \ \ move\_method=std::move(test\_case);}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00101}00101\ \ \ \ \ \textcolor{keywordflow}{if}(move\_method==test\_case\ \&\&\ move\_method==test\_vector.\mbox{\hyperlink{class_vector_a1aaa89866e5ab494268603e434ff0be9}{at}}(0))}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ rule=\textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00103}00103\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ rule=\textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00105}00105\ \ \ \ \ EXPECT\_EQ(rule,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_studentai__tests_8cpp_source_l00106}00106\ \}}
+
+\end{DoxyCode}

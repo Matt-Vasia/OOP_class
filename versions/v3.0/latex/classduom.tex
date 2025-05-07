@@ -1,0 +1,371 @@
+\doxysection{duom Class Reference}
+\hypertarget{classduom}{}\label{classduom}\index{duom@{duom}}
+
+
+{\ttfamily \#include $<$template.\+h$>$}
+
+
+
+Inheritance diagram for duom\+:
+% FIG 0
+
+
+Collaboration diagram for duom\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classduom_a3912341fe49830e8f53a722a660656f6}{abstract\+Class\+Function}} () override
+\item 
+\mbox{\hyperlink{classduom_a06213adee0044999e6d1eee40270d1f7}{duom}} (\mbox{\hyperlink{structtemp}{temp}} \&a)
+\item 
+\mbox{\hyperlink{classduom_a137ab4df4f6a025a28808c3f7e983ee1}{duom}} (string var, string pav)
+\item 
+\mbox{\hyperlink{classduom_a897a82aba22f935fcc80348d61d7c787}{duom}} (string var, string pav, \mbox{\hyperlink{class_vector}{Vector}}$<$ int $>$ \&pazymiai, int exam)
+\item 
+\mbox{\hyperlink{classduom_a1085cea793f4e67b9521f75055b6b1e7}{duom}} ()
+\item 
+\mbox{\hyperlink{classduom_a7873121c8e39000b4182dc82b66439bf}{\texorpdfstring{$\sim$}{\string~}duom}} ()
+\item 
+\mbox{\hyperlink{classduom_aedc91e1a30b63f4d8c322ee692a1de90}{duom}} (const \mbox{\hyperlink{classduom}{duom}} \&to\+\_\+copy)
+\item 
+\mbox{\hyperlink{classduom_a382ece802642a5ee1553d2a29c7b8849}{duom}} (\mbox{\hyperlink{classduom}{duom}} \&\&to\+\_\+move) noexcept
+\item 
+\mbox{\hyperlink{classduom}{duom}} \& \mbox{\hyperlink{classduom_a514f99ab18f752add48ad39013b81200}{operator=}} (const \mbox{\hyperlink{classduom}{duom}} \&to\+\_\+copy)
+\item 
+\mbox{\hyperlink{classduom}{duom}} \& \mbox{\hyperlink{classduom_a0f3c08af449e40282df0eebf6b3c747e}{operator=}} (\mbox{\hyperlink{classduom}{duom}} \&\&to\+\_\+move) noexcept
+\item 
+bool \mbox{\hyperlink{classduom_a08c7dda9a5b0268d3163ef204b3fb0e8}{operator==}} (\mbox{\hyperlink{classduom}{duom}} \&\&to\+\_\+compare) noexcept
+\item 
+string \mbox{\hyperlink{classduom_a477eda5caa44f1fe1f62df3de9b70d12}{get\+Var}} () const
+\item 
+string \mbox{\hyperlink{classduom_a2b3e4aaac17507c0c052e405a5ce8bcc}{get\+Pav}} () const
+\item 
+int \mbox{\hyperlink{classduom_ac4050e3d3f3b8a1f90d957eb1b2e9d24}{get\+Pazymiai\+\_\+at}} (int i) const
+\item 
+\mbox{\hyperlink{class_vector}{Vector}}$<$ int $>$ \mbox{\hyperlink{classduom_a27d200e5ac41fe6621ef33ef9c98357b}{get\+Pazymiai}} () const
+\item 
+int \mbox{\hyperlink{classduom_aee78921c3bb589c7b1c82e151198ca5f}{get\+Exam}} () const
+\item 
+double \mbox{\hyperlink{classduom_ac8fc04262e076344696f213c30869bb2}{get\+Vid\+\_\+med}} () const
+\item 
+double \mbox{\hyperlink{classduom_a5b0c3d4a281d30860c4fcdd1cf51f557}{get\+Mark}} () const
+\item 
+void \mbox{\hyperlink{classduom_a173191d5705b0c94dc498e4d81028e9c}{set\+Pazymiai}} (\mbox{\hyperlink{class_vector}{Vector}}$<$ int $>$ \&pazymiai)
+\item 
+void \mbox{\hyperlink{classduom_ae236c993d7ab361648fae936d53ffff1}{add\+Pazymiai}} (int grade)
+\item 
+void \mbox{\hyperlink{classduom_acab17ba5238d7b5d93c68cd02a6aa88e}{set\+Exam}} (int exam)
+\item 
+void \mbox{\hyperlink{classduom_a1091ebdfed0f85cd084b18bec921af77}{set\+Vid\+\_\+med}} (double vid\+\_\+med)
+\item 
+void \mbox{\hyperlink{classduom_a4be9408ae6870738de9382b08cdd0fd0}{set\+Mark}} (double mark)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classduom_a73e9b07692fd2e26fb42741d5b212628}{operator==}} (const \mbox{\hyperlink{classduom}{duom}} \&a, const \mbox{\hyperlink{classduom}{duom}} \&b) noexcept
+\item 
+std\+::ifstream \& \mbox{\hyperlink{classduom_a48dd013746fd9d814db6bf4a26af57a8}{operator$>$$>$}} (std\+::ifstream \&in, \mbox{\hyperlink{classduom}{duom}} \&student)
+\item 
+std\+::ostream \& \mbox{\hyperlink{classduom_a1cacdf040824d25db63e1466f53c8e48}{operator$<$$<$}} (std\+::ostream \&out, \mbox{\hyperlink{classduom}{duom}} \&student)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00040}{40}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classduom_a06213adee0044999e6d1eee40270d1f7}\index{duom@{duom}!duom@{duom}}
+\index{duom@{duom}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{duom()}{duom()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily \label{classduom_a06213adee0044999e6d1eee40270d1f7} 
+duom\+::duom (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtemp}{temp}} \&}]{a}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00053}{53}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+Here is the caller graph for this function\+:
+% FIG 2
+\Hypertarget{classduom_a137ab4df4f6a025a28808c3f7e983ee1}\index{duom@{duom}!duom@{duom}}
+\index{duom@{duom}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{duom()}{duom()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily \label{classduom_a137ab4df4f6a025a28808c3f7e983ee1} 
+duom\+::duom (\begin{DoxyParamCaption}\item[{string}]{var}{, }\item[{string}]{pav}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00062}{62}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+\Hypertarget{classduom_a897a82aba22f935fcc80348d61d7c787}\index{duom@{duom}!duom@{duom}}
+\index{duom@{duom}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{duom()}{duom()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily \label{classduom_a897a82aba22f935fcc80348d61d7c787} 
+duom\+::duom (\begin{DoxyParamCaption}\item[{string}]{var}{, }\item[{string}]{pav}{, }\item[{\mbox{\hyperlink{class_vector}{Vector}}$<$ int $>$ \&}]{pazymiai}{, }\item[{int}]{exam}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00067}{67}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+\Hypertarget{classduom_a1085cea793f4e67b9521f75055b6b1e7}\index{duom@{duom}!duom@{duom}}
+\index{duom@{duom}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{duom()}{duom()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily \label{classduom_a1085cea793f4e67b9521f75055b6b1e7} 
+duom\+::duom (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00074}{74}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+\Hypertarget{classduom_a7873121c8e39000b4182dc82b66439bf}\index{duom@{duom}!````~duom@{\texorpdfstring{$\sim$}{\string~}duom}}
+\index{````~duom@{\texorpdfstring{$\sim$}{\string~}duom}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}duom()}{\string~duom()}}
+{\footnotesize\ttfamily \label{classduom_a7873121c8e39000b4182dc82b66439bf} 
+duom\+::\texorpdfstring{$\sim$}{\string~}duom (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00076}{76}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+\Hypertarget{classduom_aedc91e1a30b63f4d8c322ee692a1de90}\index{duom@{duom}!duom@{duom}}
+\index{duom@{duom}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{duom()}{duom()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily \label{classduom_aedc91e1a30b63f4d8c322ee692a1de90} 
+duom\+::duom (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classduom}{duom}} \&}]{to\+\_\+copy}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00086}{86}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+Here is the call graph for this function\+:
+% FIG 3
+\Hypertarget{classduom_a382ece802642a5ee1553d2a29c7b8849}\index{duom@{duom}!duom@{duom}}
+\index{duom@{duom}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{duom()}{duom()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily \label{classduom_a382ece802642a5ee1553d2a29c7b8849} 
+duom\+::duom (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classduom}{duom}} \&\&}]{to\+\_\+move}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00096}{96}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+Here is the call graph for this function\+:
+% FIG 4
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classduom_a3912341fe49830e8f53a722a660656f6}\index{duom@{duom}!abstractClassFunction@{abstractClassFunction}}
+\index{abstractClassFunction@{abstractClassFunction}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{abstractClassFunction()}{abstractClassFunction()}}
+{\footnotesize\ttfamily \label{classduom_a3912341fe49830e8f53a722a660656f6} 
+void duom\+::abstract\+Class\+Function (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classhuman_aacfde268825d19be31beff06d2e6f35c}{human}}.
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00043}{43}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+\Hypertarget{classduom_ae236c993d7ab361648fae936d53ffff1}\index{duom@{duom}!addPazymiai@{addPazymiai}}
+\index{addPazymiai@{addPazymiai}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{addPazymiai()}{addPazymiai()}}
+{\footnotesize\ttfamily \label{classduom_ae236c993d7ab361648fae936d53ffff1} 
+void duom\+::add\+Pazymiai (\begin{DoxyParamCaption}\item[{int}]{grade}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00220}{220}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+\Hypertarget{classduom_aee78921c3bb589c7b1c82e151198ca5f}\index{duom@{duom}!getExam@{getExam}}
+\index{getExam@{getExam}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{getExam()}{getExam()}}
+{\footnotesize\ttfamily \label{classduom_aee78921c3bb589c7b1c82e151198ca5f} 
+int duom\+::get\+Exam (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00203}{203}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+\Hypertarget{classduom_a5b0c3d4a281d30860c4fcdd1cf51f557}\index{duom@{duom}!getMark@{getMark}}
+\index{getMark@{getMark}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{getMark()}{getMark()}}
+{\footnotesize\ttfamily \label{classduom_a5b0c3d4a281d30860c4fcdd1cf51f557} 
+double duom\+::get\+Mark (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00211}{211}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+\Hypertarget{classduom_a2b3e4aaac17507c0c052e405a5ce8bcc}\index{duom@{duom}!getPav@{getPav}}
+\index{getPav@{getPav}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{getPav()}{getPav()}}
+{\footnotesize\ttfamily \label{classduom_a2b3e4aaac17507c0c052e405a5ce8bcc} 
+string duom\+::get\+Pav (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00191}{191}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+\Hypertarget{classduom_a27d200e5ac41fe6621ef33ef9c98357b}\index{duom@{duom}!getPazymiai@{getPazymiai}}
+\index{getPazymiai@{getPazymiai}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{getPazymiai()}{getPazymiai()}}
+{\footnotesize\ttfamily \label{classduom_a27d200e5ac41fe6621ef33ef9c98357b} 
+\mbox{\hyperlink{class_vector}{Vector}}$<$ int $>$ duom\+::get\+Pazymiai (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00199}{199}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+Here is the caller graph for this function\+:
+% FIG 5
+\Hypertarget{classduom_ac4050e3d3f3b8a1f90d957eb1b2e9d24}\index{duom@{duom}!getPazymiai\_at@{getPazymiai\_at}}
+\index{getPazymiai\_at@{getPazymiai\_at}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{getPazymiai\_at()}{getPazymiai\_at()}}
+{\footnotesize\ttfamily \label{classduom_ac4050e3d3f3b8a1f90d957eb1b2e9d24} 
+int duom\+::get\+Pazymiai\+\_\+at (\begin{DoxyParamCaption}\item[{int}]{i}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00195}{195}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+\Hypertarget{classduom_a477eda5caa44f1fe1f62df3de9b70d12}\index{duom@{duom}!getVar@{getVar}}
+\index{getVar@{getVar}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{getVar()}{getVar()}}
+{\footnotesize\ttfamily \label{classduom_a477eda5caa44f1fe1f62df3de9b70d12} 
+string duom\+::get\+Var (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00187}{187}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+\Hypertarget{classduom_ac8fc04262e076344696f213c30869bb2}\index{duom@{duom}!getVid\_med@{getVid\_med}}
+\index{getVid\_med@{getVid\_med}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{getVid\_med()}{getVid\_med()}}
+{\footnotesize\ttfamily \label{classduom_ac8fc04262e076344696f213c30869bb2} 
+double duom\+::get\+Vid\+\_\+med (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00207}{207}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+\Hypertarget{classduom_a514f99ab18f752add48ad39013b81200}\index{duom@{duom}!operator=@{operator=}}
+\index{operator=@{operator=}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classduom_a514f99ab18f752add48ad39013b81200} 
+\mbox{\hyperlink{classduom}{duom}} \& duom\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classduom}{duom}} \&}]{to\+\_\+copy}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00110}{110}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+Here is the call graph for this function\+:
+% FIG 6
+\Hypertarget{classduom_a0f3c08af449e40282df0eebf6b3c747e}\index{duom@{duom}!operator=@{operator=}}
+\index{operator=@{operator=}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classduom_a0f3c08af449e40282df0eebf6b3c747e} 
+\mbox{\hyperlink{classduom}{duom}} \& duom\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classduom}{duom}} \&\&}]{to\+\_\+move}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00122}{122}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+Here is the call graph for this function\+:
+% FIG 7
+\Hypertarget{classduom_a08c7dda9a5b0268d3163ef204b3fb0e8}\index{duom@{duom}!operator==@{operator==}}
+\index{operator==@{operator==}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily \label{classduom_a08c7dda9a5b0268d3163ef204b3fb0e8} 
+bool duom\+::operator== (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classduom}{duom}} \&\&}]{to\+\_\+compare}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00138}{138}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+Here is the call graph for this function\+:
+% FIG 8
+\Hypertarget{classduom_acab17ba5238d7b5d93c68cd02a6aa88e}\index{duom@{duom}!setExam@{setExam}}
+\index{setExam@{setExam}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{setExam()}{setExam()}}
+{\footnotesize\ttfamily \label{classduom_acab17ba5238d7b5d93c68cd02a6aa88e} 
+void duom\+::set\+Exam (\begin{DoxyParamCaption}\item[{int}]{exam}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00227}{227}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+\Hypertarget{classduom_a4be9408ae6870738de9382b08cdd0fd0}\index{duom@{duom}!setMark@{setMark}}
+\index{setMark@{setMark}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{setMark()}{setMark()}}
+{\footnotesize\ttfamily \label{classduom_a4be9408ae6870738de9382b08cdd0fd0} 
+void duom\+::set\+Mark (\begin{DoxyParamCaption}\item[{double}]{mark}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00241}{241}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+\Hypertarget{classduom_a173191d5705b0c94dc498e4d81028e9c}\index{duom@{duom}!setPazymiai@{setPazymiai}}
+\index{setPazymiai@{setPazymiai}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{setPazymiai()}{setPazymiai()}}
+{\footnotesize\ttfamily \label{classduom_a173191d5705b0c94dc498e4d81028e9c} 
+void duom\+::set\+Pazymiai (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vector}{Vector}}$<$ int $>$ \&}]{pazymiai}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00216}{216}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+\Hypertarget{classduom_a1091ebdfed0f85cd084b18bec921af77}\index{duom@{duom}!setVid\_med@{setVid\_med}}
+\index{setVid\_med@{setVid\_med}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{setVid\_med()}{setVid\_med()}}
+{\footnotesize\ttfamily \label{classduom_a1091ebdfed0f85cd084b18bec921af77} 
+void duom\+::set\+Vid\+\_\+med (\begin{DoxyParamCaption}\item[{double}]{vid\+\_\+med}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00234}{234}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{classduom_a1cacdf040824d25db63e1466f53c8e48}\index{duom@{duom}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily \label{classduom_a1cacdf040824d25db63e1466f53c8e48} 
+std\+::ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out}{, }\item[{\mbox{\hyperlink{classduom}{duom}} \&}]{student}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00182}{182}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+\Hypertarget{classduom_a73e9b07692fd2e26fb42741d5b212628}\index{duom@{duom}!operator==@{operator==}}
+\index{operator==@{operator==}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{operator==}{operator==}}
+{\footnotesize\ttfamily \label{classduom_a73e9b07692fd2e26fb42741d5b212628} 
+bool operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classduom}{duom}} \&}]{a}{, }\item[{const \mbox{\hyperlink{classduom}{duom}} \&}]{b}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00146}{146}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+\Hypertarget{classduom_a48dd013746fd9d814db6bf4a26af57a8}\index{duom@{duom}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!duom@{duom}}
+\doxysubsubsection{\texorpdfstring{operator$>$$>$}{operator>>}}
+{\footnotesize\ttfamily \label{classduom_a48dd013746fd9d814db6bf4a26af57a8} 
+std\+::ifstream \& operator$>$$>$ (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{in}{, }\item[{\mbox{\hyperlink{classduom}{duom}} \&}]{student}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line \mbox{\hyperlink{template_8h_source_l00154}{154}} of file \mbox{\hyperlink{template_8h_source}{template.\+h}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{template_8h}{template.\+h}}\end{DoxyCompactItemize}
