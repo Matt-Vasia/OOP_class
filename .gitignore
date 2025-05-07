@@ -12,3 +12,5 @@ versions/vector(class_impl)/*.o
 versions/deque(struct_impl)/build
 versions/list(struct_impl)/build
 versions/vector(class_impl)/build
+/versions/v3.0/build
+/versions/v3.0/.idea
