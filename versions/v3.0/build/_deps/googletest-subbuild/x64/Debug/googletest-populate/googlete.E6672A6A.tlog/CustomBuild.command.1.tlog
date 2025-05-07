@@ -1,0 +1,150 @@
+^C:\USERS\MATAS\DESKTOP\VS CODING\OOP (C++)\OOP\VERSIONS\V3.0\BUILD\_DEPS\GOOGLETEST-SUBBUILD\CMAKEFILES\66939D661397A63134F2F1B6B6F2F50C\GOOGLETEST-POPULATE-MKDIR.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P "C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/v3.0/build/_deps/googletest-subbuild/googletest-populate-prefix/tmp/googletest-populate-mkdirs.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/v3.0/build/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/Debug/googletest-populate-mkdir"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\MATAS\DESKTOP\VS CODING\OOP (C++)\OOP\VERSIONS\V3.0\BUILD\_DEPS\GOOGLETEST-SUBBUILD\CMAKEFILES\66939D661397A63134F2F1B6B6F2F50C\GOOGLETEST-POPULATE-DOWNLOAD.RULE
+setlocal
+cd "C:\Users\matas\Desktop\VS coding\OOP (c++)\OOP\versions\v3.0\build\_deps"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/v3.0/build/_deps/googletest-subbuild/googletest-populate-prefix/tmp/googletest-populate-gitclone.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/v3.0/build/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/Debug/googletest-populate-download"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\MATAS\DESKTOP\VS CODING\OOP (C++)\OOP\VERSIONS\V3.0\BUILD\_DEPS\GOOGLETEST-SUBBUILD\CMAKEFILES\66939D661397A63134F2F1B6B6F2F50C\GOOGLETEST-POPULATE-UPDATE.RULE
+setlocal
+cd "C:\Users\matas\Desktop\VS coding\OOP (c++)\OOP\versions\v3.0\build\_deps\googletest-src"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/v3.0/build/_deps/googletest-subbuild/googletest-populate-prefix/tmp/googletest-populate-gitupdate.cmake"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\MATAS\DESKTOP\VS CODING\OOP (C++)\OOP\VERSIONS\V3.0\BUILD\_DEPS\GOOGLETEST-SUBBUILD\CMAKEFILES\66939D661397A63134F2F1B6B6F2F50C\GOOGLETEST-POPULATE-PATCH.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/v3.0/build/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/Debug/googletest-populate-patch"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\MATAS\DESKTOP\VS CODING\OOP (C++)\OOP\VERSIONS\V3.0\BUILD\_DEPS\GOOGLETEST-SUBBUILD\CMAKEFILES\66939D661397A63134F2F1B6B6F2F50C\GOOGLETEST-POPULATE-CONFIGURE.RULE
+setlocal
+cd "C:\Users\matas\Desktop\VS coding\OOP (c++)\OOP\versions\v3.0\build\_deps\googletest-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/v3.0/build/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/Debug/googletest-populate-configure"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\MATAS\DESKTOP\VS CODING\OOP (C++)\OOP\VERSIONS\V3.0\BUILD\_DEPS\GOOGLETEST-SUBBUILD\CMAKEFILES\66939D661397A63134F2F1B6B6F2F50C\GOOGLETEST-POPULATE-BUILD.RULE
+setlocal
+cd "C:\Users\matas\Desktop\VS coding\OOP (c++)\OOP\versions\v3.0\build\_deps\googletest-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/v3.0/build/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/Debug/googletest-populate-build"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\MATAS\DESKTOP\VS CODING\OOP (C++)\OOP\VERSIONS\V3.0\BUILD\_DEPS\GOOGLETEST-SUBBUILD\CMAKEFILES\66939D661397A63134F2F1B6B6F2F50C\GOOGLETEST-POPULATE-INSTALL.RULE
+setlocal
+cd "C:\Users\matas\Desktop\VS coding\OOP (c++)\OOP\versions\v3.0\build\_deps\googletest-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/v3.0/build/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/Debug/googletest-populate-install"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\MATAS\DESKTOP\VS CODING\OOP (C++)\OOP\VERSIONS\V3.0\BUILD\_DEPS\GOOGLETEST-SUBBUILD\CMAKEFILES\66939D661397A63134F2F1B6B6F2F50C\GOOGLETEST-POPULATE-TEST.RULE
+setlocal
+cd "C:\Users\matas\Desktop\VS coding\OOP (c++)\OOP\versions\v3.0\build\_deps\googletest-build"
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/v3.0/build/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/Debug/googletest-populate-test"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\MATAS\DESKTOP\VS CODING\OOP (C++)\OOP\VERSIONS\V3.0\BUILD\_DEPS\GOOGLETEST-SUBBUILD\CMAKEFILES\D225589D89775D80A8767404FBE422DC\GOOGLETEST-POPULATE-COMPLETE.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory "C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/v3.0/build/_deps/googletest-subbuild/CMakeFiles/Debug"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/v3.0/build/_deps/googletest-subbuild/CMakeFiles/Debug/googletest-populate-complete"
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch "C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/v3.0/build/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/Debug/googletest-populate-done"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\MATAS\DESKTOP\VS CODING\OOP (C++)\OOP\VERSIONS\V3.0\BUILD\_DEPS\GOOGLETEST-SUBBUILD\CMAKEFILES\E1E401866B42D020546365542FA10720\GOOGLETEST-POPULATE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\MATAS\DESKTOP\VS CODING\OOP (C++)\OOP\VERSIONS\V3.0\BUILD\_DEPS\GOOGLETEST-SUBBUILD\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/v3.0/build/_deps/googletest-subbuild" "-BC:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/v3.0/build/_deps/googletest-subbuild" --check-stamp-file "C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/v3.0/build/_deps/googletest-subbuild/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
