@@ -1,3 +1,0 @@
-C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/v3.0/build/_deps/googletest-subbuild/CMakeFiles/googletest-populate.dir
-C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/v3.0/build/_deps/googletest-subbuild/CMakeFiles/ALL_BUILD.dir
-C:/Users/matas/Desktop/VS coding/OOP (c++)/OOP/versions/v3.0/build/_deps/googletest-subbuild/CMakeFiles/ZERO_CHECK.dir
