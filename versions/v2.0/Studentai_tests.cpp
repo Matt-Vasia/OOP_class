@@ -1,7 +1,21 @@
+#include "template.h"
 #include <gtest/gtest.h>
-#include "program_to_test/main.cpp"
 
-TEST(Random_function, Random_grade_check)
+class StudentaiTest : public ::testing::Test {
+protected:
+    void SetUp() override {
+        testNd = {8, 9, 7, 10, 6};
+    }
+    vector<int> testNd;
+
+    duom createSampleStudent() {
+        temp input;
+        input.pazymiai = testNd;
+        duom test(input);
+        return test;
+    }
+};
+TEST_F(StudentaiTest, Random_grade_check)
 {
     vector<duom> test_vector;
 
@@ -24,7 +38,7 @@ TEST(Random_function, Random_grade_check)
         }
     }
 }
-TEST(Random_function, Handles_zero_students)
+TEST_F(StudentaiTest, Handles_zero_students)
 {
     vector<duom> test_vector;
 
@@ -34,7 +48,7 @@ TEST(Random_function, Handles_zero_students)
     // Check that the vector is empty
     EXPECT_EQ(test_vector.size(), 0);
 }
-TEST(Random_function, Handles_zero_grades)
+TEST_F(StudentaiTest, Handles_zero_grades)
 {
     vector<duom> test_vector;
 
@@ -50,7 +64,7 @@ TEST(Random_function, Handles_zero_grades)
         EXPECT_EQ(student.getPazymiai().size(), 0);
     }
 }
-TEST(Five_rule_test, Handles_data_correctly)
+TEST_F(StudentaiTest, Handles_data_correctly)
 {
     vector<duom> test_vector;
     bool rule;
@@ -89,8 +103,4 @@ TEST(Five_rule_test, Handles_data_correctly)
     else
         rule=true;
     EXPECT_EQ(rule, true);
-}
-int main(int argc, char **argv){
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
 }

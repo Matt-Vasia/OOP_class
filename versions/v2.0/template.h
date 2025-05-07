@@ -5,7 +5,6 @@
 #include <fstream>
 #include <iomanip>
 #include <string>
-#include <vector>
 #include <sstream>
 #include <cstdlib>
 #include <ctime>
@@ -15,6 +14,7 @@
 #include <chrono>
 #include <execution>
 #include "std.h"
+#include <vector>
 
 struct temp
 {
@@ -247,40 +247,9 @@ class duom : private human
     //
 };
 
-vector<string> vardai={
-"Tomas",
-"Andrius",
-"Daumantas",
-"Jonas",
-"Petras",
-"Kestas",
-"Paulius",
-"Juozas",
-"Rokas",
-"Adomas",
-"Amelija",
-"Motiejus",
-"Jonas",
-"Olivija",
-"Lukas",
-"Emilija",
-"Jokubas",
-"Adele",
-"Benas",
-"Ema",
-"Dominykas",
-"Liepa",
-"Nojus",
-"Ugne",
-"Matas",
-"Lukne",
-"Markas",
-"Barbora",
-"Augustas"
-};
-
 const string test_file_location = TEST_FILE_LOCATION; //CMake version
 //const string test_file_location = "../../test_files/"; ///Manual complilation version (debug)
+
 
 void menu(vector <duom> &grupe);
 void read_from_console(vector <duom> &grupe);
@@ -300,6 +269,7 @@ double average(duom given);
 double median(duom given);
 //
 void method_test(vector <duom> &grupe);
+void class_write_test();
 
 #endif
 

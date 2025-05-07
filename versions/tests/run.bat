@@ -1,3 +1,0 @@
-tests.exe
-
-pause

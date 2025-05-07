@@ -1,3 +1,0 @@
-program.exe
-
-pause
