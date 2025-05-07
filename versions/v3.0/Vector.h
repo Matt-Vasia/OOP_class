@@ -315,4 +315,139 @@ public:
         }
         return data_[pos];
     }
+
+    // Access specified element (no bounds checking)
+    reference operator[](size_type pos) {
+        // Assert(pos < size_); // Optional assert for debug builds
+        return data_[pos];
+    }
+    const_reference operator[](size_type pos) const {
+        // Assert(pos < size_); // Optional assert for debug builds
+        return data_[pos];
+    }
+
+    // Access the first element
+    reference front() {
+        // Assert(!empty());
+        return data_[0];
+    }
+    const_reference front() const {
+        // Assert(!empty());
+        return data_[0];
+    }
+
+    // Access the last element
+    reference back() {
+        // Assert(!empty());
+        return data_[size_ - 1];
+    }
+    const_reference back() const {
+        // Assert(!empty());
+        return data_[size_ - 1];
+    }
+
+    // Direct access to the underlying array
+    T* data() noexcept {
+        return data_;
+    }
+    const T* data() const noexcept {
+        return data_;
+    }
+
+    // --- Iterators ---
+
+    iterator begin() noexcept {
+        return data_;
+    }
+    const_iterator begin() const noexcept {
+        return data_;
+    }
+    const_iterator cbegin() const noexcept {
+        return data_;
+    }
+
+    iterator end() noexcept {
+        return data_ + size_;
+    }
+    const_iterator end() const noexcept {
+        return data_ + size_;
+    }
+    const_iterator cend() const noexcept {
+        return data_ + size_;
+    }
+
+    reverse_iterator rbegin() noexcept {
+        return reverse_iterator(end());
+    }
+    const_reverse_iterator rbegin() const noexcept {
+        return const_reverse_iterator(end());
+    }
+    const_reverse_iterator crbegin() const noexcept {
+        return const_reverse_iterator(cend());
+    }
+
+    reverse_iterator rend() noexcept {
+        return reverse_iterator(begin());
+    }
+    const_reverse_iterator rend() const noexcept {
+        return const_reverse_iterator(begin());
+    }
+    const_reverse_iterator crend() const noexcept {
+        return const_reverse_iterator(cbegin());
+    }
+
+    // --- Capacity ---
+
+    // Checks whether the container is empty
+    bool empty() const noexcept {
+        return size_ == 0;
+    }
+
+    // Returns the number of elements
+    size_type size() const noexcept {
+        return size_;
+    }
+
+    // Returns the maximum possible number of elements
+    size_type max_size() const noexcept {
+        // Theoretical limit based on size_t and pointer difference type
+         return std::numeric_limits<difference_type>::max();
+        // Practical limit considering memory allocation overhead might be slightly less
+        // return std::numeric_limits<size_type>::max() / sizeof(value_type); // Another common approximation
+    }
+
+
+    // Increase the capacity of the vector (the total number of elements that the vector can hold without requiring reallocation)
+    void reserve(size_type new_cap) {
+        if (new_cap > max_size()) {
+             throw std::length_error("Vector::reserve capacity exceeds max_size()");
+        }
+        if (new_cap > capacity_) {
+            reallocate(new_cap);
+        }
+        // Note: reserve never shrinks capacity in std::vector
+    }
+
+
+    // Returns the number of elements that the container has currently allocated space for
+    size_type capacity() const noexcept {
+        return capacity_;
+    }
+
+    // Requests the removal of unused capacity
+    void shrink_to_fit() {
+        if (size_ < capacity_) {
+            if (size_ == 0) {
+                 clear_and_deallocate(); // Special case: become empty
+            } else {
+                 // Reallocate to exact size (or slightly more if needed)
+                 // Note: reallocate requires moving elements, so it's not noexcept
+                 Vector temp(std::move(*this)); // Move construct into temp (uses existing buffer)
+                 temp.reallocate(size_);        // Reallocate temp to the target size
+                 swap(temp);                    // Swap back (this now has the shrunk buffer)
+                 // This approach avoids self-move assignment issues within reallocate
+                 // A direct reallocate(size_) call is simpler but needs care.
+            }
+        }
+    }
 }
