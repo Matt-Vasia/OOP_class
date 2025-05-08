@@ -1,3 +1,6 @@
+```
+Use the setup.exe file to install the program.
+```
 
 # OOP
 
