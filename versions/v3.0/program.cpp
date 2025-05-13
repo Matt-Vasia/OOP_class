@@ -522,7 +522,7 @@ double median(duom given)
     }
 
 }
-void method_test(vector <duom> &grupe)
+void method_test(Vector <duom> &grupe)
 {
     read_file(grupe, test_file_location + "kursiokai_1000" + ".dat");
     ///

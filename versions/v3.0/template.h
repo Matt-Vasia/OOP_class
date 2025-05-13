@@ -21,7 +21,7 @@ struct temp
 {
     string var="test";
     string pav="test";
-    vector<int> pazymiai;
+    Vector<int> pazymiai;
     int exam=0;
     double vid_med=0;
     double mark;
@@ -44,7 +44,7 @@ class duom : private human
         void abstractClassFunction() override{};
 
     private:
-        vector<int> pazymiai;
+        Vector<int> pazymiai;
         int exam = 0;
         double vid_med = 0.0;
         double mark = 0.0;
@@ -63,7 +63,7 @@ class duom : private human
             this->var=var;
             this->pav=pav;
         }
-        duom(string var, string pav, vector<int> &pazymiai, int exam)
+        duom(string var, string pav, Vector<int> &pazymiai, int exam)
         {
             this->var=var;
             this->pav=pav;
@@ -201,7 +201,7 @@ class duom : private human
         {
             return pazymiai[i];
         }
-        vector<int> getPazymiai() const
+        Vector<int> getPazymiai() const
         {
             return pazymiai;
         }
@@ -218,7 +218,7 @@ class duom : private human
             return mark;
         }
     /// 
-        void setPazymiai(vector<int> &pazymiai)
+        void setPazymiai(Vector<int> &pazymiai)
         {
             this->pazymiai=pazymiai;
         }
