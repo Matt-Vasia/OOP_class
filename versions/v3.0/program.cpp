@@ -522,38 +522,38 @@ double median(duom given)
     }
 
 }
-void method_test(Vector <duom> &grupe)
+void method_test(vector <duom> &grupe)
 {
     read_file(grupe, test_file_location + "kursiokai_1000" + ".dat");
+    ///
+    duom test_case = grupe.at(10);
     //
-    duom test_case = grupe.at(0);
-    //
-    duom copy_constr = test_case;
+    duom copy_constr(test_case);
     if(copy_constr==test_case)
         cout<<"copy constr succesful"<<endl;
     else
         cout<<"copy constr unsuccesful"<<endl;
-    //
+    ///
     duom copy_method;
     copy_method=test_case;
     if(copy_method==test_case)
         cout<<"copy method succesful"<<endl;
     else
         cout<<"copy method unsuccesful"<<endl;
-    //
-    duom move_constr = std::move(test_case);
-    if(move_constr==test_case && move_constr==grupe.at(0))
-        cout<<"move constr unsuccesful"<<endl;
-    else
+    ///
+    duom move_constr(std::move(test_case));
+    if(move_constr==grupe.at(10) && test_case.isClear())
         cout<<"move constr succesful"<<endl;
-    //
-    test_case = grupe.at(0);
+    else
+        cout<<"move constr unsuccesful"<<endl;
+    ///
+    test_case = grupe.at(10);
     duom move_method;
     move_method=std::move(test_case);
-    if(move_method==test_case && move_method==grupe.at(0))
+    if(move_method==grupe.at(10) && test_case.isClear())
         cout<<"move method succesful"<<endl;
     else
-        cout<<"move method succesful"<<endl;
+        cout<<"move method unsuccesful"<<endl;
 }
 void class_write_test()
 {
