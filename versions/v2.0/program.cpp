@@ -45,8 +45,7 @@ void menu(vector <duom> &grupe)
         cout<<"Jei norite sugeneruoti mokinio pazymius ir vardus atsitiktinai (failuose), spauskite '5'"<<endl;
         cout<<"Jei norite suruosiuoti mokinius pagal ju pazymius is failo, spauskite '6'"<<endl;
         cout<<"Jei norite istestuoti metodu perdengima, spauskite '7"<<endl;
-        cout<<"Jei norite istestuoti vector ir Vector klasiu spartos skirtuma, spauskite '8"<<endl;
-        cout<<"Jei norite baigti darba, spauskite '9'"<<endl;
+        cout<<"Jei norite baigti darba, spauskite '8'"<<endl;
         cin>>input;
         if(input.length()!=1)
             continue;
@@ -187,8 +186,6 @@ void menu(vector <duom> &grupe)
     else if (rule=='7')
         method_test(grupe); 
     else if (rule=='8')
-        class_write_test();
-    else if (rule=='9')
         cout<<"Darbas baigtas"<<endl;
 }
 void read_from_console(vector <duom> &grupe)
@@ -524,67 +521,33 @@ double median(duom given)
 void method_test(vector <duom> &grupe)
 {
     read_file(grupe, test_file_location + "kursiokai_1000" + ".dat");
+    ///
+    duom test_case = grupe.at(10);
     //
-    duom test_case = grupe.at(0);
-    //
-    duom copy_constr = test_case;
+    duom copy_constr(test_case);
     if(copy_constr==test_case)
         cout<<"copy constr succesful"<<endl;
     else
         cout<<"copy constr unsuccesful"<<endl;
-    //
+    ///
     duom copy_method;
     copy_method=test_case;
     if(copy_method==test_case)
         cout<<"copy method succesful"<<endl;
     else
         cout<<"copy method unsuccesful"<<endl;
-    //
-    duom move_constr = std::move(test_case);
-    if(move_constr==test_case && move_constr==grupe.at(0))
-        cout<<"move constr unsuccesful"<<endl;
-    else
+    ///
+    duom move_constr(std::move(test_case));
+    if(move_constr==grupe.at(10) && test_case.isClear())
         cout<<"move constr succesful"<<endl;
-    //
-    test_case = grupe.at(0);
+    else
+        cout<<"move constr unsuccesful"<<endl;
+    ///
+    test_case = grupe.at(10);
     duom move_method;
     move_method=std::move(test_case);
-    if(move_method==test_case && move_method==grupe.at(0))
+    if(move_method==grupe.at(10) && test_case.isClear())
         cout<<"move method succesful"<<endl;
     else
-        cout<<"move method succesful"<<endl;
-}
-void class_write_test()
-{
-    vector <duom> stl_vector;
-    vector <duom> new_vector;
-    duom obj;
-
-    auto start = std::chrono::high_resolution_clock::now();
-    auto end = std::chrono::high_resolution_clock::now();
-    auto total = std::chrono::duration_cast<std::chrono::seconds>(end - start).count();
-
-    for(int i=1000; i<=100000000; i*=10)
-    {
-        start = std::chrono::high_resolution_clock::now();
-        for(int j=0; j<i; j++)
-            stl_vector.push_back(obj);
-        end = std::chrono::high_resolution_clock::now();
-        total = std::chrono::duration_cast<std::chrono::seconds>(end - start).count();
-        cout<<"Laikas skirtas uzpildyti stl::vector tipo struktura" << i << " objektu: " << total << " s"<<endl;
-        //
-        stl_vector.clear();
-        stl_vector.shrink_to_fit();
-        //
-        start = std::chrono::high_resolution_clock::now();
-        for(int j=0; j<i; j++)
-            new_vector.push_back(obj);
-        end = std::chrono::high_resolution_clock::now();
-        total = std::chrono::duration_cast<std::chrono::seconds>(end - start).count();
-        cout<<"Laikas skirtas uzpildyti Vector tipo struktura" << i << " objektu: " << total << " s"<<endl;
-        cout<<"///"<<endl;
-        //
-        new_vector.clear();
-        new_vector.shrink_to_fit();
-    }
+        cout<<"move method unsuccesful"<<endl;
 }
