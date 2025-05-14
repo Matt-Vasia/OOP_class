@@ -71,7 +71,7 @@ TEST_F(StudentaiTest, Handles_data_correctly)
 
     read_file(test_vector, test_file_location + "kursiokai_1000" + ".dat");
     //
-    duom test_case = test_vector.at(0);
+    duom test_case = test_vector.at(10);
     //
     duom copy_constr = test_case;
     if(copy_constr==test_case)
@@ -88,17 +88,17 @@ TEST_F(StudentaiTest, Handles_data_correctly)
         rule=false;
     EXPECT_EQ(rule, true);
     //
-    duom move_constr = std::move(test_case);
-    if(move_constr==test_case && move_constr==test_vector.at(0))
+    duom move_constr(std::move(test_case));
+    if(move_constr==grupe.at(10) && test_case.isClear())
         rule=false;
     else
         rule=true;
     EXPECT_EQ(rule, true);
     //
-    test_case = test_vector.at(0);
+    test_case = grupe.at(10);
     duom move_method;
     move_method=std::move(test_case);
-    if(move_method==test_case && move_method==test_vector.at(0))
+    if(move_method==grupe.at(10) && test_case.isClear())
         rule=false;
     else
         rule=true;
