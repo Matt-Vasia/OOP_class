@@ -1,0 +1,73 @@
+\doxysection{Studentai\+\_\+tests.\+cpp File Reference}
+\hypertarget{_studentai__tests_8cpp}{}\label{_studentai__tests_8cpp}\index{Studentai\_tests.cpp@{Studentai\_tests.cpp}}
+{\ttfamily \#include "{}template.\+h"{}}\newline
+{\ttfamily \#include $<$gtest/gtest.\+h$>$}\newline
+Include dependency graph for Studentai\+\_\+tests.\+cpp\+:
+% FIG 0
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_studentai_test}{Studentai\+Test}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_studentai__tests_8cpp_a9684f03321088e54d74b25d71ca42a93}{TEST\+\_\+F}} (\mbox{\hyperlink{class_studentai_test}{Studentai\+Test}}, Random\+\_\+grade\+\_\+check)
+\item 
+\mbox{\hyperlink{_studentai__tests_8cpp_ac6d8959aa27a5b962aebd8ffc97bfd8d}{TEST\+\_\+F}} (\mbox{\hyperlink{class_studentai_test}{Studentai\+Test}}, Handles\+\_\+zero\+\_\+students)
+\item 
+\mbox{\hyperlink{_studentai__tests_8cpp_abdaff41dff9c963f740c8301a35ede23}{TEST\+\_\+F}} (\mbox{\hyperlink{class_studentai_test}{Studentai\+Test}}, Handles\+\_\+zero\+\_\+grades)
+\item 
+\mbox{\hyperlink{_studentai__tests_8cpp_a82f651d3eb07a74267db35ca8ca76d94}{TEST\+\_\+F}} (\mbox{\hyperlink{class_studentai_test}{Studentai\+Test}}, Handles\+\_\+data\+\_\+correctly)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_studentai__tests_8cpp_a82f651d3eb07a74267db35ca8ca76d94}\index{Studentai\_tests.cpp@{Studentai\_tests.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!Studentai\_tests.cpp@{Studentai\_tests.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{_studentai__tests_8cpp_a82f651d3eb07a74267db35ca8ca76d94} 
+TEST\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_studentai_test}{Studentai\+Test}}}]{}{, }\item[{Handles\+\_\+data\+\_\+correctly}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_studentai__tests_8cpp_source_l00067}{67}} of file \mbox{\hyperlink{_studentai__tests_8cpp_source}{Studentai\+\_\+tests.\+cpp}}.
+
+Here is the call graph for this function\+:
+% FIG 1
+\Hypertarget{_studentai__tests_8cpp_abdaff41dff9c963f740c8301a35ede23}\index{Studentai\_tests.cpp@{Studentai\_tests.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!Studentai\_tests.cpp@{Studentai\_tests.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{_studentai__tests_8cpp_abdaff41dff9c963f740c8301a35ede23} 
+TEST\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_studentai_test}{Studentai\+Test}}}]{}{, }\item[{Handles\+\_\+zero\+\_\+grades}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_studentai__tests_8cpp_source_l00051}{51}} of file \mbox{\hyperlink{_studentai__tests_8cpp_source}{Studentai\+\_\+tests.\+cpp}}.
+
+Here is the call graph for this function\+:
+% FIG 2
+\Hypertarget{_studentai__tests_8cpp_ac6d8959aa27a5b962aebd8ffc97bfd8d}\index{Studentai\_tests.cpp@{Studentai\_tests.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!Studentai\_tests.cpp@{Studentai\_tests.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{_studentai__tests_8cpp_ac6d8959aa27a5b962aebd8ffc97bfd8d} 
+TEST\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_studentai_test}{Studentai\+Test}}}]{}{, }\item[{Handles\+\_\+zero\+\_\+students}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_studentai__tests_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{_studentai__tests_8cpp_source}{Studentai\+\_\+tests.\+cpp}}.
+
+Here is the call graph for this function\+:
+% FIG 3
+\Hypertarget{_studentai__tests_8cpp_a9684f03321088e54d74b25d71ca42a93}\index{Studentai\_tests.cpp@{Studentai\_tests.cpp}!TEST\_F@{TEST\_F}}
+\index{TEST\_F@{TEST\_F}!Studentai\_tests.cpp@{Studentai\_tests.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST\_F()}{TEST\_F()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{_studentai__tests_8cpp_a9684f03321088e54d74b25d71ca42a93} 
+TEST\+\_\+F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_studentai_test}{Studentai\+Test}}}]{}{, }\item[{Random\+\_\+grade\+\_\+check}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_studentai__tests_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{_studentai__tests_8cpp_source}{Studentai\+\_\+tests.\+cpp}}.
+
+Here is the call graph for this function\+:
+% FIG 4

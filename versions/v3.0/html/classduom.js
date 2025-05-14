@@ -16,6 +16,7 @@ var classduom =
     [ "getPazymiai_at", "classduom.html#ac4050e3d3f3b8a1f90d957eb1b2e9d24", null ],
     [ "getVar", "classduom.html#a477eda5caa44f1fe1f62df3de9b70d12", null ],
     [ "getVid_med", "classduom.html#ac8fc04262e076344696f213c30869bb2", null ],
+    [ "isClear", "classduom.html#a356ec1f65241d96f6ca30428230c12c9", null ],
     [ "operator=", "classduom.html#a514f99ab18f752add48ad39013b81200", null ],
     [ "operator=", "classduom.html#a0f3c08af449e40282df0eebf6b3c747e", null ],
     [ "operator==", "classduom.html#a08c7dda9a5b0268d3163ef204b3fb0e8", null ],

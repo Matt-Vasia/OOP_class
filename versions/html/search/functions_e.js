@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['vector_0',['Vector',['../class_vector.html#a40598c609d66e7f15c4498663d3d89cd',1,'Vector::Vector() noexcept=default'],['../class_vector.html#a59a099d06189fc2ee680b5c3aee4fa81',1,'Vector::Vector(size_type count)'],['../class_vector.html#a742dfc06504bae711d41e89eb9a3b11f',1,'Vector::Vector(size_type count, const_reference value)'],['../class_vector.html#a2d8668ab0e1c739ea4ceaa29660a0d51',1,'Vector::Vector(InputIt first, InputIt last)'],['../class_vector.html#a940f94b7c4a1c15a65a1ab6e13859dfe',1,'Vector::Vector(const Vector &amp;other)'],['../class_vector.html#a5ed9bb7852ccee071f8418d10182927f',1,'Vector::Vector(Vector &amp;&amp;other) noexcept'],['../class_vector.html#a8d4ab361a0285a27e994707c43e50b21',1,'Vector::Vector(std::initializer_list&lt; T &gt; init)']]],
+  ['vid_5fmed_5fcalc_1',['vid_med_calc',['../program_8cpp.html#a8f5bb1c1dc07be0bacea397f239e9490',1,'vid_med_calc(Vector&lt; duom &gt; &amp;grupe):&#160;program.cpp'],['../template_8h.html#a8f5bb1c1dc07be0bacea397f239e9490',1,'vid_med_calc(Vector&lt; duom &gt; &amp;grupe):&#160;program.cpp']]]
+];
