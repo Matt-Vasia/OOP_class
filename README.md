@@ -67,7 +67,9 @@ Skaitymas: 48.142 s
 Rusiavimas: 0.421 s
 Skaidymas: 16.410 s
 ```
-
+```
+--------------------------------------------------------------
+```
 ```
 Santrauka: (100000) Vector
 Skaitymas: 0.593 s
