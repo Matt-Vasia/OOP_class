@@ -89,18 +89,18 @@ TEST_F(StudentaiTest, Handles_data_correctly)
     EXPECT_EQ(rule, true);
     //
     duom move_constr(std::move(test_case));
-    if(move_constr==grupe.at(10) && test_case.isClear())
-        rule=false;
-    else
+    if(move_constr==test_vector.at(10) && test_case.isClear())
         rule=true;
+    else
+        rule=false;
     EXPECT_EQ(rule, true);
     //
-    test_case = grupe.at(10);
+    test_case = test_vector.at(10);
     duom move_method;
     move_method=std::move(test_case);
-    if(move_method==grupe.at(10) && test_case.isClear())
-        rule=false;
-    else
+    if(move_method==test_vector.at(10) && test_case.isClear())
         rule=true;
+    else
+        rule=false;
     EXPECT_EQ(rule, true);
 }
