@@ -52,18 +52,20 @@ Santrauka: (100000) stl::vector
 Skaitymas: 0.424 s
 Rusiavimas: 0.048 s
 Skaidymas: 0 s
+Rasymas: 0.201 s
 ```
 ```
 Santrauka: (1000000) stl::vector
 Skaitymas: 5.201 s
 Rusiavimas: 0.331 s
 Skaidymas: 0 s
+Rasymas: 1.785 s
 ```
 ```
 Santrauka: (10000000) stl::vector
 Skaitymas: 48.142 s
 Rusiavimas: 0.421 s
-Skaidymas: 0 s
+Skaidymas: 16.410 s
 ```
 
 ```
@@ -71,16 +73,19 @@ Santrauka: (100000) Vector
 Skaitymas: 0.593 s
 Rusiavimas: 0.069 s
 Skaidymas: 0.071 s
+Rasymas: 0.289 s
 ```
 ```
 Santrauka: (1000000) Vector
 Skaitymas: 5.327 s
 Rusiavimas: 0.677 s
 Skaidymas: 0.657 s
+Rasymas: 2.431 s
 ```
 ```
 Santrauka: (10000000) Vector
 Skaitymas: 44.439 s
 Rusiavimas: 7.48 s
 Skaidymas: 6.605 s
+Rasymas: 24.523 s
 ```
