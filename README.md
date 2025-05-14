@@ -1,7 +1,8 @@
 # OOP
 
 ```
-Use the setup.exe file to install the program.
+Use the setup.exe file to install the program. \n
+You can use the app by using the shortcut, which can be found on the Desktop
 ```
 
 ## Running Tests
