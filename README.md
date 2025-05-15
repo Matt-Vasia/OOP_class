@@ -66,7 +66,8 @@ Rasymas: 1.785 s
 Santrauka: (10000000) stl::vector
 Skaitymas: 48.142 s
 Rusiavimas: 0.421 s
-Skaidymas: 16.410 s
+Skaidymas: 0.588 s
+Rasymas: 16.410 s
 ```
 ```
 --------------------------------------------------------------
